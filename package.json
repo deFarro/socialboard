@@ -1,0 +1,30 @@
+{
+  "name": "socialboard",
+  "version": "1.0.0",
+  "description": "Dashboard for social activities",
+  "main": "dist/app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deFarro/socialboard.git"
+  },
+  "author": "Nikita Svetlov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/deFarro/socialboard/issues"
+  },
+  "homepage": "https://github.com/deFarro/socialboard#readme",
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "jest": "^20.0.4",
+    "webpack": "^3.5.5"
+  }
+}
