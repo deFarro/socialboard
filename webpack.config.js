@@ -1,3 +1,5 @@
+'use strict';
+
 var dirName = '/Users/Jack/Documents/Coding/Projects/Socialboard/'
 
 module.exports = {
@@ -33,5 +35,10 @@ module.exports = {
           options: {sourceMap: true}
       }]
     }]
+  },
+
+  stats: {
+    assets: false,
+    version: false
   }
 };
