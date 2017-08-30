@@ -1,0 +1,26 @@
+@import "partials/variables";
+@import "partials/mixins";
+
+.form {
+  width: 50%;
+  form {
+    @include flex-container($dir: column, $ali: center);
+  }
+  %elements {
+    margin: 2rem 0;
+    width: 50%;
+    height: 3rem;
+  }
+  input {
+    @extend %elements;
+    @include text-styling;
+    outline: none;
+    text-align: center;
+    border: 1px solid $hover_color;
+    border-radius: 5px;
+  }
+  button {
+    @extend %elements;
+    @include btn;
+  }
+}

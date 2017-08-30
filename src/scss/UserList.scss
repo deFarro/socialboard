@@ -1,0 +1,32 @@
+@import "partials/variables";
+@import "partials/mixins";
+
+.userList {
+  width: 50%;
+  margin: 2em 0;
+  box-sizing: border-box;
+  border: 1px solid $hover_color;
+  border-radius: 5px;
+  h3 {
+    @include text-styling(1rem);
+    text-align: center;
+    text-transform: uppercase;
+  }
+  ul {
+    padding: 0;
+    list-style-position: inside;
+  }
+  li {
+    @include text-styling(1rem);
+    @include flex-container($just: space-between);
+    padding: 0 1rem;
+    list-style: none;
+    line-height: 2rem;
+    border-bottom: 1px dashed $hover_color;
+  }
+  .delete {
+    color: red;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+}

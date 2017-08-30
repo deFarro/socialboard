@@ -1,0 +1,9 @@
+@import "partials/variables";
+@import "partials/mixins";
+
+.userBlock {
+  @include flex-container;
+  width: 70%;
+  @include mobile-device;
+  margin: 0 auto;
+}

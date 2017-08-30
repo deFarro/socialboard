@@ -16,6 +16,6 @@ Modular CSS (SASS) approach used for styling.
 * React
 * Redux
 * Jest
-* Enzyme ?
+* Enzyme
 * Webpack
 * Gulp

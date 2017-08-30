@@ -1,0 +1,16 @@
+@import "partials/variables";
+@import "partials/mixins";
+
+
+.title {
+  @include mobile-device;
+  width: 70%;
+  margin: 0 auto;
+  h1 {
+    @include text-styling(5rem);
+    text-align: center;
+  }
+  p {
+    @include text-styling(1rem);
+  }
+}
