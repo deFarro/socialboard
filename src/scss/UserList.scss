@@ -2,8 +2,12 @@
 @import "partials/mixins";
 
 .userList {
+  @include mobile-device {
+    width: 95%;
+    margin: 1rem auto;
+  }
   width: 50%;
-  margin: 2em 0;
+  margin: 1em 0;
   box-sizing: border-box;
   border: 1px solid $hover_color;
   border-radius: 5px;

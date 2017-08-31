@@ -4,7 +4,9 @@
 .navigation {
   @include flex-container;
   width: 70%;
-  @include mobile-device;
+  @include mobile-device {
+    width: 95%;
+  };
   margin: 0 auto;
   height: 4rem;
   border: 1px solid $hover_color;
@@ -22,6 +24,7 @@
       background-color: $hover_color;
     }
     &:first-child {
+      margin: -1px 0 -1px -1px;
       color: white;
       background-color: grey;
     }

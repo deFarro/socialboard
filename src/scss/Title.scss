@@ -3,7 +3,9 @@
 
 
 .title {
-  @include mobile-device;
+  @include mobile-device {
+    width: 95%;
+  };
   width: 70%;
   margin: 0 auto;
   h1 {

@@ -4,6 +4,9 @@
 .userBlock {
   @include flex-container;
   width: 70%;
-  @include mobile-device;
+  @include mobile-device {
+    width: 95%;
+    display: block;
+  };
   margin: 0 auto;
 }

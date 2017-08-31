@@ -2,12 +2,16 @@
 @import "partials/mixins";
 
 .form {
+  @include mobile-device {
+    width: 95%;
+    margin: 1rem auto;
+  }
   width: 50%;
   form {
     @include flex-container($dir: column, $ali: center);
   }
   %elements {
-    margin: 2rem 0;
+    margin: 1rem 0;
     width: 50%;
     height: 3rem;
   }
@@ -22,5 +26,42 @@
   button {
     @extend %elements;
     @include btn;
+  }
+}
+
+.socialChoice {
+  @include flex-container;
+  width: 50%;
+  margin: 1rem 0;
+  input {
+    display: none;
+  }
+  label {
+    @include tab;
+    box-sizing: border-box;
+    width: 33%;
+    height: 3rem;
+    border: 1px solid $hover_color;
+    padding-top: 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    .fa {
+      font-size: 2rem;
+    }
+  }
+  input:checked + label {
+    &:nth-child(2) {
+      background: $twitter_color;
+      border-color: $twitter_color;
+    }
+    &:nth-child(4) {
+      color: white;
+      background: $facebook_color;
+      border-color: $facebook_color;
+    }&:nth-child(6) {
+      color: white;
+      background: $instagram_color;
+      border-color: $instagram_color;
+    }
   }
 }
