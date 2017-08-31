@@ -9,8 +9,6 @@
   };
   margin: 0 auto;
   height: 4rem;
-  border: 1px solid $hover_color;
-  border-radius: 5px;
   a {
     @include tab;
     @include reset-link;
@@ -20,13 +18,15 @@
     text-align: center;
     color: $text_color;
     padding-top: 1rem;
+    box-sizing: border-box;
     &:hover {
       background-color: $hover_color;
+      border-color: $hover_color;
     }
     &:first-child {
-      margin: -1px 0 -1px -1px;
       color: white;
       background-color: grey;
+      border: 1px solid grey;
     }
   }
 }

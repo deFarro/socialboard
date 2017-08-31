@@ -3,8 +3,8 @@
 // Libs
 import React from 'react';
 import PropTypes from 'prop-types';
-import {BrowserRouter, Route} from 'react-router-dom';
-import {Switch} from 'react-router';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { Switch } from 'react-router';
 
 
 // Components

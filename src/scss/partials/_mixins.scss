@@ -18,11 +18,15 @@
   color: inherit;
 }
 
-@mixin tab {
-  &:first-of-type{
+@mixin tab($border_color: $hover_color) {
+  border-top: 1px solid $border_color;
+  border-bottom: 1px solid $border_color;
+  &:first-of-type {
+    border-left: 1px solid $border_color;
     border-radius: 5px 0 0 5px;
   }
   &:last-of-type {
+    border-right: 1px solid $border_color;
     border-radius: 0 5px 5px 0;
   }
 }

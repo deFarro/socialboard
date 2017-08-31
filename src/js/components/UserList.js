@@ -2,7 +2,7 @@
 
 // Libs
 import React from 'react';
-import {PropTypes} from 'prop-types';
+import { PropTypes } from 'prop-types';
 
 // Style
 import '../../scss/UserList.scss';
@@ -13,9 +13,9 @@ const UserList = ({users, handleClick}) => {
       <h3>Users added</h3>
       <ul>
         {users.map((user, i) => <li key={i}>
-          <span>{user.name}</span>
+          <span><i className={'fa fa-' + user.socialName} aria-hidden="true"></i> {user.name}</span>
           <span>id:{user.id}</span>
-          <span className='delete' onClick={handleClick}>&#10007;</span>
+          <span className="delete" onClick={handleClick}>&#10007;</span>
         </li>)}
       </ul>
     </div>

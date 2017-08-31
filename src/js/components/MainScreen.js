@@ -13,6 +13,11 @@ import Form from './Form';
 import UserList from './UserList';
 
 const MainScreen = () => {
+  const users = [
+    {name: 'Nick Svetlov', id: 73958472903, socialName: 'twitter'},
+    {name: 'Jack de Farro', id: 27382738495, socialName: 'facebook'},
+    {name: 'Joey Tribbiani', id: 73029493840, socialName: 'instagram'}
+  ];
   return (
     <div>
       <Navigation />
@@ -21,7 +26,7 @@ const MainScreen = () => {
       <Form handleSubmit={(event) => {
         event.preventDefault();
         console.log('click!');}} />
-      <UserList users={[{name: 'Nick Svetlov', id: 73958472903}, {name: 'Jack de Farro', id: 27382738495}, {name: 'Joey Tribbiani', id: 73029493840}]}
+      <UserList users={users}
         handleClick={(event) => {console.log('click!');}} />
       </div>
     </div>

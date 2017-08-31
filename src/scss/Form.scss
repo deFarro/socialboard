@@ -20,8 +20,6 @@
     @include text-styling;
     outline: none;
     text-align: center;
-    border: 1px solid $hover_color;
-    border-radius: 5px;
   }
   button {
     @extend %elements;
@@ -41,12 +39,17 @@
     box-sizing: border-box;
     width: 33%;
     height: 3rem;
-    border: 1px solid $hover_color;
     padding-top: 0.5rem;
     text-align: center;
     cursor: pointer;
     .fa {
       font-size: 2rem;
+    }
+    &:first-of-type {
+      border-right: 1px solid $hover_color;
+    }
+    &:last-of-type {
+      border-left: 1px solid $hover_color;
     }
   }
   input:checked + label {
