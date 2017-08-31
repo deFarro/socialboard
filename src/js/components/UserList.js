@@ -2,6 +2,7 @@
 
 // Libs
 import React from 'react';
+import {PropTypes} from 'prop-types';
 
 // Style
 import '../../scss/UserList.scss';
@@ -19,6 +20,11 @@ const UserList = ({users, handleClick}) => {
       </ul>
     </div>
   );
+}
+
+UserList.propTypes = {
+  users: PropTypes.array.isRequired,
+  handleClick: PropTypes.func.isRequired
 }
 
 export default UserList;

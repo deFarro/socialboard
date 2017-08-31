@@ -2,6 +2,7 @@
 
 // Libs
 import React from 'react';
+import {PropTypes} from 'prop-types';
 
 // Style
 import '../../scss/Form.scss';
@@ -24,5 +25,9 @@ const Form = ({handleSubmit}) => {
     </div>
   );
 }
+
+Form.propTypes = {
+  handleSubmit: PropTypes.func.isRequired
+};
 
 export default Form;
