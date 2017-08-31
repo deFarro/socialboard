@@ -2,6 +2,8 @@
 
 // Libs
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 // Style
 import '../../scss/MainScreen.scss';
@@ -12,23 +14,31 @@ import Title from './Title';
 import Form from './Form';
 import UserList from './UserList';
 
-const MainScreen = () => {
-  const users = [
-    {name: 'Nick Svetlov', id: 73958472903, socialName: 'twitter'},
-    {name: 'Jack de Farro', id: 27382738495, socialName: 'facebook'},
-    {name: 'Joey Tribbiani', id: 73029493840, socialName: 'instagram'}
-  ];
-  return (
-    <div>
-      <Navigation />
-      <Title />
-      <div className="userBlock">
-      <Form handleSubmit={(data) => console.log(data)} />
-      <UserList users={users}
-        handleClick={() => console.log('click!')} />
+// Actions
+import { addUser, removeUser } from '../actions/userData';
+
+class MainScreen extends React.Component {
+  render() {
+    const add = bindActionCreators(addUser, this.props.dispatch);
+    const remove = bindActionCreators(removeUser, this.props.dispatch);
+    return (
+      <div>
+        <Navigation />
+        <Title />
+        <div className="userBlock">
+        <Form handleSubmit={add} />
+        <UserList users={this.props.users}
+          handleClick={remove} />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
-export default MainScreen;
+const mapStateToProps = state => {
+  return {
+    users: state.users
+  }
+}
+
+export default connect(mapStateToProps)(MainScreen);

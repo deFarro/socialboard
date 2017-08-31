@@ -11,7 +11,7 @@ var del = require('del');
 var jest = require('gulp-jest').default;
 
 gulp.task('build', ['clean'], () => {
-  return gulp.src('src/js/app.js')
+  return gulp.src('src/js/index.js')
     .pipe(gulpWebpack(require('./webpack.config.js')))
     .pipe(gulp.dest('dist'));
 });

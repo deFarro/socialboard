@@ -32,5 +32,8 @@
     color: red;
     font-size: 1.5rem;
     cursor: pointer;
+    &:hover {
+      color: darken(red, 5%);
+    }
   }
 }

@@ -2,7 +2,7 @@
   "name": "socialboard",
   "version": "1.0.0",
   "description": "Dashboard for social activities",
-  "main": "dist/app.js",
+  "main": "dist/bundle.js",
   "scripts": {
     "test": "jest",
     "build": "webpack --progress"
