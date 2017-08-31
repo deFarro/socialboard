@@ -29866,13 +29866,12 @@ var MainScreen = function MainScreen() {
     _react2.default.createElement(
       'div',
       { className: 'userBlock' },
-      _react2.default.createElement(_Form2.default, { handleSubmit: function handleSubmit(event) {
-          event.preventDefault();
-          console.log('click!');
+      _react2.default.createElement(_Form2.default, { handleSubmit: function handleSubmit(data) {
+          return console.log(data);
         } }),
       _react2.default.createElement(_UserList2.default, { users: users,
-        handleClick: function handleClick(event) {
-          console.log('click!');
+        handleClick: function handleClick() {
+          return console.log('click!');
         } })
     )
   );
@@ -30027,6 +30026,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(5);
 
 var _react2 = _interopRequireDefault(_react);
@@ -30037,49 +30038,85 @@ __webpack_require__(283);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Form = function Form(_ref) {
-  var handleSubmit = _ref.handleSubmit;
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-  return _react2.default.createElement(
-    'div',
-    { className: 'form' },
-    _react2.default.createElement(
-      'form',
-      { onSubmit: handleSubmit },
-      _react2.default.createElement(
-        'div',
-        { className: 'socialChoice' },
-        _react2.default.createElement('input', { type: 'radio', value: 'twitter', defaultChecked: 'true', name: 'radio', id: 'twitter' }),
-        _react2.default.createElement(
-          'label',
-          { htmlFor: 'twitter' },
-          _react2.default.createElement('i', { className: 'fa fa-twitter', 'aria-hidden': 'true' })
-        ),
-        _react2.default.createElement('input', { type: 'radio', value: 'facebook', name: 'radio', id: 'facebook' }),
-        _react2.default.createElement(
-          'label',
-          { htmlFor: 'facebook' },
-          _react2.default.createElement('i', { className: 'fa fa-facebook', 'aria-hidden': 'true' })
-        ),
-        _react2.default.createElement('input', { type: 'radio', value: 'instagram', name: 'radio', id: 'instagram' }),
-        _react2.default.createElement(
-          'label',
-          { htmlFor: 'instagram' },
-          _react2.default.createElement('i', { className: 'fa fa-instagram', 'aria-hidden': 'true' })
-        )
-      ),
-      _react2.default.createElement('input', { type: 'text', pattern: '\\d*', title: 'Only digits allowed.', placeholder: 'enter user ID' }),
-      _react2.default.createElement(
-        'button',
-        { type: 'submit' },
-        'ADD USER'
-      )
-    )
-  );
-};
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 // Style
 
+
+var Form = function (_React$Component) {
+  _inherits(Form, _React$Component);
+
+  function Form(props) {
+    _classCallCheck(this, Form);
+
+    var _this = _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this));
+
+    _this.submit = props.handleSubmit;
+    return _this;
+  }
+
+  _createClass(Form, [{
+    key: 'handleSumbit',
+    value: function handleSumbit(event) {
+      event.preventDefault();
+      var form = new FormData(this.form);
+      this.idField.value = '';
+      this.submit({ social: form.get('social'), id: form.get('id') });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'form' },
+        _react2.default.createElement(
+          'form',
+          { ref: function ref(element) {
+              return _this2.form = element;
+            }, onSubmit: this.handleSumbit.bind(this) },
+          _react2.default.createElement(
+            'div',
+            { className: 'socialChoice' },
+            _react2.default.createElement('input', { type: 'radio', value: 'twitter', defaultChecked: 'true', name: 'social', id: 'twitter' }),
+            _react2.default.createElement(
+              'label',
+              { htmlFor: 'twitter' },
+              _react2.default.createElement('i', { className: 'fa fa-twitter', 'aria-hidden': 'true' })
+            ),
+            _react2.default.createElement('input', { type: 'radio', value: 'facebook', name: 'social', id: 'facebook' }),
+            _react2.default.createElement(
+              'label',
+              { htmlFor: 'facebook' },
+              _react2.default.createElement('i', { className: 'fa fa-facebook', 'aria-hidden': 'true' })
+            ),
+            _react2.default.createElement('input', { type: 'radio', value: 'instagram', name: 'social', id: 'instagram' }),
+            _react2.default.createElement(
+              'label',
+              { htmlFor: 'instagram' },
+              _react2.default.createElement('i', { className: 'fa fa-instagram', 'aria-hidden': 'true' })
+            )
+          ),
+          _react2.default.createElement('input', { type: 'text', pattern: '\\d*', title: 'Only digits allowed.', ref: function ref(element) {
+              return _this2.idField = element;
+            }, placeholder: 'enter user ID', name: 'id', required: true }),
+          _react2.default.createElement(
+            'button',
+            { type: 'submit' },
+            'ADD USER'
+          )
+        )
+      );
+    }
+  }]);
+
+  return Form;
+}(_react2.default.Component);
 
 Form.propTypes = {
   handleSubmit: _propTypes.PropTypes.func.isRequired

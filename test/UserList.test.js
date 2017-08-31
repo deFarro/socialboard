@@ -11,7 +11,7 @@ describe('UserList Component', () => {
     {name: 'Jack de Farro', id: 27382738495, socialName: 'facebook'},
     {name: 'Joey Tribbiani', id: 73029493840, socialName: 'instagram'}
   ];
-  let handleClick = () => {};
+  const handleClick = () => {};
 
   test('should create list of all passed users', () => {
     const wrapper = shallow(<UserList users={users} handleClick={handleClick} />);

@@ -23,11 +23,9 @@ const MainScreen = () => {
       <Navigation />
       <Title />
       <div className="userBlock">
-      <Form handleSubmit={(event) => {
-        event.preventDefault();
-        console.log('click!');}} />
+      <Form handleSubmit={(data) => console.log(data)} />
       <UserList users={users}
-        handleClick={(event) => {console.log('click!');}} />
+        handleClick={() => console.log('click!')} />
       </div>
     </div>
   );
