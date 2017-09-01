@@ -13889,13 +13889,24 @@ var _userData = __webpack_require__(289);
 
 var _userData2 = _interopRequireDefault(_userData);
 
+var _localStorage = __webpack_require__(290);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// Components
-var store = (0, _redux.createStore)(_userData2.default, window.devToolsExtension && window.devToolsExtension());
-
 // Reducer
+var savedState = (0, _localStorage.loadState)();
 
+// localStorage functions
+
+
+// Components
+
+
+var store = (0, _redux.createStore)(_userData2.default, savedState, window.devToolsExtension && window.devToolsExtension());
+
+store.subscribe(function () {
+  return (0, _localStorage.saveSate)(store.getState());
+});
 
 _reactDom2.default.render(_react2.default.createElement(
   _reactRedux.Provider,
@@ -30453,6 +30464,42 @@ var userData = function userData() {
 };
 
 exports.default = userData;
+
+/***/ }),
+/* 290 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var saveSate = function saveSate(state) {
+  try {
+    var stingState = JSON.stringify(state);
+    localStorage.setItem('state', stingState);
+  } catch (err) {
+    console.log(err);
+    return;
+  }
+};
+
+var loadState = function loadState() {
+  try {
+    var state = localStorage.getItem('state');
+    if (state === null) {
+      return;
+    }
+    return JSON.parse(state);
+  } catch (err) {
+    console.log(err);
+    return;
+  }
+};
+
+exports.saveSate = saveSate;
+exports.loadState = loadState;
 
 /***/ })
 /******/ ]);

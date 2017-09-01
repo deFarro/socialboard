@@ -12,6 +12,16 @@ import App from './components/App';
 // Reducer
 import userData from './reducers/userData';
 
-const store = createStore(userData, window.devToolsExtension && window.devToolsExtension());
+// localStorage functions
+import {saveSate, loadState} from './localStorage';
+
+const savedState = loadState();
+
+const store = createStore(userData,
+  savedState,
+  window.devToolsExtension && window.devToolsExtension()
+);
+
+store.subscribe(() => saveSate(store.getState()));
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
