@@ -55,7 +55,8 @@ a.instagram {
   border-color: $instagram_color;
 }
 
-.active {
-  background-color: $border_color;
-  color: white;
+a.active {
+  color: $background_color;
+  background-color: $highlight_color;
+  border-color: $highlight_color;
 }

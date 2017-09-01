@@ -10,6 +10,7 @@ import { Switch } from 'react-router';
 // Components
 import Navigation from './Navigation';
 import MainScreen from './MainScreen';
+import DisplayStats from './DisplayStats';
 
 export default class App extends React.Component {
   render() {
@@ -18,9 +19,9 @@ export default class App extends React.Component {
         <BrowserRouter>
           <div>
             <Route exact path="/" render={() => <MainScreen />} />
-            <Route path="/twitter" render={() => <Navigation />} />
-            <Route path="/facebook" render={() => <Navigation />} />
-            <Route path="/instagram" render={() => <Navigation />} />
+            <Route path="/twitter" render={() => <DisplayStats />} />
+            <Route path="/facebook" render={() => <DisplayStats />} />
+            <Route path="/instagram" render={() => <DisplayStats />} />
           </div>
         </BrowserRouter>
       </div>
