@@ -1,3 +1,5 @@
+'sue strict';
+
 const saveSate = (state) => {
   try {
     const stingState = JSON.stringify(state);

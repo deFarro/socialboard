@@ -8,15 +8,11 @@ import { PropTypes } from 'prop-types';
 import '../../scss/Form.scss';
 
 class Form extends React.Component {
-  constructor(props) {
-    super();
-    this.submit = props.handleSubmit;
-  }
   handleSumbit(event) {
     event.preventDefault();
     const form = new FormData(this.form);
     this.idField.value = '';
-    this.submit({social: form.get('social'), id: form.get('id')});
+    this.props.handleSubmit({id: form.get('id'), social: form.get('social')});
   }
   render() {
     return (
@@ -31,7 +27,7 @@ class Form extends React.Component {
             <label htmlFor="instagram"><i className="fa fa-instagram" aria-hidden="true"></i></label>
           </div>
           <input type="text" pattern="\d*" title="Only digits allowed." ref={element => this.idField = element} placeholder="enter user ID" name="id" required></input>
-          <button type="submit">ADD USER</button>
+          <button type="submit">{this.props.isFetching ? 'SEARCHING...' : 'ADD USER'}</button>
         </form>
       </div>
     );

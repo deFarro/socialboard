@@ -15,9 +15,16 @@ import Form from './Form';
 import UserList from './UserList';
 
 // Actions
-import { addUser, removeUser } from '../actions/userData';
+import { addUser, insertUser, removeUser } from '../actions/userData';
+
+// AJAX
+import getFetchedData from '../ajax';
 
 class MainScreen extends React.Component {
+  fetchUser({id, social}) {
+    this.props.dispatch(addUser({id, social}));
+    getFetchedData({id, social}, (user) => this.props.dispatch(insertUser(user)));
+  }
   render() {
     const add = bindActionCreators(addUser, this.props.dispatch);
     const remove = bindActionCreators(removeUser, this.props.dispatch);
@@ -26,7 +33,7 @@ class MainScreen extends React.Component {
         <Navigation active={this.props.socialTabs} />
         <Title />
         <div className="userBlock">
-        <Form handleSubmit={add} />
+        <Form handleSubmit={this.fetchUser.bind(this)} isFetching={this.props.isFetching} />
         <UserList users={this.props.users}
           handleClick={remove} />
         </div>
@@ -37,8 +44,10 @@ class MainScreen extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    dispatch: state.dispatch,
     users: state.users,
-    socialTabs: state.socialTabs
+    socialTabs: state.socialTabs,
+    isFetching: state.isFetching
   }
 }
 

@@ -11,7 +11,7 @@ import '../../scss/DisplayStats.scss';
 import Navigation from './Navigation';
 import NoStatsAvailable from './NoStatsAvailable';
 
-class TwitterStats extends React.Component {
+class DisplayStats extends React.Component {
   render() {
     return (
       <div>
@@ -29,4 +29,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(TwitterStats);
+export default connect(mapStateToProps)(DisplayStats);

@@ -27,6 +27,16 @@
     list-style: none;
     line-height: 2rem;
     border-bottom: 1px dashed $border_color;
+    //display: grid;
+    // grid-template-columns: repeat(3, 1fr);
+    // grid-gap: 10px;
+    // grid-auto-rows: minmax(20px, auto);
+    // &:nth-child(1) {
+    // }
+    // &:nth-child(2) {
+    // }
+    // &:nth-child(3) {
+    // }
   }
   .delete {
     color: red;

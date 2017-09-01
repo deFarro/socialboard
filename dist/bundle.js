@@ -13831,11 +13831,12 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var ADD_USER = 'add_user';
+var INSERT_USER = 'insert_user';
 var REMOVE_USER = 'remove_user';
 
 var addUser = function addUser(_ref) {
-  var social = _ref.social,
-      id = _ref.id;
+  var id = _ref.id,
+      social = _ref.social;
 
   return {
     type: ADD_USER,
@@ -13844,9 +13845,16 @@ var addUser = function addUser(_ref) {
   };
 };
 
+var insertUser = function insertUser(user) {
+  return {
+    type: INSERT_USER,
+    user: user
+  };
+};
+
 var removeUser = function removeUser(_ref2) {
-  var social = _ref2.social,
-      id = _ref2.id;
+  var id = _ref2.id,
+      social = _ref2.social;
 
   return {
     type: REMOVE_USER,
@@ -13856,8 +13864,10 @@ var removeUser = function removeUser(_ref2) {
 };
 
 exports.ADD_USER = ADD_USER;
+exports.INSERT_USER = INSERT_USER;
 exports.REMOVE_USER = REMOVE_USER;
 exports.addUser = addUser;
+exports.insertUser = insertUser;
 exports.removeUser = removeUser;
 
 /***/ }),
@@ -13885,11 +13895,11 @@ var _App = __webpack_require__(253);
 
 var _App2 = _interopRequireDefault(_App);
 
-var _userData = __webpack_require__(295);
+var _userData = __webpack_require__(296);
 
 var _userData2 = _interopRequireDefault(_userData);
 
-var _localStorage = __webpack_require__(296);
+var _localStorage = __webpack_require__(297);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27280,7 +27290,7 @@ var _MainScreen = __webpack_require__(277);
 
 var _MainScreen2 = _interopRequireDefault(_MainScreen);
 
-var _DisplayStats = __webpack_require__(289);
+var _DisplayStats = __webpack_require__(290);
 
 var _DisplayStats2 = _interopRequireDefault(_DisplayStats);
 
@@ -29936,6 +29946,10 @@ var _UserList2 = _interopRequireDefault(_UserList);
 
 var _userData = __webpack_require__(126);
 
+var _ajax = __webpack_require__(289);
+
+var _ajax2 = _interopRequireDefault(_ajax);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -29953,6 +29967,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // Actions
 
 
+// AJAX
+
+
 var MainScreen = function (_React$Component) {
   _inherits(MainScreen, _React$Component);
 
@@ -29963,6 +29980,19 @@ var MainScreen = function (_React$Component) {
   }
 
   _createClass(MainScreen, [{
+    key: 'fetchUser',
+    value: function fetchUser(_ref) {
+      var _this2 = this;
+
+      var id = _ref.id,
+          social = _ref.social;
+
+      this.props.dispatch((0, _userData.addUser)({ id: id, social: social }));
+      (0, _ajax2.default)({ id: id, social: social }, function (user) {
+        return _this2.props.dispatch((0, _userData.insertUser)(user));
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       var add = (0, _redux.bindActionCreators)(_userData.addUser, this.props.dispatch);
@@ -29975,7 +30005,7 @@ var MainScreen = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'userBlock' },
-          _react2.default.createElement(_Form2.default, { handleSubmit: add }),
+          _react2.default.createElement(_Form2.default, { handleSubmit: this.fetchUser.bind(this), isFetching: this.props.isFetching }),
           _react2.default.createElement(_UserList2.default, { users: this.props.users,
             handleClick: remove })
         )
@@ -29988,8 +30018,10 @@ var MainScreen = function (_React$Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
+    dispatch: state.dispatch,
     users: state.users,
-    socialTabs: state.socialTabs
+    socialTabs: state.socialTabs,
+    isFetching: state.isFetching
   };
 };
 
@@ -30165,13 +30197,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Form = function (_React$Component) {
   _inherits(Form, _React$Component);
 
-  function Form(props) {
+  function Form() {
     _classCallCheck(this, Form);
 
-    var _this = _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this));
-
-    _this.submit = props.handleSubmit;
-    return _this;
+    return _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).apply(this, arguments));
   }
 
   _createClass(Form, [{
@@ -30180,7 +30209,7 @@ var Form = function (_React$Component) {
       event.preventDefault();
       var form = new FormData(this.form);
       this.idField.value = '';
-      this.submit({ social: form.get('social'), id: form.get('id') });
+      this.props.handleSubmit({ id: form.get('id'), social: form.get('social') });
     }
   }, {
     key: 'render',
@@ -30223,7 +30252,7 @@ var Form = function (_React$Component) {
           _react2.default.createElement(
             'button',
             { type: 'submit' },
-            'ADD USER'
+            this.props.isFetching ? 'SEARCHING...' : 'ADD USER'
           )
         )
       );
@@ -30400,13 +30429,42 @@ exports = module.exports = __webpack_require__(20)(true);
 
 
 // module
-exports.push([module.i, ".userList {\n  width: 50%;\n  margin: 1em 0;\n  box-sizing: border-box;\n  border: 1px solid lightgrey;\n  border-radius: 5px; }\n  @media (max-width: 900px) {\n    .userList {\n      width: 95%;\n      margin: 1rem auto; } }\n  .userList h3 {\n    font-size: 1rem;\n    font-family: Helvetica, sans-serif;\n    text-align: center;\n    text-transform: uppercase; }\n  .userList ul {\n    padding: 0;\n    list-style-position: inside; }\n  .userList li {\n    font-size: 1rem;\n    font-family: Helvetica, sans-serif;\n    display: flex;\n    justify-content: space-between;\n    flex-direction: row;\n    flex-wrap: wrap;\n    align-items: stretch;\n    padding: 0 1rem;\n    list-style: none;\n    line-height: 2rem;\n    border-bottom: 1px dashed lightgrey; }\n  .userList .delete {\n    color: red;\n    font-size: 1.5rem;\n    cursor: pointer; }\n    .userList .delete:hover {\n      color: #e60000; }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/UserList.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_variables.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_mixins.scss"],"names":[],"mappings":"AAGA;EAKE,WAAU;EACV,cAAa;EACb,uBAAsB;EACtB,4BCDsB;EDEtB,mBAAkB,EA0BnB;EEcC;IFjDF;MAEI,WAAU;MACV,kBAAiB,EAgCpB,EAAA;EAnCD;IEQE,gBFG4B;IEF5B,mCAAmC;IFGjC,mBAAkB;IAClB,0BAAyB,EAC1B;EAdH;IAgBI,WAAU;IACV,4BAA2B,EAC5B;EAlBH;IEQE,gBFY4B;IEX5B,mCAAmC;IATnC,cAAa;IACb,+BFoB8C;IEnB9C,oBAH6B;IAI7B,gBAJyD;IAKzD,qBALwE;IFuBtE,gBAAe;IACf,iBAAgB;IAChB,kBAAiB;IACjB,oCClBoB,EDmBrB;EA1BH;IA4BI,WAAU;IACV,kBAAiB;IACjB,gBAAe,EAIhB;IAlCH;MAgCM,eAAsB,EACvB","file":"UserList.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\n.userList {\n  @include mobile-device {\n    width: 95%;\n    margin: 1rem auto;\n  }\n  width: 50%;\n  margin: 1em 0;\n  box-sizing: border-box;\n  border: 1px solid $border_color;\n  border-radius: 5px;\n  h3 {\n    @include text-styling(1rem);\n    text-align: center;\n    text-transform: uppercase;\n  }\n  ul {\n    padding: 0;\n    list-style-position: inside;\n  }\n  li {\n    @include text-styling(1rem);\n    @include flex-container($just: space-between);\n    padding: 0 1rem;\n    list-style: none;\n    line-height: 2rem;\n    border-bottom: 1px dashed $border_color;\n  }\n  .delete {\n    color: red;\n    font-size: 1.5rem;\n    cursor: pointer;\n    &:hover {\n      color: darken(red, 5%);\n    }\n  }\n}\n","$background_color: white;\n$text_color: black;\n$elements_secondary_color: grey;\n\n$twitter_color: #1dcaff;\n$facebook_color: #3B5998;\n$instagram_color: #8a3ab9;\n\n$highlight_color: #5cb85c;\n\n$border_color: lightgrey;\n\n$main_font: Helvetica;\n","@import \"partials/variables\";\n\n@mixin flex-container($dir: row, $just: center, $wrap: wrap, $ali: stretch) {\n  display: flex;\n  justify-content: $just;\n  flex-direction: $dir;\n  flex-wrap: $wrap;\n  align-items: $ali;\n}\n\n@mixin text-styling($size: 1.5rem) {\n  font-size: $size;\n  font-family: $main_font, sans-serif;\n}\n\n@mixin reset-link {\n  text-decoration: none;\n  color: inherit;\n}\n\n@mixin animate-active {\n  transition-duration: 0.3s;\n  transition-property: background-color, border-color, color;\n}\n\n@mixin tab($border_color: $border_color) {\n  border-top: 1px solid $border_color;\n  border-bottom: 1px solid $border_color;\n  &:first-of-type {\n    border-left: 1px solid $border_color;\n    border-radius: 5px 0 0 5px;\n  }\n  &:last-of-type {\n    border-right: 1px solid $border_color;\n    border-radius: 0 5px 5px 0;\n  }\n}\n\n@mixin btn {\n  @include text-styling(1.5rem);\n  color: white;\n  background-color: $highlight_color;\n  outline: none;\n  border: 1px solid $highlight_color;\n  border-radius: 5px;\n  cursor: pointer;\n  &:hover {\n    background-color: darken($highlight_color, 5%);\n  }\n}\n\n@mixin mobile-device {\n  @media (max-width: 900px) {\n    @content;\n  }\n}\n"],"sourceRoot":""}]);
+exports.push([module.i, ".userList {\n  width: 50%;\n  margin: 1em 0;\n  box-sizing: border-box;\n  border: 1px solid lightgrey;\n  border-radius: 5px; }\n  @media (max-width: 900px) {\n    .userList {\n      width: 95%;\n      margin: 1rem auto; } }\n  .userList h3 {\n    font-size: 1rem;\n    font-family: Helvetica, sans-serif;\n    text-align: center;\n    text-transform: uppercase; }\n  .userList ul {\n    padding: 0;\n    list-style-position: inside; }\n  .userList li {\n    font-size: 1rem;\n    font-family: Helvetica, sans-serif;\n    display: flex;\n    justify-content: space-between;\n    flex-direction: row;\n    flex-wrap: wrap;\n    align-items: stretch;\n    padding: 0 1rem;\n    list-style: none;\n    line-height: 2rem;\n    border-bottom: 1px dashed lightgrey; }\n  .userList .delete {\n    color: red;\n    font-size: 1.5rem;\n    cursor: pointer; }\n    .userList .delete:hover {\n      color: #e60000; }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/UserList.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_variables.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_mixins.scss"],"names":[],"mappings":"AAGA;EAKE,WAAU;EACV,cAAa;EACb,uBAAsB;EACtB,4BCDsB;EDEtB,mBAAkB,EAoCnB;EEIC;IFjDF;MAEI,WAAU;MACV,kBAAiB,EA0CpB,EAAA;EA7CD;IEQE,gBFG4B;IEF5B,mCAAmC;IFGjC,mBAAkB;IAClB,0BAAyB,EAC1B;EAdH;IAgBI,WAAU;IACV,4BAA2B,EAC5B;EAlBH;IEQE,gBFY4B;IEX5B,mCAAmC;IATnC,cAAa;IACb,+BFoB8C;IEnB9C,oBAH6B;IAI7B,gBAJyD;IAKzD,qBALwE;IFuBtE,gBAAe;IACf,iBAAgB;IAChB,kBAAiB;IACjB,oCClBoB,ED6BrB;EApCH;IAsCI,WAAU;IACV,kBAAiB;IACjB,gBAAe,EAIhB;IA5CH;MA0CM,eAAsB,EACvB","file":"UserList.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\n.userList {\n  @include mobile-device {\n    width: 95%;\n    margin: 1rem auto;\n  }\n  width: 50%;\n  margin: 1em 0;\n  box-sizing: border-box;\n  border: 1px solid $border_color;\n  border-radius: 5px;\n  h3 {\n    @include text-styling(1rem);\n    text-align: center;\n    text-transform: uppercase;\n  }\n  ul {\n    padding: 0;\n    list-style-position: inside;\n  }\n  li {\n    @include text-styling(1rem);\n    @include flex-container($just: space-between);\n    padding: 0 1rem;\n    list-style: none;\n    line-height: 2rem;\n    border-bottom: 1px dashed $border_color;\n    //display: grid;\n    // grid-template-columns: repeat(3, 1fr);\n    // grid-gap: 10px;\n    // grid-auto-rows: minmax(20px, auto);\n    // &:nth-child(1) {\n    // }\n    // &:nth-child(2) {\n    // }\n    // &:nth-child(3) {\n    // }\n  }\n  .delete {\n    color: red;\n    font-size: 1.5rem;\n    cursor: pointer;\n    &:hover {\n      color: darken(red, 5%);\n    }\n  }\n}\n","$background_color: white;\n$text_color: black;\n$elements_secondary_color: grey;\n\n$twitter_color: #1dcaff;\n$facebook_color: #3B5998;\n$instagram_color: #8a3ab9;\n\n$highlight_color: #5cb85c;\n\n$border_color: lightgrey;\n\n$main_font: Helvetica;\n","@import \"partials/variables\";\n\n@mixin flex-container($dir: row, $just: center, $wrap: wrap, $ali: stretch) {\n  display: flex;\n  justify-content: $just;\n  flex-direction: $dir;\n  flex-wrap: $wrap;\n  align-items: $ali;\n}\n\n@mixin text-styling($size: 1.5rem) {\n  font-size: $size;\n  font-family: $main_font, sans-serif;\n}\n\n@mixin reset-link {\n  text-decoration: none;\n  color: inherit;\n}\n\n@mixin animate-active {\n  transition-duration: 0.3s;\n  transition-property: background-color, border-color, color;\n}\n\n@mixin tab($border_color: $border_color) {\n  border-top: 1px solid $border_color;\n  border-bottom: 1px solid $border_color;\n  &:first-of-type {\n    border-left: 1px solid $border_color;\n    border-radius: 5px 0 0 5px;\n  }\n  &:last-of-type {\n    border-right: 1px solid $border_color;\n    border-radius: 0 5px 5px 0;\n  }\n}\n\n@mixin btn {\n  @include text-styling(1.5rem);\n  color: white;\n  background-color: $highlight_color;\n  outline: none;\n  border: 1px solid $highlight_color;\n  border-radius: 5px;\n  cursor: pointer;\n  &:hover {\n    background-color: darken($highlight_color, 5%);\n  }\n}\n\n@mixin mobile-device {\n  @media (max-width: 900px) {\n    @content;\n  }\n}\n"],"sourceRoot":""}]);
 
 // exports
 
 
 /***/ }),
 /* 289 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+// Function to mock social networks API requests. Real API returns only one user, not a database.
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = getFetchedData;
+function getFetchedData(_ref, insertAction) {
+  var id = _ref.id,
+      social = _ref.social;
+
+  setTimeout(function () {
+    fetch('../mock_backend/' + social + '.json').then(function (response) {
+      return response.json();
+    }).then(function (parsed) {
+      parsed.users[id - 1].social = social;
+      insertAction(parsed.users[id - 1]);
+    }).catch(function (err) {
+      return console.log(err);
+    });
+  }, 1500);
+}
+
+/***/ }),
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30426,13 +30484,13 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(40);
 
-__webpack_require__(290);
+__webpack_require__(291);
 
 var _Navigation = __webpack_require__(71);
 
 var _Navigation2 = _interopRequireDefault(_Navigation);
 
-var _NoStatsAvailable = __webpack_require__(292);
+var _NoStatsAvailable = __webpack_require__(293);
 
 var _NoStatsAvailable2 = _interopRequireDefault(_NoStatsAvailable);
 
@@ -30450,16 +30508,16 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // Components
 
 
-var TwitterStats = function (_React$Component) {
-  _inherits(TwitterStats, _React$Component);
+var DisplayStats = function (_React$Component) {
+  _inherits(DisplayStats, _React$Component);
 
-  function TwitterStats() {
-    _classCallCheck(this, TwitterStats);
+  function DisplayStats() {
+    _classCallCheck(this, DisplayStats);
 
-    return _possibleConstructorReturn(this, (TwitterStats.__proto__ || Object.getPrototypeOf(TwitterStats)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (DisplayStats.__proto__ || Object.getPrototypeOf(DisplayStats)).apply(this, arguments));
   }
 
-  _createClass(TwitterStats, [{
+  _createClass(DisplayStats, [{
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -30471,7 +30529,7 @@ var TwitterStats = function (_React$Component) {
     }
   }]);
 
-  return TwitterStats;
+  return DisplayStats;
 }(_react2.default.Component);
 
 var mapStateToProps = function mapStateToProps(state) {
@@ -30481,16 +30539,16 @@ var mapStateToProps = function mapStateToProps(state) {
   };
 };
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps)(TwitterStats);
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(DisplayStats);
 
 /***/ }),
-/* 290 */
+/* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(291);
+var content = __webpack_require__(292);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -30515,7 +30573,7 @@ if(false) {
 }
 
 /***/ }),
-/* 291 */
+/* 292 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(20)(true);
@@ -30529,7 +30587,7 @@ exports.push([module.i, "", "", {"version":3,"sources":[],"names":[],"mappings":
 
 
 /***/ }),
-/* 292 */
+/* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30549,7 +30607,7 @@ var _reactRedux = __webpack_require__(40);
 
 var _reactRouterDom = __webpack_require__(65);
 
-__webpack_require__(293);
+__webpack_require__(294);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30574,13 +30632,13 @@ var NoStatsAvailable = function NoStatsAvailable() {
 exports.default = NoStatsAvailable;
 
 /***/ }),
-/* 293 */
+/* 294 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(294);
+var content = __webpack_require__(295);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -30605,7 +30663,7 @@ if(false) {
 }
 
 /***/ }),
-/* 294 */
+/* 295 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(20)(true);
@@ -30619,7 +30677,7 @@ exports.push([module.i, ".info {\n  width: 70%;\n  margin: 0 auto; }\n  @media (
 
 
 /***/ }),
-/* 295 */
+/* 296 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30636,7 +30694,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 var initialState = {
   users: [{ name: 'Nick Svetlov', id: 73958472903, social: 'twitter', data: '' }, { name: 'Jack de Farro', id: 27382738495, social: 'facebook', data: '' }, { name: 'Joey Tribbiani', id: 73029493840, social: 'instagram', data: '' }],
-  socialTabs: ['twitter', 'facebook', 'instagram']
+  socialTabs: ['twitter', 'facebook', 'instagram'],
+  isFetching: false
 };
 
 var userData = function userData() {
@@ -30657,16 +30716,21 @@ var userData = function userData() {
 
   switch (action.type) {
     case _userData.ADD_USER:
+      return Object.assign({}, state, { isFetching: true });
+
+    case _userData.INSERT_USER:
       // Check if we already have this user in the list
       if (state.users.filter(function (user) {
-        return user.id === action.id ? user.social === action.social : false;
+        return user.id === action.user.id ? user.social === action.user.social : false;
       }).length > 0) {
-        return state;
+        return Object.assign({}, state, { isFetching: false });
       }
       return {
-        users: [].concat(_toConsumableArray(state.users), [{ name: 'Test', id: action.id, social: action.social, data: '' }]),
-        socialTabs: mapSocialNets(state.users, action.social)
+        users: [].concat(_toConsumableArray(state.users), [action.user]),
+        socialTabs: mapSocialNets(state.users, action.user.social),
+        isFetching: false
       };
+
     case _userData.REMOVE_USER:
       var newList = state.users.filter(function (user) {
         return user.id !== action.id ? true : user.social !== action.social;
@@ -30683,11 +30747,12 @@ var userData = function userData() {
 exports.default = userData;
 
 /***/ }),
-/* 296 */
+/* 297 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+'sue strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
