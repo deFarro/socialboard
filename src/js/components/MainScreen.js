@@ -23,7 +23,7 @@ class MainScreen extends React.Component {
     const remove = bindActionCreators(removeUser, this.props.dispatch);
     return (
       <div>
-        <Navigation />
+        <Navigation active={this.props.socialTabs} />
         <Title />
         <div className="userBlock">
         <Form handleSubmit={add} />
@@ -37,7 +37,8 @@ class MainScreen extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    users: state.users
+    users: state.users,
+    socialTabs: state.socialTabs
   }
 }
 

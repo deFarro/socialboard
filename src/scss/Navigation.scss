@@ -13,15 +13,16 @@
     @include tab;
     @include reset-link;
     @include text-styling;
+    @include animate-active;
     width: 25%;
     list-style: none;
-    text-align: center;
     color: $text_color;
+    text-align: center;
     padding-top: 1rem;
     box-sizing: border-box;
     &:hover {
-      background-color: $hover_color;
-      border-color: $hover_color;
+      background-color: $highlight_color;
+      border-color: $highlight_color;
     }
     &:first-child {
       color: white;
@@ -31,7 +32,30 @@
   }
 }
 
+.empty {
+  color: $text_color;
+  background-color: $background_color;
+}
+
+a.twitter {
+  color: $background_color;
+  background-color: $twitter_color;
+  border-color: $twitter_color;
+}
+
+a.facebook {
+  color: $background_color;
+  background-color: $facebook_color;
+  border-color: $facebook_color;
+}
+
+a.instagram {
+  color: $background_color;
+  background-color: $instagram_color;
+  border-color: $instagram_color;
+}
+
 .active {
-  background-color: $hover_color;
+  background-color: $border_color;
   color: white;
 }

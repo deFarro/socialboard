@@ -7,17 +7,24 @@ import { NavLink } from 'react-router-dom';
 // Style
 import '../../scss/Navigation.scss';
 
-class Navigation extends React.Component {
-  render() {
-    return (
-      <nav className="navigation">
-        <NavLink exact to="/">ADD USER</NavLink>
-        <NavLink to="/twitter">Twitter</NavLink>
-        <NavLink to="/facebook">Facebook</NavLink>
-        <NavLink to="/instagram">Instagram</NavLink>
-      </nav>
-    );
+const Navigation = ({active}) => {
+  // Check what tabs have content
+  let tabShown = {
+    twitter: 'emty',
+    facebook: 'emty',
+    instagram: 'emty'
+  };
+  for (let tab of active) {
+    tabShown[tab] = tab;
   }
+  return (
+    <nav className="navigation">
+      <NavLink exact to="/" activeClassName="active">ADD USER</NavLink>
+      <NavLink to="/twitter" className={tabShown.twitter} activeClassName={'active ' + tabShown.twitter}>Twitter</NavLink>
+      <NavLink to="/facebook" className={tabShown.facebook} activeClassName={'active ' + tabShown.facebook}>Facebook</NavLink>
+      <NavLink to="/instagram" className={tabShown.instagram} activeClassName={'active ' + tabShown.instagram}>Instagram</NavLink>
+    </nav>
+  );
 }
 
 export default Navigation;

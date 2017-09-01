@@ -12,14 +12,18 @@
   }
   %elements {
     margin: 1rem 0;
+    padding: 0;
     width: 50%;
     height: 3rem;
+    box-sizing: border-box;
   }
   input {
     @extend %elements;
     @include text-styling;
     outline: none;
     text-align: center;
+    border: 1px solid $border_color;
+    border-radius: 5px;
   }
   button {
     @extend %elements;
@@ -36,6 +40,7 @@
   }
   label {
     @include tab;
+    @include animate-active;
     box-sizing: border-box;
     width: 33%;
     height: 3rem;
@@ -46,10 +51,10 @@
       font-size: 2rem;
     }
     &:first-of-type {
-      border-right: 1px solid $hover_color;
+      border-right: 1px solid $border_color;
     }
     &:last-of-type {
-      border-left: 1px solid $hover_color;
+      border-left: 1px solid $border_color;
     }
   }
   input:checked + label {

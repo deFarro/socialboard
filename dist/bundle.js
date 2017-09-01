@@ -13747,8 +13747,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _react = __webpack_require__(5);
 
 var _react2 = _interopRequireDefault(_react);
@@ -13759,57 +13757,67 @@ __webpack_require__(274);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var Navigation = function Navigation(_ref) {
+  var active = _ref.active;
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+  // Check what tabs have content
+  var tabShown = {
+    twitter: 'emty',
+    facebook: 'emty',
+    instagram: 'emty'
+  };
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+  try {
+    for (var _iterator = active[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var tab = _step.value;
 
-// Style
-
-
-var Navigation = function (_React$Component) {
-  _inherits(Navigation, _React$Component);
-
-  function Navigation() {
-    _classCallCheck(this, Navigation);
-
-    return _possibleConstructorReturn(this, (Navigation.__proto__ || Object.getPrototypeOf(Navigation)).apply(this, arguments));
+      tabShown[tab] = tab;
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator.return) {
+        _iterator.return();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
   }
 
-  _createClass(Navigation, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'nav',
-        { className: 'navigation' },
-        _react2.default.createElement(
-          _reactRouterDom.NavLink,
-          { exact: true, to: '/' },
-          'ADD USER'
-        ),
-        _react2.default.createElement(
-          _reactRouterDom.NavLink,
-          { to: '/twitter' },
-          'Twitter'
-        ),
-        _react2.default.createElement(
-          _reactRouterDom.NavLink,
-          { to: '/facebook' },
-          'Facebook'
-        ),
-        _react2.default.createElement(
-          _reactRouterDom.NavLink,
-          { to: '/instagram' },
-          'Instagram'
-        )
-      );
-    }
-  }]);
+  return _react2.default.createElement(
+    'nav',
+    { className: 'navigation' },
+    _react2.default.createElement(
+      _reactRouterDom.NavLink,
+      { exact: true, to: '/', activeClassName: 'active' },
+      'ADD USER'
+    ),
+    _react2.default.createElement(
+      _reactRouterDom.NavLink,
+      { to: '/twitter', className: tabShown.twitter, activeClassName: 'active ' + tabShown.twitter },
+      'Twitter'
+    ),
+    _react2.default.createElement(
+      _reactRouterDom.NavLink,
+      { to: '/facebook', className: tabShown.facebook, activeClassName: 'active ' + tabShown.facebook },
+      'Facebook'
+    ),
+    _react2.default.createElement(
+      _reactRouterDom.NavLink,
+      { to: '/instagram', className: tabShown.instagram, activeClassName: 'active ' + tabShown.instagram },
+      'Instagram'
+    )
+  );
+};
 
-  return Navigation;
-}(_react2.default.Component);
-
+// Style
 exports.default = Navigation;
 
 /***/ }),
@@ -29770,7 +29778,7 @@ exports = module.exports = __webpack_require__(30)(true);
 
 
 // module
-exports.push([module.i, ".navigation {\n  display: flex;\n  justify-content: center;\n  flex-direction: row;\n  flex-wrap: wrap;\n  align-items: stretch;\n  width: 70%;\n  margin: 0 auto;\n  height: 4rem; }\n  @media (max-width: 900px) {\n    .navigation {\n      width: 95%; } }\n  .navigation a {\n    border-top: 1px solid lightgrey;\n    border-bottom: 1px solid lightgrey;\n    text-decoration: none;\n    color: inherit;\n    font-size: 1.5rem;\n    font-family: Helvetica, sans-serif;\n    width: 25%;\n    list-style: none;\n    text-align: center;\n    color: black;\n    padding-top: 1rem;\n    box-sizing: border-box; }\n    .navigation a:first-of-type {\n      border-left: 1px solid lightgrey;\n      border-radius: 5px 0 0 5px; }\n    .navigation a:last-of-type {\n      border-right: 1px solid lightgrey;\n      border-radius: 0 5px 5px 0; }\n    .navigation a:hover {\n      background-color: lightgrey;\n      border-color: lightgrey; }\n    .navigation a:first-child {\n      color: white;\n      background-color: grey;\n      border: 1px solid grey; }\n\n.active {\n  background-color: lightgrey;\n  color: white; }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/Navigation.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_mixins.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_variables.scss"],"names":[],"mappings":"AAGA;ECAE,cAAa;EACb,wBAF4C;EAG5C,oBAH6B;EAI7B,gBAJyD;EAKzD,qBALwE;EDGxE,WAAU;EAIV,eAAc;EACd,aAAY,EAqBb;ECgBC;ID5CF;MAII,WAAU,EAwBb,EAAA;EA5BD;ICkBE,gCCXqB;IDYrB,mCCZqB;IDMrB,sBAAqB;IACrB,eAAc;IANd,kBAD+B;IAE/B,mCAAmC;IDGjC,WAAU;IACV,iBAAgB;IAChB,mBAAkB;IAClB,aEjBc;IFkBd,kBAAiB;IACjB,uBAAsB,EAUvB;IA3BH;MCqBI,iCCdmB;MDenB,2BAA0B,EAC3B;IDvBH;MCyBI,kCClBmB;MDmBnB,2BAA0B,EAC3B;ID3BH;MAmBM,4BEZiB;MFajB,wBEbiB,EFclB;IArBL;MAuBM,aAAY;MACZ,uBAAsB;MACtB,uBAAsB,EACvB;;AAIL;EACE,4BExBqB;EFyBrB,aAAY,EACb","file":"Navigation.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\n.navigation {\n  @include flex-container;\n  width: 70%;\n  @include mobile-device {\n    width: 95%;\n  };\n  margin: 0 auto;\n  height: 4rem;\n  a {\n    @include tab;\n    @include reset-link;\n    @include text-styling;\n    width: 25%;\n    list-style: none;\n    text-align: center;\n    color: $text_color;\n    padding-top: 1rem;\n    box-sizing: border-box;\n    &:hover {\n      background-color: $hover_color;\n      border-color: $hover_color;\n    }\n    &:first-child {\n      color: white;\n      background-color: grey;\n      border: 1px solid grey;\n    }\n  }\n}\n\n.active {\n  background-color: $hover_color;\n  color: white;\n}\n","@import \"partials/variables\";\n\n@mixin flex-container($dir: row, $just: center, $wrap: wrap, $ali: stretch) {\n  display: flex;\n  justify-content: $just;\n  flex-direction: $dir;\n  flex-wrap: $wrap;\n  align-items: $ali;\n}\n\n@mixin text-styling($size: 1.5rem) {\n  font-size: $size;\n  font-family: $main_font, sans-serif;\n}\n\n@mixin reset-link {\n  text-decoration: none;\n  color: inherit;\n}\n\n@mixin tab($border_color: $hover_color) {\n  border-top: 1px solid $border_color;\n  border-bottom: 1px solid $border_color;\n  &:first-of-type {\n    border-left: 1px solid $border_color;\n    border-radius: 5px 0 0 5px;\n  }\n  &:last-of-type {\n    border-right: 1px solid $border_color;\n    border-radius: 0 5px 5px 0;\n  }\n}\n\n@mixin btn {\n  @include text-styling(1.5rem);\n  color: white;\n  background-color: $button_color;\n  outline: none;\n  border: none;\n  border-radius: 5px;\n  cursor: pointer;\n  &:hover {\n    background-color: darken($button_color, 5%);\n  }\n}\n\n@mixin mobile-device {\n  @media (max-width: 900px) {\n    @content;\n  }\n}\n","$background_color: white;\n$text_color: black;\n$elements_secondary_color: grey;\n\n$button_color: #5cb85c;\n\n$twitter_color: #1dcaff;\n$facebook_color: #3B5998;\n$instagram_color: #8a3ab9;\n\n$hover_color: lightgrey;\n\n$main_font: Helvetica;\n"],"sourceRoot":""}]);
+exports.push([module.i, ".navigation {\n  display: flex;\n  justify-content: center;\n  flex-direction: row;\n  flex-wrap: wrap;\n  align-items: stretch;\n  width: 70%;\n  margin: 0 auto;\n  height: 4rem; }\n  @media (max-width: 900px) {\n    .navigation {\n      width: 95%; } }\n  .navigation a {\n    border-top: 1px solid lightgrey;\n    border-bottom: 1px solid lightgrey;\n    text-decoration: none;\n    color: inherit;\n    font-size: 1.5rem;\n    font-family: Helvetica, sans-serif;\n    transition-duration: 0.3s;\n    transition-property: background-color, border-color, color;\n    width: 25%;\n    list-style: none;\n    color: black;\n    text-align: center;\n    padding-top: 1rem;\n    box-sizing: border-box; }\n    .navigation a:first-of-type {\n      border-left: 1px solid lightgrey;\n      border-radius: 5px 0 0 5px; }\n    .navigation a:last-of-type {\n      border-right: 1px solid lightgrey;\n      border-radius: 0 5px 5px 0; }\n    .navigation a:hover {\n      background-color: #5cb85c;\n      border-color: #5cb85c; }\n    .navigation a:first-child {\n      color: white;\n      background-color: grey;\n      border: 1px solid grey; }\n\n.empty {\n  color: black;\n  background-color: white; }\n\na.twitter {\n  color: white;\n  background-color: #1dcaff;\n  border-color: #1dcaff; }\n\na.facebook {\n  color: white;\n  background-color: #3B5998;\n  border-color: #3B5998; }\n\na.instagram {\n  color: white;\n  background-color: #8a3ab9;\n  border-color: #8a3ab9; }\n\n.active {\n  background-color: lightgrey;\n  color: white; }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/Navigation.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_mixins.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_variables.scss"],"names":[],"mappings":"AAGA;ECAE,cAAa;EACb,wBAF4C;EAG5C,oBAH6B;EAI7B,gBAJyD;EAKzD,qBALwE;EDGxE,WAAU;EAIV,eAAc;EACd,aAAY,EAsBb;ECoBC;IDjDF;MAII,WAAU,EAyBb,EAAA;EA7BD;ICuBE,gCChBsB;IDiBtB,mCCjBsB;IDMtB,sBAAqB;IACrB,eAAc;IANd,kBAD+B;IAE/B,mCAAmC;IASnC,0BAAyB;IACzB,2DAA0D;IDNxD,WAAU;IACV,iBAAgB;IAChB,aEjBc;IFkBd,mBAAkB;IAClB,kBAAiB;IACjB,uBAAsB,EAUvB;IA5BH;MC0BI,iCCnBoB;MDoBpB,2BAA0B,EAC3B;ID5BH;MC8BI,kCCvBoB;MDwBpB,2BAA0B,EAC3B;IDhCH;MAoBM,0BEfmB;MFgBnB,sBEhBmB,EFiBpB;IAtBL;MAwBM,aAAY;MACZ,uBAAsB;MACtB,uBAAsB,EACvB;;AAIL;EACE,aElCgB;EFmChB,wBEpCsB,EFqCvB;;AAED;EACE,aExCsB;EFyCtB,0BErCqB;EFsCrB,sBEtCqB,EFuCtB;;AAED;EACE,aE9CsB;EF+CtB,0BE1CsB;EF2CtB,sBE3CsB,EF4CvB;;AAED;EACE,aEpDsB;EFqDtB,0BE/CuB;EFgDvB,sBEhDuB,EFiDxB;;AAED;EACE,4BEhDsB;EFiDtB,aAAY,EACb","file":"Navigation.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\n.navigation {\n  @include flex-container;\n  width: 70%;\n  @include mobile-device {\n    width: 95%;\n  };\n  margin: 0 auto;\n  height: 4rem;\n  a {\n    @include tab;\n    @include reset-link;\n    @include text-styling;\n    @include animate-active;\n    width: 25%;\n    list-style: none;\n    color: $text_color;\n    text-align: center;\n    padding-top: 1rem;\n    box-sizing: border-box;\n    &:hover {\n      background-color: $highlight_color;\n      border-color: $highlight_color;\n    }\n    &:first-child {\n      color: white;\n      background-color: grey;\n      border: 1px solid grey;\n    }\n  }\n}\n\n.empty {\n  color: $text_color;\n  background-color: $background_color;\n}\n\na.twitter {\n  color: $background_color;\n  background-color: $twitter_color;\n  border-color: $twitter_color;\n}\n\na.facebook {\n  color: $background_color;\n  background-color: $facebook_color;\n  border-color: $facebook_color;\n}\n\na.instagram {\n  color: $background_color;\n  background-color: $instagram_color;\n  border-color: $instagram_color;\n}\n\n.active {\n  background-color: $border_color;\n  color: white;\n}\n","@import \"partials/variables\";\n\n@mixin flex-container($dir: row, $just: center, $wrap: wrap, $ali: stretch) {\n  display: flex;\n  justify-content: $just;\n  flex-direction: $dir;\n  flex-wrap: $wrap;\n  align-items: $ali;\n}\n\n@mixin text-styling($size: 1.5rem) {\n  font-size: $size;\n  font-family: $main_font, sans-serif;\n}\n\n@mixin reset-link {\n  text-decoration: none;\n  color: inherit;\n}\n\n@mixin animate-active {\n  transition-duration: 0.3s;\n  transition-property: background-color, border-color, color;\n}\n\n@mixin tab($border_color: $border_color) {\n  border-top: 1px solid $border_color;\n  border-bottom: 1px solid $border_color;\n  &:first-of-type {\n    border-left: 1px solid $border_color;\n    border-radius: 5px 0 0 5px;\n  }\n  &:last-of-type {\n    border-right: 1px solid $border_color;\n    border-radius: 0 5px 5px 0;\n  }\n}\n\n@mixin btn {\n  @include text-styling(1.5rem);\n  color: white;\n  background-color: $highlight_color;\n  outline: none;\n  border: 1px solid $highlight_color;\n  border-radius: 5px;\n  cursor: pointer;\n  &:hover {\n    background-color: darken($highlight_color, 5%);\n  }\n}\n\n@mixin mobile-device {\n  @media (max-width: 900px) {\n    @content;\n  }\n}\n","$background_color: white;\n$text_color: black;\n$elements_secondary_color: grey;\n\n$twitter_color: #1dcaff;\n$facebook_color: #3B5998;\n$instagram_color: #8a3ab9;\n\n$highlight_color: #5cb85c;\n\n$border_color: lightgrey;\n\n$main_font: Helvetica;\n"],"sourceRoot":""}]);
 
 // exports
 
@@ -29947,7 +29955,7 @@ var MainScreen = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(_Navigation2.default, null),
+        _react2.default.createElement(_Navigation2.default, { active: this.props.socialTabs }),
         _react2.default.createElement(_Title2.default, null),
         _react2.default.createElement(
           'div',
@@ -29965,7 +29973,8 @@ var MainScreen = function (_React$Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    users: state.users
+    users: state.users,
+    socialTabs: state.socialTabs
   };
 };
 
@@ -30011,7 +30020,7 @@ exports = module.exports = __webpack_require__(30)(true);
 
 
 // module
-exports.push([module.i, ".userBlock {\n  display: flex;\n  justify-content: center;\n  flex-direction: row;\n  flex-wrap: wrap;\n  align-items: stretch;\n  width: 70%;\n  margin: 0 auto; }\n  @media (max-width: 900px) {\n    .userBlock {\n      width: 95%;\n      display: block; } }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/MainScreen.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_mixins.scss"],"names":[],"mappings":"AAGA;ECAE,cAAa;EACb,wBAF4C;EAG5C,oBAH6B;EAI7B,gBAJyD;EAKzD,qBALwE;EDGxE,WAAU;EAKV,eAAc,EACf;ECoCC;ID5CF;MAII,WAAU;MACV,eAAc,EAGjB,EAAA","file":"MainScreen.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\n.userBlock {\n  @include flex-container;\n  width: 70%;\n  @include mobile-device {\n    width: 95%;\n    display: block;\n  };\n  margin: 0 auto;\n}\n","@import \"partials/variables\";\n\n@mixin flex-container($dir: row, $just: center, $wrap: wrap, $ali: stretch) {\n  display: flex;\n  justify-content: $just;\n  flex-direction: $dir;\n  flex-wrap: $wrap;\n  align-items: $ali;\n}\n\n@mixin text-styling($size: 1.5rem) {\n  font-size: $size;\n  font-family: $main_font, sans-serif;\n}\n\n@mixin reset-link {\n  text-decoration: none;\n  color: inherit;\n}\n\n@mixin tab($border_color: $hover_color) {\n  border-top: 1px solid $border_color;\n  border-bottom: 1px solid $border_color;\n  &:first-of-type {\n    border-left: 1px solid $border_color;\n    border-radius: 5px 0 0 5px;\n  }\n  &:last-of-type {\n    border-right: 1px solid $border_color;\n    border-radius: 0 5px 5px 0;\n  }\n}\n\n@mixin btn {\n  @include text-styling(1.5rem);\n  color: white;\n  background-color: $button_color;\n  outline: none;\n  border: none;\n  border-radius: 5px;\n  cursor: pointer;\n  &:hover {\n    background-color: darken($button_color, 5%);\n  }\n}\n\n@mixin mobile-device {\n  @media (max-width: 900px) {\n    @content;\n  }\n}\n"],"sourceRoot":""}]);
+exports.push([module.i, ".userBlock {\n  display: flex;\n  justify-content: center;\n  flex-direction: row;\n  flex-wrap: wrap;\n  align-items: stretch;\n  width: 70%;\n  margin: 0 auto; }\n  @media (max-width: 900px) {\n    .userBlock {\n      width: 95%;\n      display: block; } }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/MainScreen.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_mixins.scss"],"names":[],"mappings":"AAGA;ECAE,cAAa;EACb,wBAF4C;EAG5C,oBAH6B;EAI7B,gBAJyD;EAKzD,qBALwE;EDGxE,WAAU;EAKV,eAAc,EACf;ECyCC;IDjDF;MAII,WAAU;MACV,eAAc,EAGjB,EAAA","file":"MainScreen.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\n.userBlock {\n  @include flex-container;\n  width: 70%;\n  @include mobile-device {\n    width: 95%;\n    display: block;\n  };\n  margin: 0 auto;\n}\n","@import \"partials/variables\";\n\n@mixin flex-container($dir: row, $just: center, $wrap: wrap, $ali: stretch) {\n  display: flex;\n  justify-content: $just;\n  flex-direction: $dir;\n  flex-wrap: $wrap;\n  align-items: $ali;\n}\n\n@mixin text-styling($size: 1.5rem) {\n  font-size: $size;\n  font-family: $main_font, sans-serif;\n}\n\n@mixin reset-link {\n  text-decoration: none;\n  color: inherit;\n}\n\n@mixin animate-active {\n  transition-duration: 0.3s;\n  transition-property: background-color, border-color, color;\n}\n\n@mixin tab($border_color: $border_color) {\n  border-top: 1px solid $border_color;\n  border-bottom: 1px solid $border_color;\n  &:first-of-type {\n    border-left: 1px solid $border_color;\n    border-radius: 5px 0 0 5px;\n  }\n  &:last-of-type {\n    border-right: 1px solid $border_color;\n    border-radius: 0 5px 5px 0;\n  }\n}\n\n@mixin btn {\n  @include text-styling(1.5rem);\n  color: white;\n  background-color: $highlight_color;\n  outline: none;\n  border: 1px solid $highlight_color;\n  border-radius: 5px;\n  cursor: pointer;\n  &:hover {\n    background-color: darken($highlight_color, 5%);\n  }\n}\n\n@mixin mobile-device {\n  @media (max-width: 900px) {\n    @content;\n  }\n}\n"],"sourceRoot":""}]);
 
 // exports
 
@@ -30051,7 +30060,7 @@ var Title = function Title() {
       null,
       'Find social network users by entering their IDs into the form below and get full details about their activity.',
       _react2.default.createElement('br', null),
-      'Add up to 5 user profiles to compare the data in convenient visual manner.'
+      'Add up to 5 user profiles to compare the data in a convenient visual manner.'
     )
   );
 };
@@ -30099,7 +30108,7 @@ exports = module.exports = __webpack_require__(30)(true);
 
 
 // module
-exports.push([module.i, ".title {\n  width: 70%;\n  margin: 0 auto; }\n  @media (max-width: 900px) {\n    .title {\n      width: 95%; } }\n  .title h1 {\n    font-size: 5rem;\n    font-family: Helvetica, sans-serif;\n    text-align: center; }\n  .title p {\n    font-size: 1rem;\n    font-family: Helvetica, sans-serif; }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/Title.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_mixins.scss"],"names":[],"mappings":"AAIA;EAIE,WAAU;EACV,eAAc,EAQf;EC8BC;ID3CF;MAEI,WAAU,EAWb,EAAA;EAbD;ICOE,gBDA4B;ICC5B,mCAAmC;IDAjC,mBAAkB,EACnB;EATH;ICOE,gBDI4B;ICH5B,mCAAmC,EDIlC","file":"Title.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\n\n.title {\n  @include mobile-device {\n    width: 95%;\n  };\n  width: 70%;\n  margin: 0 auto;\n  h1 {\n    @include text-styling(5rem);\n    text-align: center;\n  }\n  p {\n    @include text-styling(1rem);\n  }\n}\n","@import \"partials/variables\";\n\n@mixin flex-container($dir: row, $just: center, $wrap: wrap, $ali: stretch) {\n  display: flex;\n  justify-content: $just;\n  flex-direction: $dir;\n  flex-wrap: $wrap;\n  align-items: $ali;\n}\n\n@mixin text-styling($size: 1.5rem) {\n  font-size: $size;\n  font-family: $main_font, sans-serif;\n}\n\n@mixin reset-link {\n  text-decoration: none;\n  color: inherit;\n}\n\n@mixin tab($border_color: $hover_color) {\n  border-top: 1px solid $border_color;\n  border-bottom: 1px solid $border_color;\n  &:first-of-type {\n    border-left: 1px solid $border_color;\n    border-radius: 5px 0 0 5px;\n  }\n  &:last-of-type {\n    border-right: 1px solid $border_color;\n    border-radius: 0 5px 5px 0;\n  }\n}\n\n@mixin btn {\n  @include text-styling(1.5rem);\n  color: white;\n  background-color: $button_color;\n  outline: none;\n  border: none;\n  border-radius: 5px;\n  cursor: pointer;\n  &:hover {\n    background-color: darken($button_color, 5%);\n  }\n}\n\n@mixin mobile-device {\n  @media (max-width: 900px) {\n    @content;\n  }\n}\n"],"sourceRoot":""}]);
+exports.push([module.i, ".title {\n  width: 70%;\n  margin: 0 auto; }\n  @media (max-width: 900px) {\n    .title {\n      width: 95%; } }\n  .title h1 {\n    font-size: 5rem;\n    font-family: Helvetica, sans-serif;\n    text-align: center; }\n  .title p {\n    font-size: 1rem;\n    font-family: Helvetica, sans-serif; }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/Title.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_mixins.scss"],"names":[],"mappings":"AAIA;EAIE,WAAU;EACV,eAAc,EAQf;ECmCC;IDhDF;MAEI,WAAU,EAWb,EAAA;EAbD;ICOE,gBDA4B;ICC5B,mCAAmC;IDAjC,mBAAkB,EACnB;EATH;ICOE,gBDI4B;ICH5B,mCAAmC,EDIlC","file":"Title.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\n\n.title {\n  @include mobile-device {\n    width: 95%;\n  };\n  width: 70%;\n  margin: 0 auto;\n  h1 {\n    @include text-styling(5rem);\n    text-align: center;\n  }\n  p {\n    @include text-styling(1rem);\n  }\n}\n","@import \"partials/variables\";\n\n@mixin flex-container($dir: row, $just: center, $wrap: wrap, $ali: stretch) {\n  display: flex;\n  justify-content: $just;\n  flex-direction: $dir;\n  flex-wrap: $wrap;\n  align-items: $ali;\n}\n\n@mixin text-styling($size: 1.5rem) {\n  font-size: $size;\n  font-family: $main_font, sans-serif;\n}\n\n@mixin reset-link {\n  text-decoration: none;\n  color: inherit;\n}\n\n@mixin animate-active {\n  transition-duration: 0.3s;\n  transition-property: background-color, border-color, color;\n}\n\n@mixin tab($border_color: $border_color) {\n  border-top: 1px solid $border_color;\n  border-bottom: 1px solid $border_color;\n  &:first-of-type {\n    border-left: 1px solid $border_color;\n    border-radius: 5px 0 0 5px;\n  }\n  &:last-of-type {\n    border-right: 1px solid $border_color;\n    border-radius: 0 5px 5px 0;\n  }\n}\n\n@mixin btn {\n  @include text-styling(1.5rem);\n  color: white;\n  background-color: $highlight_color;\n  outline: none;\n  border: 1px solid $highlight_color;\n  border-radius: 5px;\n  cursor: pointer;\n  &:hover {\n    background-color: darken($highlight_color, 5%);\n  }\n}\n\n@mixin mobile-device {\n  @media (max-width: 900px) {\n    @content;\n  }\n}\n"],"sourceRoot":""}]);
 
 // exports
 
@@ -30255,7 +30264,7 @@ exports = module.exports = __webpack_require__(30)(true);
 
 
 // module
-exports.push([module.i, ".form {\n  width: 50%; }\n  @media (max-width: 900px) {\n    .form {\n      width: 95%;\n      margin: 1rem auto; } }\n  .form form {\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    flex-wrap: wrap;\n    align-items: center; }\n  .form input, .form button {\n    margin: 1rem 0;\n    width: 50%;\n    height: 3rem; }\n  .form input {\n    font-size: 1.5rem;\n    font-family: Helvetica, sans-serif;\n    outline: none;\n    text-align: center; }\n  .form button {\n    font-size: 1.5rem;\n    font-family: Helvetica, sans-serif;\n    color: white;\n    background-color: #5cb85c;\n    outline: none;\n    border: none;\n    border-radius: 5px;\n    cursor: pointer; }\n    .form button:hover {\n      background-color: #4cae4c; }\n\n.socialChoice {\n  display: flex;\n  justify-content: center;\n  flex-direction: row;\n  flex-wrap: wrap;\n  align-items: stretch;\n  width: 50%;\n  margin: 1rem 0; }\n  .socialChoice input {\n    display: none; }\n  .socialChoice label {\n    border-top: 1px solid lightgrey;\n    border-bottom: 1px solid lightgrey;\n    box-sizing: border-box;\n    width: 33%;\n    height: 3rem;\n    padding-top: 0.5rem;\n    text-align: center;\n    cursor: pointer; }\n    .socialChoice label:first-of-type {\n      border-left: 1px solid lightgrey;\n      border-radius: 5px 0 0 5px; }\n    .socialChoice label:last-of-type {\n      border-right: 1px solid lightgrey;\n      border-radius: 0 5px 5px 0; }\n    .socialChoice label .fa {\n      font-size: 2rem; }\n    .socialChoice label:first-of-type {\n      border-right: 1px solid lightgrey; }\n    .socialChoice label:last-of-type {\n      border-left: 1px solid lightgrey; }\n  .socialChoice input:checked + label:nth-child(2) {\n    background: #1dcaff;\n    border-color: #1dcaff; }\n  .socialChoice input:checked + label:nth-child(4) {\n    color: white;\n    background: #3B5998;\n    border-color: #3B5998; }\n  .socialChoice input:checked + label:nth-child(6) {\n    color: white;\n    background: #8a3ab9;\n    border-color: #8a3ab9; }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/Form.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_mixins.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_variables.scss"],"names":[],"mappings":"AAGA;EAKE,WAAU,EAmBX;ECoBC;ID5CF;MAEI,WAAU;MACV,kBAAiB,EAqBpB,EAAA;EAxBD;ICAE,cAAa;IACb,wBAF4C;IAG5C,uBDKsC;ICJtC,gBAJyD;IAKzD,oBDGoD,EACnD;EARH;IAUI,eAAc;IACd,WAAU;IACV,aAAY,EACb;EAbH;ICQE,kBAD+B;IAE/B,mCAAmC;IDQjC,cAAa;IACb,mBAAkB,EACnB;EAnBH;ICQE,kBAuB4B;IAtB5B,mCAAmC;IAuBnC,aAAY;IACZ,0BChCoB;IDiCpB,cAAa;IACb,aAAY;IACZ,mBAAkB;IAClB,gBAAe,EDdd;IAvBH;MCuCI,0BAA2C,EAC5C;;ADdH;EC1BE,cAAa;EACb,wBAF4C;EAG5C,oBAH6B;EAI7B,gBAJyD;EAKzD,qBALwE;ED6BxE,WAAU;EACV,eAAc,EAqCf;EAxCD;IAKI,cAAa,EACd;EANH;ICRE,gCCXqB;IDYrB,mCCZqB;IF4BnB,uBAAsB;IACtB,WAAU;IACV,aAAY;IACZ,oBAAmB;IACnB,mBAAkB;IAClB,gBAAe,EAUhB;IAxBH;MCLI,iCCdmB;MDenB,2BAA0B,EAC3B;IDGH;MCDI,kCClBmB;MDmBnB,2BAA0B,EAC3B;IDDH;MAgBM,gBAAe,EAChB;IAjBL;MAmBM,kCEtCiB,EFuClB;IApBL;MAsBM,iCEzCiB,EF0ClB;EAvBL;IA2BM,oBElDiB;IFmDjB,sBEnDiB,EFoDlB;EA7BL;IA+BM,aAAY;IACZ,oBEtDkB;IFuDlB,sBEvDkB,EFwDnB;EAlCL;IAmCM,aAAY;IACZ,oBEzDmB;IF0DnB,sBE1DmB,EF2DpB","file":"Form.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\n.form {\n  @include mobile-device {\n    width: 95%;\n    margin: 1rem auto;\n  }\n  width: 50%;\n  form {\n    @include flex-container($dir: column, $ali: center);\n  }\n  %elements {\n    margin: 1rem 0;\n    width: 50%;\n    height: 3rem;\n  }\n  input {\n    @extend %elements;\n    @include text-styling;\n    outline: none;\n    text-align: center;\n  }\n  button {\n    @extend %elements;\n    @include btn;\n  }\n}\n\n.socialChoice {\n  @include flex-container;\n  width: 50%;\n  margin: 1rem 0;\n  input {\n    display: none;\n  }\n  label {\n    @include tab;\n    box-sizing: border-box;\n    width: 33%;\n    height: 3rem;\n    padding-top: 0.5rem;\n    text-align: center;\n    cursor: pointer;\n    .fa {\n      font-size: 2rem;\n    }\n    &:first-of-type {\n      border-right: 1px solid $hover_color;\n    }\n    &:last-of-type {\n      border-left: 1px solid $hover_color;\n    }\n  }\n  input:checked + label {\n    &:nth-child(2) {\n      background: $twitter_color;\n      border-color: $twitter_color;\n    }\n    &:nth-child(4) {\n      color: white;\n      background: $facebook_color;\n      border-color: $facebook_color;\n    }&:nth-child(6) {\n      color: white;\n      background: $instagram_color;\n      border-color: $instagram_color;\n    }\n  }\n}\n","@import \"partials/variables\";\n\n@mixin flex-container($dir: row, $just: center, $wrap: wrap, $ali: stretch) {\n  display: flex;\n  justify-content: $just;\n  flex-direction: $dir;\n  flex-wrap: $wrap;\n  align-items: $ali;\n}\n\n@mixin text-styling($size: 1.5rem) {\n  font-size: $size;\n  font-family: $main_font, sans-serif;\n}\n\n@mixin reset-link {\n  text-decoration: none;\n  color: inherit;\n}\n\n@mixin tab($border_color: $hover_color) {\n  border-top: 1px solid $border_color;\n  border-bottom: 1px solid $border_color;\n  &:first-of-type {\n    border-left: 1px solid $border_color;\n    border-radius: 5px 0 0 5px;\n  }\n  &:last-of-type {\n    border-right: 1px solid $border_color;\n    border-radius: 0 5px 5px 0;\n  }\n}\n\n@mixin btn {\n  @include text-styling(1.5rem);\n  color: white;\n  background-color: $button_color;\n  outline: none;\n  border: none;\n  border-radius: 5px;\n  cursor: pointer;\n  &:hover {\n    background-color: darken($button_color, 5%);\n  }\n}\n\n@mixin mobile-device {\n  @media (max-width: 900px) {\n    @content;\n  }\n}\n","$background_color: white;\n$text_color: black;\n$elements_secondary_color: grey;\n\n$button_color: #5cb85c;\n\n$twitter_color: #1dcaff;\n$facebook_color: #3B5998;\n$instagram_color: #8a3ab9;\n\n$hover_color: lightgrey;\n\n$main_font: Helvetica;\n"],"sourceRoot":""}]);
+exports.push([module.i, ".form {\n  width: 50%; }\n  @media (max-width: 900px) {\n    .form {\n      width: 95%;\n      margin: 1rem auto; } }\n  .form form {\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    flex-wrap: wrap;\n    align-items: center; }\n  .form input, .form button {\n    margin: 1rem 0;\n    padding: 0;\n    width: 50%;\n    height: 3rem;\n    box-sizing: border-box; }\n  .form input {\n    font-size: 1.5rem;\n    font-family: Helvetica, sans-serif;\n    outline: none;\n    text-align: center;\n    border: 1px solid lightgrey;\n    border-radius: 5px; }\n  .form button {\n    font-size: 1.5rem;\n    font-family: Helvetica, sans-serif;\n    color: white;\n    background-color: #5cb85c;\n    outline: none;\n    border: 1px solid #5cb85c;\n    border-radius: 5px;\n    cursor: pointer; }\n    .form button:hover {\n      background-color: #4cae4c; }\n\n.socialChoice {\n  display: flex;\n  justify-content: center;\n  flex-direction: row;\n  flex-wrap: wrap;\n  align-items: stretch;\n  width: 50%;\n  margin: 1rem 0; }\n  .socialChoice input {\n    display: none; }\n  .socialChoice label {\n    border-top: 1px solid lightgrey;\n    border-bottom: 1px solid lightgrey;\n    transition-duration: 0.3s;\n    transition-property: background-color, border-color, color;\n    box-sizing: border-box;\n    width: 33%;\n    height: 3rem;\n    padding-top: 0.5rem;\n    text-align: center;\n    cursor: pointer; }\n    .socialChoice label:first-of-type {\n      border-left: 1px solid lightgrey;\n      border-radius: 5px 0 0 5px; }\n    .socialChoice label:last-of-type {\n      border-right: 1px solid lightgrey;\n      border-radius: 0 5px 5px 0; }\n    .socialChoice label .fa {\n      font-size: 2rem; }\n    .socialChoice label:first-of-type {\n      border-right: 1px solid lightgrey; }\n    .socialChoice label:last-of-type {\n      border-left: 1px solid lightgrey; }\n  .socialChoice input:checked + label:nth-child(2) {\n    background: #1dcaff;\n    border-color: #1dcaff; }\n  .socialChoice input:checked + label:nth-child(4) {\n    color: white;\n    background: #3B5998;\n    border-color: #3B5998; }\n  .socialChoice input:checked + label:nth-child(6) {\n    color: white;\n    background: #8a3ab9;\n    border-color: #8a3ab9; }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/Form.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_mixins.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_variables.scss"],"names":[],"mappings":"AAGA;EAKE,WAAU,EAuBX;ECqBC;IDjDF;MAEI,WAAU;MACV,kBAAiB,EAyBpB,EAAA;EA5BD;ICAE,cAAa;IACb,wBAF4C;IAG5C,uBDKsC;ICJtC,gBAJyD;IAKzD,oBDGoD,EACnD;EARH;IAUI,eAAc;IACd,WAAU;IACV,WAAU;IACV,aAAY;IACZ,uBAAsB,EACvB;EAfH;ICQE,kBAD+B;IAE/B,mCAAmC;IDUjC,cAAa;IACb,mBAAkB;IAClB,4BEdoB;IFepB,mBAAkB,EACnB;EAvBH;ICQE,kBA4B4B;IA3B5B,mCAAmC;IA4BnC,aAAY;IACZ,0BCjCuB;IDkCvB,cAAa;IACb,0BCnCuB;IDoCvB,mBAAkB;IAClB,gBAAe,EDfd;IA3BH;MC4CI,0BAA8C,EAC/C;;ADfH;EC9BE,cAAa;EACb,wBAF4C;EAG5C,oBAH6B;EAI7B,gBAJyD;EAKzD,qBALwE;EDiCxE,WAAU;EACV,eAAc,EAsCf;EAzCD;IAKI,cAAa,EACd;EANH;ICPE,gCChBsB;IDiBtB,mCCjBsB;IDWtB,0BAAyB;IACzB,2DAA0D;IDqBxD,uBAAsB;IACtB,WAAU;IACV,aAAY;IACZ,oBAAmB;IACnB,mBAAkB;IAClB,gBAAe,EAUhB;IAzBH;MCJI,iCCnBoB;MDoBpB,2BAA0B,EAC3B;IDEH;MCAI,kCCvBoB;MDwBpB,2BAA0B,EAC3B;IDFH;MAiBM,gBAAe,EAChB;IAlBL;MAoBM,kCE3CkB,EF4CnB;IArBL;MAuBM,iCE9CkB,EF+CnB;EAxBL;IA4BM,oBEzDiB;IF0DjB,sBE1DiB,EF2DlB;EA9BL;IAgCM,aAAY;IACZ,oBE7DkB;IF8DlB,sBE9DkB,EF+DnB;EAnCL;IAoCM,aAAY;IACZ,oBEhEmB;IFiEnB,sBEjEmB,EFkEpB","file":"Form.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\n.form {\n  @include mobile-device {\n    width: 95%;\n    margin: 1rem auto;\n  }\n  width: 50%;\n  form {\n    @include flex-container($dir: column, $ali: center);\n  }\n  %elements {\n    margin: 1rem 0;\n    padding: 0;\n    width: 50%;\n    height: 3rem;\n    box-sizing: border-box;\n  }\n  input {\n    @extend %elements;\n    @include text-styling;\n    outline: none;\n    text-align: center;\n    border: 1px solid $border_color;\n    border-radius: 5px;\n  }\n  button {\n    @extend %elements;\n    @include btn;\n  }\n}\n\n.socialChoice {\n  @include flex-container;\n  width: 50%;\n  margin: 1rem 0;\n  input {\n    display: none;\n  }\n  label {\n    @include tab;\n    @include animate-active;\n    box-sizing: border-box;\n    width: 33%;\n    height: 3rem;\n    padding-top: 0.5rem;\n    text-align: center;\n    cursor: pointer;\n    .fa {\n      font-size: 2rem;\n    }\n    &:first-of-type {\n      border-right: 1px solid $border_color;\n    }\n    &:last-of-type {\n      border-left: 1px solid $border_color;\n    }\n  }\n  input:checked + label {\n    &:nth-child(2) {\n      background: $twitter_color;\n      border-color: $twitter_color;\n    }\n    &:nth-child(4) {\n      color: white;\n      background: $facebook_color;\n      border-color: $facebook_color;\n    }&:nth-child(6) {\n      color: white;\n      background: $instagram_color;\n      border-color: $instagram_color;\n    }\n  }\n}\n","@import \"partials/variables\";\n\n@mixin flex-container($dir: row, $just: center, $wrap: wrap, $ali: stretch) {\n  display: flex;\n  justify-content: $just;\n  flex-direction: $dir;\n  flex-wrap: $wrap;\n  align-items: $ali;\n}\n\n@mixin text-styling($size: 1.5rem) {\n  font-size: $size;\n  font-family: $main_font, sans-serif;\n}\n\n@mixin reset-link {\n  text-decoration: none;\n  color: inherit;\n}\n\n@mixin animate-active {\n  transition-duration: 0.3s;\n  transition-property: background-color, border-color, color;\n}\n\n@mixin tab($border_color: $border_color) {\n  border-top: 1px solid $border_color;\n  border-bottom: 1px solid $border_color;\n  &:first-of-type {\n    border-left: 1px solid $border_color;\n    border-radius: 5px 0 0 5px;\n  }\n  &:last-of-type {\n    border-right: 1px solid $border_color;\n    border-radius: 0 5px 5px 0;\n  }\n}\n\n@mixin btn {\n  @include text-styling(1.5rem);\n  color: white;\n  background-color: $highlight_color;\n  outline: none;\n  border: 1px solid $highlight_color;\n  border-radius: 5px;\n  cursor: pointer;\n  &:hover {\n    background-color: darken($highlight_color, 5%);\n  }\n}\n\n@mixin mobile-device {\n  @media (max-width: 900px) {\n    @content;\n  }\n}\n","$background_color: white;\n$text_color: black;\n$elements_secondary_color: grey;\n\n$twitter_color: #1dcaff;\n$facebook_color: #3B5998;\n$instagram_color: #8a3ab9;\n\n$highlight_color: #5cb85c;\n\n$border_color: lightgrey;\n\n$main_font: Helvetica;\n"],"sourceRoot":""}]);
 
 // exports
 
@@ -30376,7 +30385,7 @@ exports = module.exports = __webpack_require__(30)(true);
 
 
 // module
-exports.push([module.i, ".userList {\n  width: 50%;\n  margin: 1em 0;\n  box-sizing: border-box;\n  border: 1px solid lightgrey;\n  border-radius: 5px; }\n  @media (max-width: 900px) {\n    .userList {\n      width: 95%;\n      margin: 1rem auto; } }\n  .userList h3 {\n    font-size: 1rem;\n    font-family: Helvetica, sans-serif;\n    text-align: center;\n    text-transform: uppercase; }\n  .userList ul {\n    padding: 0;\n    list-style-position: inside; }\n  .userList li {\n    font-size: 1rem;\n    font-family: Helvetica, sans-serif;\n    display: flex;\n    justify-content: space-between;\n    flex-direction: row;\n    flex-wrap: wrap;\n    align-items: stretch;\n    padding: 0 1rem;\n    list-style: none;\n    line-height: 2rem;\n    border-bottom: 1px dashed lightgrey; }\n  .userList .delete {\n    color: red;\n    font-size: 1.5rem;\n    cursor: pointer; }\n    .userList .delete:hover {\n      color: #e60000; }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/UserList.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_variables.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_mixins.scss"],"names":[],"mappings":"AAGA;EAKE,WAAU;EACV,cAAa;EACb,uBAAsB;EACtB,4BCDqB;EDErB,mBAAkB,EA0BnB;EESC;IF5CF;MAEI,WAAU;MACV,kBAAiB,EAgCpB,EAAA;EAnCD;IEQE,gBFG4B;IEF5B,mCAAmC;IFGjC,mBAAkB;IAClB,0BAAyB,EAC1B;EAdH;IAgBI,WAAU;IACV,4BAA2B,EAC5B;EAlBH;IEQE,gBFY4B;IEX5B,mCAAmC;IATnC,cAAa;IACb,+BFoB8C;IEnB9C,oBAH6B;IAI7B,gBAJyD;IAKzD,qBALwE;IFuBtE,gBAAe;IACf,iBAAgB;IAChB,kBAAiB;IACjB,oCClBmB,EDmBpB;EA1BH;IA4BI,WAAU;IACV,kBAAiB;IACjB,gBAAe,EAIhB;IAlCH;MAgCM,eAAsB,EACvB","file":"UserList.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\n.userList {\n  @include mobile-device {\n    width: 95%;\n    margin: 1rem auto;\n  }\n  width: 50%;\n  margin: 1em 0;\n  box-sizing: border-box;\n  border: 1px solid $hover_color;\n  border-radius: 5px;\n  h3 {\n    @include text-styling(1rem);\n    text-align: center;\n    text-transform: uppercase;\n  }\n  ul {\n    padding: 0;\n    list-style-position: inside;\n  }\n  li {\n    @include text-styling(1rem);\n    @include flex-container($just: space-between);\n    padding: 0 1rem;\n    list-style: none;\n    line-height: 2rem;\n    border-bottom: 1px dashed $hover_color;\n  }\n  .delete {\n    color: red;\n    font-size: 1.5rem;\n    cursor: pointer;\n    &:hover {\n      color: darken(red, 5%);\n    }\n  }\n}\n","$background_color: white;\n$text_color: black;\n$elements_secondary_color: grey;\n\n$button_color: #5cb85c;\n\n$twitter_color: #1dcaff;\n$facebook_color: #3B5998;\n$instagram_color: #8a3ab9;\n\n$hover_color: lightgrey;\n\n$main_font: Helvetica;\n","@import \"partials/variables\";\n\n@mixin flex-container($dir: row, $just: center, $wrap: wrap, $ali: stretch) {\n  display: flex;\n  justify-content: $just;\n  flex-direction: $dir;\n  flex-wrap: $wrap;\n  align-items: $ali;\n}\n\n@mixin text-styling($size: 1.5rem) {\n  font-size: $size;\n  font-family: $main_font, sans-serif;\n}\n\n@mixin reset-link {\n  text-decoration: none;\n  color: inherit;\n}\n\n@mixin tab($border_color: $hover_color) {\n  border-top: 1px solid $border_color;\n  border-bottom: 1px solid $border_color;\n  &:first-of-type {\n    border-left: 1px solid $border_color;\n    border-radius: 5px 0 0 5px;\n  }\n  &:last-of-type {\n    border-right: 1px solid $border_color;\n    border-radius: 0 5px 5px 0;\n  }\n}\n\n@mixin btn {\n  @include text-styling(1.5rem);\n  color: white;\n  background-color: $button_color;\n  outline: none;\n  border: none;\n  border-radius: 5px;\n  cursor: pointer;\n  &:hover {\n    background-color: darken($button_color, 5%);\n  }\n}\n\n@mixin mobile-device {\n  @media (max-width: 900px) {\n    @content;\n  }\n}\n"],"sourceRoot":""}]);
+exports.push([module.i, ".userList {\n  width: 50%;\n  margin: 1em 0;\n  box-sizing: border-box;\n  border: 1px solid lightgrey;\n  border-radius: 5px; }\n  @media (max-width: 900px) {\n    .userList {\n      width: 95%;\n      margin: 1rem auto; } }\n  .userList h3 {\n    font-size: 1rem;\n    font-family: Helvetica, sans-serif;\n    text-align: center;\n    text-transform: uppercase; }\n  .userList ul {\n    padding: 0;\n    list-style-position: inside; }\n  .userList li {\n    font-size: 1rem;\n    font-family: Helvetica, sans-serif;\n    display: flex;\n    justify-content: space-between;\n    flex-direction: row;\n    flex-wrap: wrap;\n    align-items: stretch;\n    padding: 0 1rem;\n    list-style: none;\n    line-height: 2rem;\n    border-bottom: 1px dashed lightgrey; }\n  .userList .delete {\n    color: red;\n    font-size: 1.5rem;\n    cursor: pointer; }\n    .userList .delete:hover {\n      color: #e60000; }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/UserList.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_variables.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_mixins.scss"],"names":[],"mappings":"AAGA;EAKE,WAAU;EACV,cAAa;EACb,uBAAsB;EACtB,4BCDsB;EDEtB,mBAAkB,EA0BnB;EEcC;IFjDF;MAEI,WAAU;MACV,kBAAiB,EAgCpB,EAAA;EAnCD;IEQE,gBFG4B;IEF5B,mCAAmC;IFGjC,mBAAkB;IAClB,0BAAyB,EAC1B;EAdH;IAgBI,WAAU;IACV,4BAA2B,EAC5B;EAlBH;IEQE,gBFY4B;IEX5B,mCAAmC;IATnC,cAAa;IACb,+BFoB8C;IEnB9C,oBAH6B;IAI7B,gBAJyD;IAKzD,qBALwE;IFuBtE,gBAAe;IACf,iBAAgB;IAChB,kBAAiB;IACjB,oCClBoB,EDmBrB;EA1BH;IA4BI,WAAU;IACV,kBAAiB;IACjB,gBAAe,EAIhB;IAlCH;MAgCM,eAAsB,EACvB","file":"UserList.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\n.userList {\n  @include mobile-device {\n    width: 95%;\n    margin: 1rem auto;\n  }\n  width: 50%;\n  margin: 1em 0;\n  box-sizing: border-box;\n  border: 1px solid $border_color;\n  border-radius: 5px;\n  h3 {\n    @include text-styling(1rem);\n    text-align: center;\n    text-transform: uppercase;\n  }\n  ul {\n    padding: 0;\n    list-style-position: inside;\n  }\n  li {\n    @include text-styling(1rem);\n    @include flex-container($just: space-between);\n    padding: 0 1rem;\n    list-style: none;\n    line-height: 2rem;\n    border-bottom: 1px dashed $border_color;\n  }\n  .delete {\n    color: red;\n    font-size: 1.5rem;\n    cursor: pointer;\n    &:hover {\n      color: darken(red, 5%);\n    }\n  }\n}\n","$background_color: white;\n$text_color: black;\n$elements_secondary_color: grey;\n\n$twitter_color: #1dcaff;\n$facebook_color: #3B5998;\n$instagram_color: #8a3ab9;\n\n$highlight_color: #5cb85c;\n\n$border_color: lightgrey;\n\n$main_font: Helvetica;\n","@import \"partials/variables\";\n\n@mixin flex-container($dir: row, $just: center, $wrap: wrap, $ali: stretch) {\n  display: flex;\n  justify-content: $just;\n  flex-direction: $dir;\n  flex-wrap: $wrap;\n  align-items: $ali;\n}\n\n@mixin text-styling($size: 1.5rem) {\n  font-size: $size;\n  font-family: $main_font, sans-serif;\n}\n\n@mixin reset-link {\n  text-decoration: none;\n  color: inherit;\n}\n\n@mixin animate-active {\n  transition-duration: 0.3s;\n  transition-property: background-color, border-color, color;\n}\n\n@mixin tab($border_color: $border_color) {\n  border-top: 1px solid $border_color;\n  border-bottom: 1px solid $border_color;\n  &:first-of-type {\n    border-left: 1px solid $border_color;\n    border-radius: 5px 0 0 5px;\n  }\n  &:last-of-type {\n    border-right: 1px solid $border_color;\n    border-radius: 0 5px 5px 0;\n  }\n}\n\n@mixin btn {\n  @include text-styling(1.5rem);\n  color: white;\n  background-color: $highlight_color;\n  outline: none;\n  border: 1px solid $highlight_color;\n  border-radius: 5px;\n  cursor: pointer;\n  &:hover {\n    background-color: darken($highlight_color, 5%);\n  }\n}\n\n@mixin mobile-device {\n  @media (max-width: 900px) {\n    @content;\n  }\n}\n"],"sourceRoot":""}]);
 
 // exports
 
@@ -30398,12 +30407,25 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
 var initialState = {
-  users: [{ name: 'Nick Svetlov', id: 73958472903, social: 'twitter', data: '' }, { name: 'Jack de Farro', id: 27382738495, social: 'facebook', data: '' }, { name: 'Joey Tribbiani', id: 73029493840, social: 'instagram', data: '' }]
+  users: [{ name: 'Nick Svetlov', id: 73958472903, social: 'twitter', data: '' }, { name: 'Jack de Farro', id: 27382738495, social: 'facebook', data: '' }, { name: 'Joey Tribbiani', id: 73029493840, social: 'instagram', data: '' }],
+  socialTabs: ['twitter', 'facebook', 'instagram']
 };
 
 var userData = function userData() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments[1];
+
+  function mapSocialNets(base, added) {
+    var list = base.map(function (user) {
+      return user.social;
+    });
+    if (added) {
+      list.push(added);
+    }
+    return list.filter(function (social, i, list) {
+      return list.indexOf(social) === i;
+    });
+  }
 
   switch (action.type) {
     case _userData.ADD_USER:
@@ -30414,13 +30436,16 @@ var userData = function userData() {
         return state;
       }
       return {
-        users: [].concat(_toConsumableArray(state.users), [{ name: 'Test', id: action.id, social: action.social, data: '' }])
+        users: [].concat(_toConsumableArray(state.users), [{ name: 'Test', id: action.id, social: action.social, data: '' }]),
+        socialTabs: mapSocialNets(state.users, action.social)
       };
     case _userData.REMOVE_USER:
+      var newList = state.users.filter(function (user) {
+        return user.id !== action.id ? true : user.social !== action.social;
+      });
       return {
-        users: state.users.filter(function (user) {
-          return user.id !== action.id ? true : user.social !== action.social;
-        })
+        users: newList,
+        socialTabs: mapSocialNets(newList)
       };
     default:
       return state;
