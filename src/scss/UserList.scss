@@ -22,21 +22,17 @@
   }
   li {
     @include text-styling(1rem);
-    @include flex-container($just: space-between);
+    //@include flex-container($just: space-between);
     padding: 0 1rem;
     list-style: none;
     line-height: 2rem;
     border-bottom: 1px dashed $border_color;
-    //display: grid;
-    // grid-template-columns: repeat(3, 1fr);
-    // grid-gap: 10px;
-    // grid-auto-rows: minmax(20px, auto);
-    // &:nth-child(1) {
-    // }
-    // &:nth-child(2) {
-    // }
-    // &:nth-child(3) {
-    // }
+    display: grid;
+    grid-template-columns: 1fr 10fr 10fr 1fr;
+    grid-gap: 5px;
+    span:last-child {
+      text-align: right;
+    }
   }
   .delete {
     color: red;

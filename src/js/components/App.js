@@ -3,7 +3,8 @@
 // Libs
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BrowserRouter, Route } from 'react-router-dom';
+// I'd rather use BrowserRouter, but it demands server side setup to avoid 404 errors on refresh
+import { HashRouter, Route } from 'react-router-dom';
 import { Switch } from 'react-router';
 
 
@@ -16,14 +17,14 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <BrowserRouter>
+        <HashRouter>
           <div>
             <Route exact path="/" render={() => <MainScreen />} />
             <Route path="/twitter" render={() => <DisplayStats />} />
             <Route path="/facebook" render={() => <DisplayStats />} />
             <Route path="/instagram" render={() => <DisplayStats />} />
           </div>
-        </BrowserRouter>
+        </HashRouter>
       </div>
     )
   }

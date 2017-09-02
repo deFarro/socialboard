@@ -8,7 +8,8 @@ const initialState = {
     {name: 'Joey Tribbiani', id: 73029493840, social: 'instagram', data: ''}
   ],
   socialTabs: ['twitter', 'facebook', 'instagram'],
-  isFetching: false
+  isFetching: false,
+  isFull : false
 }
 
 const userData = (state = initialState, action) => {
@@ -35,14 +36,17 @@ const userData = (state = initialState, action) => {
           action.user
         ],
         socialTabs: mapSocialNets(state.users, action.user.social),
-        isFetching: false
+        isFetching: false,
+        isFull: state.users.length > 8
       }
 
     case REMOVE_USER:
       const newList = state.users.filter(user => user.id !== action.id ? true : user.social !== action.social)
       return {
         users: newList,
-        socialTabs: mapSocialNets(newList)
+        socialTabs: mapSocialNets(newList),
+        isFetching: false,
+        isFull: false
       };
     default:
       return state;

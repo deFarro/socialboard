@@ -27,7 +27,7 @@ class Form extends React.Component {
             <label htmlFor="instagram"><i className="fa fa-instagram" aria-hidden="true"></i></label>
           </div>
           <input type="text" pattern="\d*" title="Only digits allowed." ref={element => this.idField = element} placeholder="enter user ID" name="id" required></input>
-          <button type="submit">{this.props.isFetching ? 'SEARCHING...' : 'ADD USER'}</button>
+          <button className={this.props.isFull ? 'full' : ''} disabled={this.props.isFetching ? true : this.props.isFull ? true : false} type="submit">{this.props.isFetching ? 'SEARCHING...' : this.props.isFull ? '10 USERS ADDED' : 'ADD USER'}</button>
         </form>
       </div>
     );

@@ -28,6 +28,12 @@
   button {
     @extend %elements;
     @include btn;
+    transition: all 0.3s;
+    &.full {
+      background-color: $border_color;
+      border-color: $border_color;
+      cursor: auto;
+    }
   }
 }
 

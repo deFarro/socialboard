@@ -13,8 +13,9 @@ const UserList = ({users, handleClick}) => {
       <h3>Users added</h3>
       <ul>
         {users.map((user, i) => <li key={i}>
-          <span><i className={'fa fa-' + user.social} aria-hidden="true"></i> {user.name}</span>
-          <span>id:{user.id}</span>
+          <span><i className={'fa fa-' + user.social} aria-hidden="true"></i></span>
+          <span>{user.name}</span>
+          <span>id: {user.id}</span>
           <span className="delete" onClick={handleClick.bind(null, {id: user.id, social: user.social})}>&#10007;</span>
         </li>)}
       </ul>

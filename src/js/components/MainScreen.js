@@ -33,7 +33,7 @@ class MainScreen extends React.Component {
         <Navigation active={this.props.socialTabs} />
         <Title />
         <div className="userBlock">
-        <Form handleSubmit={this.fetchUser.bind(this)} isFetching={this.props.isFetching} />
+        <Form handleSubmit={this.fetchUser.bind(this)} isFetching={this.props.isFetching} isFull={this.props.isFull} />
         <UserList users={this.props.users}
           handleClick={remove} />
         </div>
@@ -47,7 +47,8 @@ const mapStateToProps = state => {
     dispatch: state.dispatch,
     users: state.users,
     socialTabs: state.socialTabs,
-    isFetching: state.isFetching
+    isFetching: state.isFetching,
+    isFull: state.isFull
   }
 }
 
