@@ -46807,7 +46807,7 @@ exports = module.exports = __webpack_require__(17)(true);
 
 
 // module
-exports.push([module.i, ".stats {\n  display: flex;\n  justify-content: center;\n  flex-direction: row;\n  flex-wrap: wrap;\n  align-items: stretch;\n  width: 70%;\n  margin: 0 auto;\n  box-sizing: border-box; }\n  @media (max-width: 900px) {\n    .stats {\n      width: 95%; } }\n\n.charts {\n  width: 70%;\n  margin: 1rem 2% 0 0;\n  box-sizing: border-box;\n  border: 1px solid lightgrey;\n  border-radius: 5px; }\n  @media (max-width: 900px) {\n    .charts {\n      width: 100%;\n      margin-right: 0; } }\n\n.userList.social {\n  width: 28%; }\n  @media (max-width: 900px) {\n    .userList.social {\n      display: none; } }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/DisplayStats.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_mixins.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_variables.scss"],"names":[],"mappings":"AAGA;ECAE,cAAa;EACb,wBAF4C;EAG5C,oBAH6B;EAI7B,gBAJyD;EAKzD,qBALwE;EDGxE,WAAU;EAIV,eAAc;EACd,uBAAsB,EACvB;ECyCC;IDjDF;MAII,WAAU,EAIb,EAAA;;AAED;EAKE,WAAU;EACV,oBAAmB;EACnB,uBAAsB;EACtB,4BEXsB;EFYtB,mBAAkB,EACnB;EC6BC;IDvCF;MAEI,YAAW;MACX,gBAAe,EAOlB,EAAA;;AAED;EAIE,WAAU,EACX;ECsBC;ID3BF;MAEI,cAAa,EAGhB,EAAA","file":"DisplayStats.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\n.stats {\n  @include flex-container;\n  width: 70%;\n  @include mobile-device {\n    width: 95%;\n  };\n  margin: 0 auto;\n  box-sizing: border-box;\n}\n\n.charts {\n  @include mobile-device {\n    width: 100%;\n    margin-right: 0;\n  };\n  width: 70%;\n  margin: 1rem 2% 0 0;\n  box-sizing: border-box;\n  border: 1px solid $border_color;\n  border-radius: 5px;\n}\n\n.userList.social {\n  @include mobile-device {\n    display: none;\n  };\n  width: 28%;\n}\n","@import \"partials/variables\";\n\n@mixin flex-container($dir: row, $just: center, $wrap: wrap, $ali: stretch) {\n  display: flex;\n  justify-content: $just;\n  flex-direction: $dir;\n  flex-wrap: $wrap;\n  align-items: $ali;\n}\n\n@mixin text-styling($size: 1.5rem) {\n  font-size: $size;\n  font-family: $main_font, sans-serif;\n}\n\n@mixin reset-link {\n  text-decoration: none;\n  color: inherit;\n}\n\n@mixin animate-active {\n  transition-duration: 0.3s;\n  transition-property: background-color, border-color, color;\n}\n\n@mixin tab($border_color: $border_color) {\n  border-top: 1px solid $border_color;\n  border-bottom: 1px solid $border_color;\n  &:first-of-type {\n    border-left: 1px solid $border_color;\n    border-radius: 5px 0 0 5px;\n  }\n  &:last-of-type {\n    border-right: 1px solid $border_color;\n    border-radius: 0 5px 5px 0;\n  }\n}\n\n@mixin btn {\n  @include text-styling(1.5rem);\n  color: white;\n  background-color: $highlight_color;\n  outline: none;\n  border: 1px solid $highlight_color;\n  border-radius: 5px;\n  cursor: pointer;\n  &:hover {\n    background-color: darken($highlight_color, 5%);\n  }\n}\n\n@mixin mobile-device {\n  @media (max-width: 900px) {\n    @content;\n  }\n}\n\n@mixin input_block {\n  margin: 1rem 0;\n  padding: 0;\n  width: 60%;\n  height: 3rem;\n  box-sizing: border-box;\n}\n","$background_color: white;\n$text_color: black;\n$elements_secondary_color: grey;\n\n$twitter_color: #1dcaff;\n$facebook_color: #3B5998;\n$instagram_color: #8a3ab9;\n\n$highlight_color: #5cb85c;\n\n$border_color: lightgrey;\n\n$main_font: Helvetica;\n"],"sourceRoot":""}]);
+exports.push([module.i, ".stats {\n  display: flex;\n  justify-content: center;\n  flex-direction: row;\n  flex-wrap: wrap;\n  align-items: flex-start;\n  width: 70%;\n  margin: 0 auto;\n  box-sizing: border-box; }\n  @media (max-width: 900px) {\n    .stats {\n      width: 95%; } }\n\n.userList.social {\n  width: 28%; }\n  @media (max-width: 900px) {\n    .userList.social {\n      display: none; } }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/DisplayStats.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_mixins.scss"],"names":[],"mappings":"AAGA;ECAE,cAAa;EACb,wBAF4C;EAG5C,oBAH6B;EAI7B,gBAJyD;EAKzD,wBDHwC;EACxC,WAAU;EAIV,eAAc;EACd,uBAAsB,EACvB;ECyCC;IDjDF;MAII,WAAU,EAIb,EAAA;;AAED;EAIE,WAAU,EACX;ECkCC;IDvCF;MAEI,cAAa,EAGhB,EAAA","file":"DisplayStats.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\n.stats {\n  @include flex-container($ali: flex-start);\n  width: 70%;\n  @include mobile-device {\n    width: 95%;\n  };\n  margin: 0 auto;\n  box-sizing: border-box;\n}\n\n.userList.social {\n  @include mobile-device {\n    display: none;\n  };\n  width: 28%;\n}\n","@import \"partials/variables\";\n\n@mixin flex-container($dir: row, $just: center, $wrap: wrap, $ali: stretch) {\n  display: flex;\n  justify-content: $just;\n  flex-direction: $dir;\n  flex-wrap: $wrap;\n  align-items: $ali;\n}\n\n@mixin text-styling($size: 1.5rem) {\n  font-size: $size;\n  font-family: $main_font, sans-serif;\n}\n\n@mixin reset-link {\n  text-decoration: none;\n  color: inherit;\n}\n\n@mixin animate-active {\n  transition-duration: 0.3s;\n  transition-property: background-color, border-color, color;\n}\n\n@mixin tab($border_color: $border_color) {\n  border-top: 1px solid $border_color;\n  border-bottom: 1px solid $border_color;\n  &:first-of-type {\n    border-left: 1px solid $border_color;\n    border-radius: 5px 0 0 5px;\n  }\n  &:last-of-type {\n    border-right: 1px solid $border_color;\n    border-radius: 0 5px 5px 0;\n  }\n}\n\n@mixin btn {\n  @include text-styling(1.5rem);\n  color: white;\n  background-color: $highlight_color;\n  outline: none;\n  border: 1px solid $highlight_color;\n  border-radius: 5px;\n  cursor: pointer;\n  &:hover {\n    background-color: darken($highlight_color, 5%);\n  }\n}\n\n@mixin mobile-device {\n  @media (max-width: 900px) {\n    @content;\n  }\n}\n\n@mixin input_block {\n  margin: 1rem 0;\n  padding: 0;\n  width: 60%;\n  height: 3rem;\n  box-sizing: border-box;\n}\n"],"sourceRoot":""}]);
 
 // exports
 
@@ -46930,31 +46930,38 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // Style
 var METRICS = [{
   type: 'posts',
-  title: 'Total posts'
+  title: 'Total posts',
+  chart: 'pie'
 }, {
   type: 'friends',
-  title: 'Total friends'
+  title: 'Total friends',
+  chart: 'pie'
 }, {
   type: 'likes',
-  title: 'Likes received'
+  title: 'Likes received',
+  chart: 'bar'
 }, {
   type: 'comments',
-  title: 'Comments left'
+  title: 'Comments left',
+  chart: 'horizontalBar'
 }, {
   type: 'reposts',
-  title: 'Own posts get reposted'
+  title: 'Own posts got reposted',
+  chart: 'bar'
 }, {
   type: 'postsInLastMonth',
-  title: 'Posts last month'
+  title: 'Posts last month',
+  chart: 'pie'
 }, {
   type: 'postsInLastWeek',
-  title: 'Posts last week'
+  title: 'Posts last week',
+  chart: 'pie'
 }];
 
 // Components
 
 
-var COLORS = ['blue', 'teal', 'purple', 'yellow', 'orange', 'green', 'pink', 'lightblue', 'darkgreen', 'brown'];
+var COLORS = ['#FF8080', '#80FFB7', '#C680FF', '#80FFFD', '#FFDD80', '#80D0FF', '#FF80CA', '#D5FF80', '#8097FF', '#FFAE80'];
 
 var Charts = function Charts(_ref) {
   var users = _ref.users;
@@ -46962,18 +46969,21 @@ var Charts = function Charts(_ref) {
   return _react2.default.createElement(
     'div',
     { className: 'charts' },
-    _react2.default.createElement(_chart2.default, { data: {
-        title: METRICS[0].title,
-        users: users.map(function (user) {
-          return user.name;
-        }),
-        values: users.map(function (user) {
-          return user[METRICS[0].type];
-        }),
-        colors: users.map(function (user, i) {
-          return COLORS[i];
-        })
-      } })
+    METRICS.map(function (metric, i) {
+      return _react2.default.createElement(_chart2.default, { key: i, className: metric.type, data: {
+          title: metric.title,
+          chart: metric.chart,
+          users: users.map(function (user) {
+            return user.name;
+          }),
+          values: users.map(function (user) {
+            return user[metric.type];
+          }),
+          colors: users.map(function (user, i) {
+            return COLORS[i];
+          })
+        } });
+    })
   );
 };
 
@@ -47019,7 +47029,7 @@ exports = module.exports = __webpack_require__(17)(true);
 
 
 // module
-exports.push([module.i, "", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"Charts.scss","sourceRoot":""}]);
+exports.push([module.i, ".charts {\n  display: flex;\n  justify-content: center;\n  flex-direction: row;\n  flex-wrap: wrap;\n  align-items: stretch;\n  width: 70%;\n  margin: 1rem 2% 1rem 0;\n  position: relative;\n  box-sizing: border-box;\n  border: 1px solid lightgrey;\n  border-radius: 5px; }\n  @media (max-width: 900px) {\n    .charts {\n      width: 100%;\n      margin-right: 0; } }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/Charts.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_mixins.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_variables.scss"],"names":[],"mappings":"AAGA;ECAE,cAAa;EACb,wBAF4C;EAG5C,oBAH6B;EAI7B,gBAJyD;EAKzD,qBALwE;EDOxE,WAAU;EACV,uBAAsB;EACtB,mBAAkB;EAClB,uBAAsB;EACtB,4BEHsB;EFItB,mBAAkB,EACnB;ECqCC;IDjDF;MAGI,YAAW;MACX,gBAAe,EAQlB,EAAA","file":"Charts.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\n.charts {\n  @include flex-container;\n  @include mobile-device {\n    width: 100%;\n    margin-right: 0;\n  };\n  width: 70%;\n  margin: 1rem 2% 1rem 0;\n  position: relative;\n  box-sizing: border-box;\n  border: 1px solid $border_color;\n  border-radius: 5px;\n}\n\n.posts {\n\n}\n.friends {\n\n}\n.reposts {\n\n}\n.likes {\n\n}\n.comments {\n\n}\n.postsInLastMonth {\n\n}\n.postsInLastWeek {\n\n}\n","@import \"partials/variables\";\n\n@mixin flex-container($dir: row, $just: center, $wrap: wrap, $ali: stretch) {\n  display: flex;\n  justify-content: $just;\n  flex-direction: $dir;\n  flex-wrap: $wrap;\n  align-items: $ali;\n}\n\n@mixin text-styling($size: 1.5rem) {\n  font-size: $size;\n  font-family: $main_font, sans-serif;\n}\n\n@mixin reset-link {\n  text-decoration: none;\n  color: inherit;\n}\n\n@mixin animate-active {\n  transition-duration: 0.3s;\n  transition-property: background-color, border-color, color;\n}\n\n@mixin tab($border_color: $border_color) {\n  border-top: 1px solid $border_color;\n  border-bottom: 1px solid $border_color;\n  &:first-of-type {\n    border-left: 1px solid $border_color;\n    border-radius: 5px 0 0 5px;\n  }\n  &:last-of-type {\n    border-right: 1px solid $border_color;\n    border-radius: 0 5px 5px 0;\n  }\n}\n\n@mixin btn {\n  @include text-styling(1.5rem);\n  color: white;\n  background-color: $highlight_color;\n  outline: none;\n  border: 1px solid $highlight_color;\n  border-radius: 5px;\n  cursor: pointer;\n  &:hover {\n    background-color: darken($highlight_color, 5%);\n  }\n}\n\n@mixin mobile-device {\n  @media (max-width: 900px) {\n    @content;\n  }\n}\n\n@mixin input_block {\n  margin: 1rem 0;\n  padding: 0;\n  width: 60%;\n  height: 3rem;\n  box-sizing: border-box;\n}\n","$background_color: white;\n$text_color: black;\n$elements_secondary_color: grey;\n\n$twitter_color: #1dcaff;\n$facebook_color: #3B5998;\n$instagram_color: #8a3ab9;\n\n$highlight_color: #5cb85c;\n\n$border_color: lightgrey;\n\n$main_font: Helvetica;\n"],"sourceRoot":""}]);
 
 // exports
 
@@ -47075,7 +47085,7 @@ var singleChart = function (_React$Component) {
     key: 'drawChart',
     value: function drawChart() {
       var config = {
-        type: 'pie',
+        type: this.props.data.chart,
         data: {
           datasets: [{
             data: [].concat(_toConsumableArray(this.props.data.values)),
@@ -47096,6 +47106,30 @@ var singleChart = function (_React$Component) {
           }
         }
       };
+      if (this.props.data.chart !== 'pie') {
+        config.options.scales = {
+          xAxes: [{
+            scaleLabel: false,
+            display: false,
+            gridLines: {
+              display: false
+            },
+            ticks: {
+              display: false
+            }
+          }],
+          yAxes: [{
+            scaleLabel: false,
+            display: false,
+            gridLines: {
+              display: false
+            },
+            ticks: {
+              display: false
+            }
+          }]
+        };
+      }
       this.chart = new _chart2.default(this.canvas.getContext('2d'), config);
     }
   }, {
@@ -47114,9 +47148,13 @@ var singleChart = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      return _react2.default.createElement('canvas', { ref: function ref(element) {
-          return _this2.canvas = element;
-        } });
+      return _react2.default.createElement(
+        'div',
+        { className: 'chart ' + this.props.className },
+        _react2.default.createElement('canvas', { ref: function ref(element) {
+            return _this2.canvas = element;
+          } })
+      );
     }
   }]);
 
@@ -59908,7 +59946,7 @@ exports = module.exports = __webpack_require__(17)(true);
 
 
 // module
-exports.push([module.i, "canvas {\n  width: 50%; }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/Chart.scss"],"names":[],"mappings":"AAGA;EACE,WAAU,EACX","file":"Chart.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\ncanvas {\n  width: 50%;\n}\n"],"sourceRoot":""}]);
+exports.push([module.i, ".chart {\n  box-sizing: border-box;\n  width: 50%;\n  margin: 1rem 0; }\n\n.reposts,\n.comments,\n.likes {\n  width: 90%;\n  margin: 1rem auto; }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/Chart.scss"],"names":[],"mappings":"AAGA;EACE,uBAAsB;EACtB,WAAU;EACV,eAAc,EACf;;AACD;;;EAGE,WAAU;EACV,kBAAiB,EAClB","file":"Chart.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\n.chart {\n  box-sizing: border-box;\n  width: 50%;\n  margin: 1rem 0;\n}\n.reposts,\n.comments,\n.likes {\n  width: 90%;\n  margin: 1rem auto;\n}\n"],"sourceRoot":""}]);
 
 // exports
 

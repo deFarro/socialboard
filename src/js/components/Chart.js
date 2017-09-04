@@ -10,7 +10,7 @@ import '../../scss/Chart.scss';
 class singleChart extends React.Component {
   drawChart() {
     const config = {
-      type: 'pie',
+      type: this.props.data.chart,
       data: {
         datasets: [{
           data: [...this.props.data.values],
@@ -31,6 +31,30 @@ class singleChart extends React.Component {
         }
       }
     };
+    if (this.props.data.chart !== 'pie') {
+      config.options.scales = {
+        xAxes: [{
+          scaleLabel: false,
+          display: false,
+          gridLines: {
+              display: false
+          },
+          ticks: {
+            display: false
+          }
+        }],
+        yAxes: [{
+          scaleLabel: false,
+          display: false,
+          gridLines: {
+              display: false
+          },
+          ticks: {
+            display: false
+          }
+        }]
+      };
+    }
     this.chart = new Chart(this.canvas.getContext('2d'), config);
   }
   componentDidMount() {
@@ -41,7 +65,11 @@ class singleChart extends React.Component {
     this.drawChart();
   }
   render() {
-    return <canvas ref={element => this.canvas = element}></canvas>
+    return (
+      <div className={'chart ' + this.props.className}>
+        <canvas ref={element => this.canvas = element}></canvas>
+      </div>
+    );
   }
 }
 

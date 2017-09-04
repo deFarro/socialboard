@@ -1,6 +1,14 @@
 @import "partials/variables";
 @import "partials/mixins";
 
-canvas {
+.chart {
+  box-sizing: border-box;
   width: 50%;
+  margin: 1rem 0;
+}
+.reposts,
+.comments,
+.likes {
+  width: 90%;
+  margin: 1rem auto;
 }
