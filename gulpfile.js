@@ -25,7 +25,7 @@ gulp.task('build-prod', ['build'], () => {
 
 gulp.task('serve', ['build'], () => {
   server.init({server: {baseDir: "./"}});
-  gulp.watch('src/**/*', ['build'])
+  gulp.watch('src/**/*', ['build']);
   gulp.watch('dist/bundle.js').on('change', server.reload);
 });
 

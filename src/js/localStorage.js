@@ -2,7 +2,6 @@
 
 const saveSate = (state) => {
   try {
-    console.log(state);
     const savedState = {
       users: state.users,
       socialTabs: state.socialTabs,
