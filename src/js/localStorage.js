@@ -2,8 +2,14 @@
 
 const saveSate = (state) => {
   try {
-    const stingState = JSON.stringify(state);
-    localStorage.setItem('state', stingState);
+    console.log(state);
+    const savedState = {
+      users: state.users,
+      socialTabs: state.socialTabs,
+      status: state.users.length > 9 ? 'full' : 'ready'
+    };
+    const stringState = JSON.stringify(savedState);
+    localStorage.setItem('state', stringState);
   }
   catch(err) {
     console.log(err);
@@ -25,4 +31,4 @@ const loadState = () => {
   }
 }
 
-export {saveSate, loadState};
+export { saveSate, loadState };

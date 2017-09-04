@@ -18,7 +18,7 @@ import {saveSate, loadState} from './localStorage';
 const savedState = loadState();
 
 const store = createStore(userData,
-//  savedState,
+  savedState,
   window.devToolsExtension && window.devToolsExtension()
 );
 
