@@ -7,6 +7,9 @@ import { PropTypes } from 'prop-types';
 // Style
 import '../../scss/Form.scss';
 
+//Components
+import SubmitButton from './SubmitButton';
+
 class Form extends React.Component {
   handleSumbit(event) {
     event.preventDefault();
@@ -16,7 +19,7 @@ class Form extends React.Component {
   }
   render() {
     return (
-      <div className="form">
+      <div className="inputArea">
         <form ref={element => this.form = element} onSubmit={this.handleSumbit.bind(this)}>
           <div className="socialChoice">
             <input type="radio" value="twitter" defaultChecked= "true" name="social" id="twitter" />
@@ -27,7 +30,7 @@ class Form extends React.Component {
             <label htmlFor="instagram"><i className="fa fa-instagram" aria-hidden="true"></i></label>
           </div>
           <input type="text" pattern="\d*" title="Only digits allowed." ref={element => this.idField = element} placeholder="enter user ID" name="id" required></input>
-          <button className={this.props.isFull ? 'full' : ''} disabled={this.props.isFetching ? true : this.props.isFull ? true : false} type="submit">{this.props.isFetching ? 'SEARCHING...' : this.props.isFull ? '10 USERS ADDED' : 'ADD USER'}</button>
+          <SubmitButton status={this.props.status} />
         </form>
       </div>
     );

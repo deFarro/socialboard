@@ -14,16 +14,16 @@ const fetchSettings = {
 export default function getFetchedData({id, social}, insertAction) {
   setTimeout(() => {
     fetch(`../mock_backend/${social}.json`)
-    .then(response => {
-      if(response.ok) {
-        return response.json();
-      }
-      console.log('Network error occured.');
-    })
-    .then(parsed => {
-      parsed.users[id - 1].social = social;
-      insertAction(parsed.users[id - 1]);
-    })
-    .catch(err => console.log(err));
+      .then(response => {
+        if(response.ok) {
+          return response.json();
+        }
+        console.log('Network error occured.');
+      })
+      .then(parsed => {
+        parsed.users[id - 1].social = social;
+        insertAction(parsed.users[id - 1]);
+      })
+      .catch(err => insertAction(err));
   }, 1500);
 }

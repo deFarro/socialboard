@@ -1,7 +1,7 @@
 @import "partials/variables";
 @import "partials/mixins";
 
-.form {
+.inputArea {
   @include mobile-device {
     width: 95%;
     margin: 1rem auto;
@@ -10,37 +10,19 @@
   form {
     @include flex-container($dir: column, $ali: center);
   }
-  %elements {
-    margin: 1rem 0;
-    padding: 0;
-    width: 50%;
-    height: 3rem;
-    box-sizing: border-box;
-  }
   input {
-    @extend %elements;
+    @include input_block;
     @include text-styling;
     outline: none;
     text-align: center;
     border: 1px solid $border_color;
     border-radius: 5px;
   }
-  button {
-    @extend %elements;
-    @include btn;
-    transition: all 0.3s;
-    &.full {
-      background-color: $border_color;
-      border-color: $border_color;
-      cursor: auto;
-    }
-  }
 }
 
 .socialChoice {
   @include flex-container;
-  width: 50%;
-  margin: 1rem 0;
+  @include input_block;
   input {
     display: none;
   }
@@ -49,7 +31,7 @@
     @include animate-active;
     box-sizing: border-box;
     width: 33%;
-    height: 3rem;
+    height: 100%;
     padding-top: 0.5rem;
     text-align: center;
     cursor: pointer;

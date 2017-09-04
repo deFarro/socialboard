@@ -22,7 +22,6 @@
   }
   li {
     @include text-styling(1rem);
-    //@include flex-container($just: space-between);
     padding: 0 1rem;
     list-style: none;
     line-height: 2rem;
@@ -32,6 +31,9 @@
     grid-gap: 5px;
     span:last-child {
       text-align: right;
+    }
+    &.social {
+      grid-template-columns: 1fr 10fr 1fr;
     }
   }
   .delete {

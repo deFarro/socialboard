@@ -20,9 +20,9 @@ export default class App extends React.Component {
         <HashRouter>
           <div>
             <Route exact path="/" render={() => <MainScreen />} />
-            <Route path="/twitter" render={() => <DisplayStats />} />
-            <Route path="/facebook" render={() => <DisplayStats />} />
-            <Route path="/instagram" render={() => <DisplayStats />} />
+            <Route path="/twitter" render={() => <DisplayStats tab={'twitter'} />} />
+            <Route path="/facebook" render={() => <DisplayStats tab={'facebook'} />} />
+            <Route path="/instagram" render={() => <DisplayStats tab={'instagram'} />} />
           </div>
         </HashRouter>
       </div>

@@ -15,7 +15,7 @@ import Form from './Form';
 import UserList from './UserList';
 
 // Actions
-import { addUser, insertUser, removeUser } from '../actions/userData';
+import { addUser, errorFetch, resetStatus, insertUser, removeUser } from '../actions/userData';
 
 // AJAX
 import getFetchedData from '../ajax';
@@ -23,19 +23,29 @@ import getFetchedData from '../ajax';
 class MainScreen extends React.Component {
   fetchUser({id, social}) {
     this.props.dispatch(addUser({id, social}));
-    getFetchedData({id, social}, (user) => this.props.dispatch(insertUser(user)));
+    getFetchedData({id, social}, response => {
+      if (response instanceof Error) {
+        this.props.dispatch(errorFetch());
+        setTimeout(() => {
+          this.props.dispatch(resetStatus());
+        }, 2000);
+      }
+      else {
+        this.props.dispatch(insertUser(response));
+      }
+    });
   }
   render() {
-    const add = bindActionCreators(addUser, this.props.dispatch);
     const remove = bindActionCreators(removeUser, this.props.dispatch);
     return (
       <div>
         <Navigation active={this.props.socialTabs} />
         <Title />
         <div className="userBlock">
-        <Form handleSubmit={this.fetchUser.bind(this)} isFetching={this.props.isFetching} isFull={this.props.isFull} />
+        <Form handleSubmit={this.fetchUser.bind(this)} status={this.props.status} />
         <UserList users={this.props.users}
-          handleClick={remove} />
+          handleClick={remove}
+          filter="all" />
         </div>
       </div>
     );
@@ -47,8 +57,7 @@ const mapStateToProps = state => {
     dispatch: state.dispatch,
     users: state.users,
     socialTabs: state.socialTabs,
-    isFetching: state.isFetching,
-    isFull: state.isFull
+    status: state.status
   }
 }
 

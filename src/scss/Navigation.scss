@@ -59,4 +59,5 @@ a.active {
   color: $background_color;
   background-color: $highlight_color;
   border-color: $highlight_color;
+  pointer-events: none;
 }
