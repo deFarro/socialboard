@@ -13,6 +13,16 @@
   border-radius: 5px;
   &.social {
     width: 100%;
+    .show {
+      cursor: pointer;
+      &:hover {
+        text-decoration: line-through;
+      }
+    }
+    .crossed {
+      cursor: pointer;
+      text-decoration: line-through;
+    }
   }
   h3 {
     @include text-styling(1rem);
@@ -47,4 +57,10 @@
       color: darken(red, 5%);
     }
   }
+}
+
+.reset {
+  @include btn($font_size: 1rem);
+  display: block;
+  margin: 0 auto 1rem auto;
 }

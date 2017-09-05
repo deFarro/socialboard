@@ -48,7 +48,7 @@ const METRICS = [
   }
 ];
 
-const Charts = ({users, colors}) => {
+const Charts = ({users}) => {
   return (
     <div className="charts">
       {METRICS.map((metric, i) => (
@@ -57,7 +57,7 @@ const Charts = ({users, colors}) => {
           chart: metric.chart,
           users: users.map(user => user.name),
           values: users.map(user => user[metric.type]),
-          colors: users.map((user, i) => colors[i])
+          colors: users.map(user => user.color)
         }} />
       ))}
     </div>
@@ -65,8 +65,7 @@ const Charts = ({users, colors}) => {
 }
 
 Charts.propTypes = {
-  users: PropTypes.array.isRequired,
-  colors: PropTypes.array.isRequired
+  users: PropTypes.array.isRequired
 }
 
 export default Charts;

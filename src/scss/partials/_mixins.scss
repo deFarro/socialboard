@@ -36,8 +36,8 @@
   }
 }
 
-@mixin btn {
-  @include text-styling(1.5rem);
+@mixin btn($font_size: 1.5rem) {
+  @include text-styling($font_size);
   color: white;
   background-color: $highlight_color;
   outline: none;

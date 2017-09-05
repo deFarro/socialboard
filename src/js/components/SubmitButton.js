@@ -32,7 +32,7 @@ const STATUSES = {
 
 const SubmitButton = ({status}) => {
   return (
-    <button className={STATUSES[status].className} disabled={STATUSES[status].disabled} type="submit">{STATUSES[status].text}</button>
+    <button className={'submitButton ' + STATUSES[status].className} disabled={STATUSES[status].disabled} type="submit">{STATUSES[status].text}</button>
   );
 }
 

@@ -28,7 +28,7 @@ class MainScreen extends React.Component {
         this.props.dispatch(errorFetch());
         setTimeout(() => {
           this.props.dispatch(resetStatus());
-        }, 2000);
+        }, 1500);
       }
       else {
         this.props.dispatch(insertUser(response));
