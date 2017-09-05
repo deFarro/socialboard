@@ -11,14 +11,13 @@
   box-sizing: border-box;
 }
 
-.userList.social {
-  @include mobile-device {
-    display: none;
-  };
-  width: 100%;
-}
-
 .fixed {
+  // Changing order of components on mobile devices
+  @include mobile-device {
+    width: 100%;
+    order: -1;
+    position: static;
+  };
   width: 28%;
   top: 0;
   position: sticky;

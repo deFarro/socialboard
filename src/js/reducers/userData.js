@@ -6,11 +6,17 @@ import {
 
 const initialState = {
   users: [
-    {name: 'Nick Svetlov', id: 73958472903, social: 'twitter', data: ''},
-    {name: 'Jack de Farro', id: 27382738495, social: 'facebook', data: ''},
-    {name: 'Joey Tribbiani', id: 73029493840, social: 'instagram', data: ''}
+    {name: 'Stan Marsh', id: 73958472903, social: 'twitter', posts: 65, friends: 1859, likes: 1164 , comments: 340, reposts: 214, postsInLastMonth: 14 , postsInLastWeek: 3},
+    {name: 'Kyle Broflovski', id: 27382738495, social: 'twitter', posts: 265, friends: 859, likes: 224 , comments: 140, reposts: 54, postsInLastMonth: 4 , postsInLastWeek: 2},
+    {name: 'Eric Cartman', id: 73029493840, social: 'twitter', posts: 165, friends: 59, likes: 90 , comments: 1140, reposts: 23, postsInLastMonth: 25 , postsInLastWeek: 7},
+    {name: 'Kenny McCormick', id: 234353465464, social: 'twitter', posts: 650, friends: 2159, likes: 264 , comments: 340, reposts: 204, postsInLastMonth: 24 , postsInLastWeek: 8},
+    {name: 'Leopold Stotch', id: 43453558495, social: 'twitter', posts: 25, friends: 9, likes: 125 , comments: 1340, reposts: 9, postsInLastMonth: 40 , postsInLastWeek: 12},
+    {name: 'Wendy Testaburger', id: 345364433, social: 'twitter', posts: 1165, friends: 2342, likes: 1423 , comments: 3040, reposts: 302, postsInLastMonth: 80 , postsInLastWeek: 17},
+    {name: 'Tweek Tweak', id: 534545343443, social: 'twitter', posts: 125, friends: 324, likes: 922 , comments: 1222, reposts: 354, postsInLastMonth: 22 , postsInLastWeek: 11},
+    {name: 'Token Black', id: 12343534556, social: 'facebook', posts: 895, friends: 2345, likes: 764 , comments: 1340, reposts: 324, postsInLastMonth: 11 , postsInLastWeek: 9},
+    {name: 'Craig Tucker', id: 3413454545, social: 'facebook', posts: 2065, friends: 5913, likes: 3453 , comments: 2460, reposts: 213, postsInLastMonth: 34 , postsInLastWeek: 21}
   ],
-  socialTabs: ['twitter', 'facebook', 'instagram'],
+  socialTabs: ['twitter', 'facebook'],
   status: 'ready'
 }
 

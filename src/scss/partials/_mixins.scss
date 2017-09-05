@@ -1,13 +1,5 @@
 @import "partials/variables";
 
-@mixin flex-container($dir: row, $just: center, $wrap: wrap, $ali: stretch) {
-  display: flex;
-  justify-content: $just;
-  flex-direction: $dir;
-  flex-wrap: $wrap;
-  align-items: $ali;
-}
-
 @mixin text-styling($size: 1.5rem) {
   font-size: $size;
   font-family: $main_font, sans-serif;
@@ -18,10 +10,17 @@
   color: inherit;
 }
 
-@mixin animate-active {
-  transition-duration: 0.3s;
-  transition-property: background-color, border-color, color;
+// Layout
+
+@mixin flex-container($dir: row, $just: center, $wrap: wrap, $ali: stretch) {
+  display: flex;
+  justify-content: $just;
+  flex-direction: $dir;
+  flex-wrap: $wrap;
+  align-items: $ali;
 }
+
+// Elements
 
 @mixin tab($border_color: $border_color) {
   border-top: 1px solid $border_color;
@@ -49,16 +48,25 @@
   }
 }
 
-@mixin mobile-device {
-  @media (max-width: 900px) {
-    @content;
-  }
-}
-
 @mixin input_block {
   margin: 1rem 0;
   padding: 0;
   width: 60%;
   height: 3rem;
   box-sizing: border-box;
+}
+
+// Animations
+
+@mixin animate-active {
+  transition-duration: 0.3s;
+  transition-property: background-color, border-color, color;
+}
+
+// Responsive
+
+@mixin mobile-device {
+  @media (max-width: 900px) {
+    @content;
+  }
 }

@@ -22,10 +22,9 @@ const UserListOnTabs = ({users, active, handleRemove, handleToggle}) => {
           </li>)
         }
       </ul>
-      {active.indexOf(false) >= 0 ?
-        <button className="reset" onClick={() => handleToggle(null, true)}>RESET</button> :
-        null
-      }
+      <div className={active.indexOf(false) >= 0 ? 'show_reset' : 'hide_reset' }>
+        <button className="reset" onClick={() => handleToggle(null, true)}>RESET</button>
+      </div>
     </div>
   );
 }

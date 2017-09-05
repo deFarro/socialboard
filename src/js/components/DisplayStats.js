@@ -42,6 +42,11 @@ class DisplayStats extends React.Component {
     }
     this.setState({active});
   }
+  // Ugly way to hide reset button animation on the first render
+  componentDidMount() {
+    document.querySelector('.hide_reset').classList.add('preload');
+    setTimeout(() => {document.querySelector('.hide_reset').classList.remove('preload');}, 500);
+  }
   render() {
     const remove = bindActionCreators(removeUser, this.props.dispatch);
     const users = this.props.users.filter(user => user.social === this.props.tab)
