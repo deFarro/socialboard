@@ -11,6 +11,7 @@ import '../../scss/Form.scss';
 import SubmitButton from './SubmitButton';
 
 class Form extends React.Component {
+  // formData isn't working in Safari - can be rewritten with ref attributes
   handleSumbit(event) {
     event.preventDefault();
     const form = new FormData(this.form);
@@ -29,7 +30,7 @@ class Form extends React.Component {
             <input type="radio" value="instagram" name="social" id="instagram" />
             <label htmlFor="instagram"><i className="fa fa-instagram" aria-hidden="true"></i></label>
           </div>
-          <input type="text" pattern="\d*" title="Only digits allowed." ref={element => this.idField = element} placeholder="enter user ID" name="id" required></input>
+          <input type="text" pattern="\d*" title="Only digits allowed" ref={element => this.idField = element} placeholder="enter user ID" name="id" required></input>
           <SubmitButton status={this.props.status} />
         </form>
       </div>

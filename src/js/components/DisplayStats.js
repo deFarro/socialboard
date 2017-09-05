@@ -12,23 +12,26 @@ import '../../scss/DisplayStats.scss';
 import Navigation from './Navigation';
 import NoStatsAvailable from './NoStatsAvailable';
 import Charts from './Charts';
-import UserList from './UserList';
+import UserListOnTabs from './UserListOnTabs';
 
 // Actions
 import { removeUser } from '../actions/userData';
 
-const COLORS = ['blue', 'teal', 'purple', 'yellow', 'orange', 'green', 'pink', 'lightblue', 'darkgreen', 'brown'];
+const COLORS = ['#FF8080', '#80FFB7', '#C680FF', '#80FFFD', '#FFDD80', '#80D0FF', '#FF80CA', '#D5FF80', '#8097FF', '#FFAE80'];
 
 class DisplayStats extends React.Component {
   render() {
     const remove = bindActionCreators(removeUser, this.props.dispatch);
+    const users = this.props.users.filter(user => user.social === this.props.tab);
     return (
       <div>
         <Navigation active={this.props.socialTabs} />
         {this.props.socialTabs.indexOf(this.props.tab) >= 0 ?
           <div className="stats">
-            <Charts users={this.props.users.filter(user => user.social === this.props.tab)} />
-            <UserList users={this.props.users} handleClick={remove} filter={this.props.tab} />
+            <Charts users={users} colors={COLORS}/>
+            <div className="fixed">
+              <UserListOnTabs users={users} handleClick={remove} colors={COLORS}/>
+            </div>
           </div> :
           <NoStatsAvailable />
         }

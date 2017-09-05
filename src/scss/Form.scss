@@ -17,6 +17,9 @@
     text-align: center;
     border: 1px solid $border_color;
     border-radius: 5px;
+    &:required {
+    box-shadow: none;
+}
   }
 }
 

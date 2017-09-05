@@ -2,6 +2,7 @@
 
 // Libs
 import React from 'react';
+import { PropTypes } from 'prop-types';
 
 // Style
 import '../../scss/Charts.scss';
@@ -47,9 +48,7 @@ const METRICS = [
   }
 ];
 
-const COLORS = ['#FF8080', '#80FFB7', '#C680FF', '#80FFFD', '#FFDD80', '#80D0FF', '#FF80CA', '#D5FF80', '#8097FF', '#FFAE80'];
-
-const Charts = ({users}) => {
+const Charts = ({users, colors}) => {
   return (
     <div className="charts">
       {METRICS.map((metric, i) => (
@@ -58,11 +57,16 @@ const Charts = ({users}) => {
           chart: metric.chart,
           users: users.map(user => user.name),
           values: users.map(user => user[metric.type]),
-          colors: users.map((user, i) => COLORS[i])
+          colors: users.map((user, i) => colors[i])
         }} />
       ))}
     </div>
   );
+}
+
+Charts.propTypes = {
+  users: PropTypes.array.isRequired,
+  colors: PropTypes.array.isRequired
 }
 
 export default Charts;

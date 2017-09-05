@@ -7,15 +7,14 @@ import { PropTypes } from 'prop-types';
 // Style
 import '../../scss/UserList.scss';
 
-const UserList = ({users, handleClick}) => {
+const UserListOnTabs = ({users, handleClick, colors}) => {
   return (
-    <div className="userList">
+    <div className="userList social">
       <h3>Users added</h3>
       <ul>
-        {users.map((user, i) => <li key={i}>
-            <span><i className={'fa fa-' + user.social} aria-hidden="true"></i></span>
+        {users.map((user, i) => <li key={i} className="social">
+            <span><i className="fa fa-square" aria-hidden="true" style={{color: colors[i]}}></i></span>
             <span>{user.name}</span>
-            <span>id: {user.id}</span>
             <span className="delete" onClick={handleClick.bind(null, {id: user.id, social: user.social})}>&#10007;</span>
           </li>)
         }
@@ -24,9 +23,10 @@ const UserList = ({users, handleClick}) => {
   );
 }
 
-UserList.propTypes = {
+UserListOnTabs.propTypes = {
   users: PropTypes.array.isRequired,
-  handleClick: PropTypes.func.isRequired
+  handleClick: PropTypes.func.isRequired,
+  colors: PropTypes.array.isRequired
 }
 
-export default UserList;
+export default UserListOnTabs;

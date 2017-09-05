@@ -18390,83 +18390,32 @@ var withRouter = function withRouter(Component) {
 /* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+// style-loader: Adds some css to the DOM by adding a <style> tag
 
+// load the styles
+var content = __webpack_require__(408);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
 
-// Libs
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(5);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(8);
-
-__webpack_require__(407);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var UserList = function UserList(_ref) {
-  var users = _ref.users,
-      handleClick = _ref.handleClick,
-      filter = _ref.filter;
-
-  return _react2.default.createElement(
-    'div',
-    { className: filter === 'all' ? 'userList' : 'userList social' },
-    _react2.default.createElement(
-      'h3',
-      null,
-      'Users added'
-    ),
-    _react2.default.createElement(
-      'ul',
-      null,
-      users.filter(function (user) {
-        return filter === 'all' ? true : user.social === filter;
-      }).map(function (user, i) {
-        return _react2.default.createElement(
-          'li',
-          { key: i, className: filter === 'all' ? '' : 'social' },
-          _react2.default.createElement(
-            'span',
-            null,
-            _react2.default.createElement('i', { className: 'fa fa-' + user.social, 'aria-hidden': 'true' })
-          ),
-          _react2.default.createElement(
-            'span',
-            null,
-            user.name
-          ),
-          filter === 'all' ? _react2.default.createElement(
-            'span',
-            null,
-            'id: ',
-            user.id
-          ) : null,
-          _react2.default.createElement(
-            'span',
-            { className: 'delete', onClick: handleClick.bind(null, { id: user.id, social: user.social }) },
-            '\u2717'
-          )
-        );
-      })
-    )
-  );
-};
-
-// Style
-
-
-UserList.propTypes = {
-  users: _propTypes.PropTypes.array.isRequired,
-  handleClick: _propTypes.PropTypes.func.isRequired
-};
-
-exports.default = UserList;
+var options = {"sourceMap":true}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(18)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js??ref--1-1!../../node_modules/sass-loader/lib/loader.js??ref--1-2!./UserList.scss", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js??ref--1-1!../../node_modules/sass-loader/lib/loader.js??ref--1-2!./UserList.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
 
 /***/ }),
 /* 130 */
@@ -30064,11 +30013,11 @@ var _App = __webpack_require__(371);
 
 var _App2 = _interopRequireDefault(_App);
 
-var _userData = __webpack_require__(470);
+var _userData = __webpack_require__(471);
 
 var _userData2 = _interopRequireDefault(_userData);
 
-var _localStorage = __webpack_require__(471);
+var _localStorage = __webpack_require__(472);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -45918,7 +45867,7 @@ if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
 
-var options = {}
+var options = {"sourceMap":true}
 options.transform = transform
 // add the styles to the DOM
 var update = __webpack_require__(18)(content, options);
@@ -46083,7 +46032,7 @@ var _Form = __webpack_require__(401);
 
 var _Form2 = _interopRequireDefault(_Form);
 
-var _UserList = __webpack_require__(129);
+var _UserList = __webpack_require__(407);
 
 var _UserList2 = _interopRequireDefault(_UserList);
 
@@ -46155,9 +46104,7 @@ var MainScreen = function (_React$Component) {
           'div',
           { className: 'userBlock' },
           _react2.default.createElement(_Form2.default, { handleSubmit: this.fetchUser.bind(this), status: this.props.status }),
-          _react2.default.createElement(_UserList2.default, { users: this.props.users,
-            handleClick: remove,
-            filter: 'all' })
+          _react2.default.createElement(_UserList2.default, { users: this.props.users, handleClick: remove })
         )
       );
     }
@@ -46189,7 +46136,7 @@ if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
 
-var options = {}
+var options = {"sourceMap":true}
 options.transform = transform
 // add the styles to the DOM
 var update = __webpack_require__(18)(content, options);
@@ -46277,7 +46224,7 @@ if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
 
-var options = {}
+var options = {"sourceMap":true}
 options.transform = transform
 // add the styles to the DOM
 var update = __webpack_require__(18)(content, options);
@@ -46362,6 +46309,8 @@ var Form = function (_React$Component) {
 
   _createClass(Form, [{
     key: 'handleSumbit',
+
+    // formData isn't working in Safari - can be rewritten with ref attributes
     value: function handleSumbit(event) {
       event.preventDefault();
       var form = new FormData(this.form);
@@ -46403,7 +46352,7 @@ var Form = function (_React$Component) {
               _react2.default.createElement('i', { className: 'fa fa-instagram', 'aria-hidden': 'true' })
             )
           ),
-          _react2.default.createElement('input', { type: 'text', pattern: '\\d*', title: 'Only digits allowed.', ref: function ref(element) {
+          _react2.default.createElement('input', { type: 'text', pattern: '\\d*', title: 'Only digits allowed', ref: function ref(element) {
               return _this2.idField = element;
             }, placeholder: 'enter user ID', name: 'id', required: true }),
           _react2.default.createElement(_SubmitButton2.default, { status: this.props.status })
@@ -46433,7 +46382,7 @@ if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
 
-var options = {}
+var options = {"sourceMap":true}
 options.transform = transform
 // add the styles to the DOM
 var update = __webpack_require__(18)(content, options);
@@ -46461,7 +46410,7 @@ exports = module.exports = __webpack_require__(17)(true);
 
 
 // module
-exports.push([module.i, ".inputArea {\n  width: 50%; }\n  @media (max-width: 900px) {\n    .inputArea {\n      width: 95%;\n      margin: 1rem auto; } }\n  .inputArea form {\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    flex-wrap: wrap;\n    align-items: center; }\n  .inputArea input {\n    margin: 1rem 0;\n    padding: 0;\n    width: 60%;\n    height: 3rem;\n    box-sizing: border-box;\n    font-size: 1.5rem;\n    font-family: Helvetica, sans-serif;\n    outline: none;\n    text-align: center;\n    border: 1px solid lightgrey;\n    border-radius: 5px; }\n\n.socialChoice {\n  display: flex;\n  justify-content: center;\n  flex-direction: row;\n  flex-wrap: wrap;\n  align-items: stretch;\n  margin: 1rem 0;\n  padding: 0;\n  width: 60%;\n  height: 3rem;\n  box-sizing: border-box; }\n  .socialChoice input {\n    display: none; }\n  .socialChoice label {\n    border-top: 1px solid lightgrey;\n    border-bottom: 1px solid lightgrey;\n    transition-duration: 0.3s;\n    transition-property: background-color, border-color, color;\n    box-sizing: border-box;\n    width: 33%;\n    height: 100%;\n    padding-top: 0.5rem;\n    text-align: center;\n    cursor: pointer; }\n    .socialChoice label:first-of-type {\n      border-left: 1px solid lightgrey;\n      border-radius: 5px 0 0 5px; }\n    .socialChoice label:last-of-type {\n      border-right: 1px solid lightgrey;\n      border-radius: 0 5px 5px 0; }\n    .socialChoice label .fa {\n      font-size: 2rem; }\n    .socialChoice label:first-of-type {\n      border-right: 1px solid lightgrey; }\n    .socialChoice label:last-of-type {\n      border-left: 1px solid lightgrey; }\n  .socialChoice input:checked + label:nth-child(2) {\n    background: #1dcaff;\n    border-color: #1dcaff; }\n  .socialChoice input:checked + label:nth-child(4) {\n    color: white;\n    background: #3B5998;\n    border-color: #3B5998; }\n  .socialChoice input:checked + label:nth-child(6) {\n    color: white;\n    background: #8a3ab9;\n    border-color: #8a3ab9; }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/Form.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_mixins.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_variables.scss"],"names":[],"mappings":"AAGA;EAKE,WAAU,EAYX;ECgCC;IDjDF;MAEI,WAAU;MACV,kBAAiB,EAcpB,EAAA;EAjBD;ICAE,cAAa;IACb,wBAF4C;IAG5C,uBDKsC;ICJtC,gBAJyD;IAKzD,oBDGoD,EACnD;EARH;ICuDE,eAAc;IACd,WAAU;IACV,WAAU;IACV,aAAY;IACZ,uBAAsB;IAnDtB,kBAD+B;IAE/B,mCAAmC;IDGjC,cAAa;IACb,mBAAkB;IAClB,4BEPoB;IFQpB,mBAAkB,EACnB;;AAGH;ECnBE,cAAa;EACb,wBAF4C;EAG5C,oBAH6B;EAI7B,gBAJyD;EAKzD,qBALwE;EAwDxE,eAAc;EACd,WAAU;EACV,WAAU;EACV,aAAY;EACZ,uBAAsB,EDAvB;EAxCD;IAII,cAAa,EACd;EALH;ICIE,gCChBsB;IDiBtB,mCCjBsB;IDWtB,0BAAyB;IACzB,2DAA0D;IDSxD,uBAAsB;IACtB,WAAU;IACV,aAAY;IACZ,oBAAmB;IACnB,mBAAkB;IAClB,gBAAe,EAUhB;IAxBH;MCOI,iCCnBoB;MDoBpB,2BAA0B,EAC3B;IDTH;MCWI,kCCvBoB;MDwBpB,2BAA0B,EAC3B;IDbH;MAgBM,gBAAe,EAChB;IAjBL;MAmBM,kCE/BkB,EFgCnB;IApBL;MAsBM,iCElCkB,EFmCnB;EAvBL;IA2BM,oBE7CiB;IF8CjB,sBE9CiB,EF+ClB;EA7BL;IA+BM,aAAY;IACZ,oBEjDkB;IFkDlB,sBElDkB,EFmDnB;EAlCL;IAmCM,aAAY;IACZ,oBEpDmB;IFqDnB,sBErDmB,EFsDpB","file":"Form.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\n.inputArea {\n  @include mobile-device {\n    width: 95%;\n    margin: 1rem auto;\n  }\n  width: 50%;\n  form {\n    @include flex-container($dir: column, $ali: center);\n  }\n  input {\n    @include input_block;\n    @include text-styling;\n    outline: none;\n    text-align: center;\n    border: 1px solid $border_color;\n    border-radius: 5px;\n  }\n}\n\n.socialChoice {\n  @include flex-container;\n  @include input_block;\n  input {\n    display: none;\n  }\n  label {\n    @include tab;\n    @include animate-active;\n    box-sizing: border-box;\n    width: 33%;\n    height: 100%;\n    padding-top: 0.5rem;\n    text-align: center;\n    cursor: pointer;\n    .fa {\n      font-size: 2rem;\n    }\n    &:first-of-type {\n      border-right: 1px solid $border_color;\n    }\n    &:last-of-type {\n      border-left: 1px solid $border_color;\n    }\n  }\n  input:checked + label {\n    &:nth-child(2) {\n      background: $twitter_color;\n      border-color: $twitter_color;\n    }\n    &:nth-child(4) {\n      color: white;\n      background: $facebook_color;\n      border-color: $facebook_color;\n    }&:nth-child(6) {\n      color: white;\n      background: $instagram_color;\n      border-color: $instagram_color;\n    }\n  }\n}\n","@import \"partials/variables\";\n\n@mixin flex-container($dir: row, $just: center, $wrap: wrap, $ali: stretch) {\n  display: flex;\n  justify-content: $just;\n  flex-direction: $dir;\n  flex-wrap: $wrap;\n  align-items: $ali;\n}\n\n@mixin text-styling($size: 1.5rem) {\n  font-size: $size;\n  font-family: $main_font, sans-serif;\n}\n\n@mixin reset-link {\n  text-decoration: none;\n  color: inherit;\n}\n\n@mixin animate-active {\n  transition-duration: 0.3s;\n  transition-property: background-color, border-color, color;\n}\n\n@mixin tab($border_color: $border_color) {\n  border-top: 1px solid $border_color;\n  border-bottom: 1px solid $border_color;\n  &:first-of-type {\n    border-left: 1px solid $border_color;\n    border-radius: 5px 0 0 5px;\n  }\n  &:last-of-type {\n    border-right: 1px solid $border_color;\n    border-radius: 0 5px 5px 0;\n  }\n}\n\n@mixin btn {\n  @include text-styling(1.5rem);\n  color: white;\n  background-color: $highlight_color;\n  outline: none;\n  border: 1px solid $highlight_color;\n  border-radius: 5px;\n  cursor: pointer;\n  &:hover {\n    background-color: darken($highlight_color, 5%);\n  }\n}\n\n@mixin mobile-device {\n  @media (max-width: 900px) {\n    @content;\n  }\n}\n\n@mixin input_block {\n  margin: 1rem 0;\n  padding: 0;\n  width: 60%;\n  height: 3rem;\n  box-sizing: border-box;\n}\n","$background_color: white;\n$text_color: black;\n$elements_secondary_color: grey;\n\n$twitter_color: #1dcaff;\n$facebook_color: #3B5998;\n$instagram_color: #8a3ab9;\n\n$highlight_color: #5cb85c;\n\n$border_color: lightgrey;\n\n$main_font: Helvetica;\n"],"sourceRoot":""}]);
+exports.push([module.i, ".inputArea {\n  width: 50%; }\n  @media (max-width: 900px) {\n    .inputArea {\n      width: 95%;\n      margin: 1rem auto; } }\n  .inputArea form {\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    flex-wrap: wrap;\n    align-items: center; }\n  .inputArea input {\n    margin: 1rem 0;\n    padding: 0;\n    width: 60%;\n    height: 3rem;\n    box-sizing: border-box;\n    font-size: 1.5rem;\n    font-family: Helvetica, sans-serif;\n    outline: none;\n    text-align: center;\n    border: 1px solid lightgrey;\n    border-radius: 5px; }\n    .inputArea input:required {\n      box-shadow: none; }\n\n.socialChoice {\n  display: flex;\n  justify-content: center;\n  flex-direction: row;\n  flex-wrap: wrap;\n  align-items: stretch;\n  margin: 1rem 0;\n  padding: 0;\n  width: 60%;\n  height: 3rem;\n  box-sizing: border-box; }\n  .socialChoice input {\n    display: none; }\n  .socialChoice label {\n    border-top: 1px solid lightgrey;\n    border-bottom: 1px solid lightgrey;\n    transition-duration: 0.3s;\n    transition-property: background-color, border-color, color;\n    box-sizing: border-box;\n    width: 33%;\n    height: 100%;\n    padding-top: 0.5rem;\n    text-align: center;\n    cursor: pointer; }\n    .socialChoice label:first-of-type {\n      border-left: 1px solid lightgrey;\n      border-radius: 5px 0 0 5px; }\n    .socialChoice label:last-of-type {\n      border-right: 1px solid lightgrey;\n      border-radius: 0 5px 5px 0; }\n    .socialChoice label .fa {\n      font-size: 2rem; }\n    .socialChoice label:first-of-type {\n      border-right: 1px solid lightgrey; }\n    .socialChoice label:last-of-type {\n      border-left: 1px solid lightgrey; }\n  .socialChoice input:checked + label:nth-child(2) {\n    background: #1dcaff;\n    border-color: #1dcaff; }\n  .socialChoice input:checked + label:nth-child(4) {\n    color: white;\n    background: #3B5998;\n    border-color: #3B5998; }\n  .socialChoice input:checked + label:nth-child(6) {\n    color: white;\n    background: #8a3ab9;\n    border-color: #8a3ab9; }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/Form.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_mixins.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_variables.scss"],"names":[],"mappings":"AAGA;EAKE,WAAU,EAeX;EC6BC;IDjDF;MAEI,WAAU;MACV,kBAAiB,EAiBpB,EAAA;EApBD;ICAE,cAAa;IACb,wBAF4C;IAG5C,uBDKsC;ICJtC,gBAJyD;IAKzD,oBDGoD,EACnD;EARH;ICuDE,eAAc;IACd,WAAU;IACV,WAAU;IACV,aAAY;IACZ,uBAAsB;IAnDtB,kBAD+B;IAE/B,mCAAmC;IDGjC,cAAa;IACb,mBAAkB;IAClB,4BEPoB;IFQpB,mBAAkB,EAInB;IAnBH;MAiBI,iBAAgB,EACnB;;AAID;ECtBE,cAAa;EACb,wBAF4C;EAG5C,oBAH6B;EAI7B,gBAJyD;EAKzD,qBALwE;EAwDxE,eAAc;EACd,WAAU;EACV,WAAU;EACV,aAAY;EACZ,uBAAsB,EDGvB;EAxCD;IAII,cAAa,EACd;EALH;ICCE,gCChBsB;IDiBtB,mCCjBsB;IDWtB,0BAAyB;IACzB,2DAA0D;IDYxD,uBAAsB;IACtB,WAAU;IACV,aAAY;IACZ,oBAAmB;IACnB,mBAAkB;IAClB,gBAAe,EAUhB;IAxBH;MCII,iCCnBoB;MDoBpB,2BAA0B,EAC3B;IDNH;MCQI,kCCvBoB;MDwBpB,2BAA0B,EAC3B;IDVH;MAgBM,gBAAe,EAChB;IAjBL;MAmBM,kCElCkB,EFmCnB;IApBL;MAsBM,iCErCkB,EFsCnB;EAvBL;IA2BM,oBEhDiB;IFiDjB,sBEjDiB,EFkDlB;EA7BL;IA+BM,aAAY;IACZ,oBEpDkB;IFqDlB,sBErDkB,EFsDnB;EAlCL;IAmCM,aAAY;IACZ,oBEvDmB;IFwDnB,sBExDmB,EFyDpB","file":"Form.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\n.inputArea {\n  @include mobile-device {\n    width: 95%;\n    margin: 1rem auto;\n  }\n  width: 50%;\n  form {\n    @include flex-container($dir: column, $ali: center);\n  }\n  input {\n    @include input_block;\n    @include text-styling;\n    outline: none;\n    text-align: center;\n    border: 1px solid $border_color;\n    border-radius: 5px;\n    &:required {\n    box-shadow: none;\n}\n  }\n}\n\n.socialChoice {\n  @include flex-container;\n  @include input_block;\n  input {\n    display: none;\n  }\n  label {\n    @include tab;\n    @include animate-active;\n    box-sizing: border-box;\n    width: 33%;\n    height: 100%;\n    padding-top: 0.5rem;\n    text-align: center;\n    cursor: pointer;\n    .fa {\n      font-size: 2rem;\n    }\n    &:first-of-type {\n      border-right: 1px solid $border_color;\n    }\n    &:last-of-type {\n      border-left: 1px solid $border_color;\n    }\n  }\n  input:checked + label {\n    &:nth-child(2) {\n      background: $twitter_color;\n      border-color: $twitter_color;\n    }\n    &:nth-child(4) {\n      color: white;\n      background: $facebook_color;\n      border-color: $facebook_color;\n    }&:nth-child(6) {\n      color: white;\n      background: $instagram_color;\n      border-color: $instagram_color;\n    }\n  }\n}\n","@import \"partials/variables\";\n\n@mixin flex-container($dir: row, $just: center, $wrap: wrap, $ali: stretch) {\n  display: flex;\n  justify-content: $just;\n  flex-direction: $dir;\n  flex-wrap: $wrap;\n  align-items: $ali;\n}\n\n@mixin text-styling($size: 1.5rem) {\n  font-size: $size;\n  font-family: $main_font, sans-serif;\n}\n\n@mixin reset-link {\n  text-decoration: none;\n  color: inherit;\n}\n\n@mixin animate-active {\n  transition-duration: 0.3s;\n  transition-property: background-color, border-color, color;\n}\n\n@mixin tab($border_color: $border_color) {\n  border-top: 1px solid $border_color;\n  border-bottom: 1px solid $border_color;\n  &:first-of-type {\n    border-left: 1px solid $border_color;\n    border-radius: 5px 0 0 5px;\n  }\n  &:last-of-type {\n    border-right: 1px solid $border_color;\n    border-radius: 0 5px 5px 0;\n  }\n}\n\n@mixin btn {\n  @include text-styling(1.5rem);\n  color: white;\n  background-color: $highlight_color;\n  outline: none;\n  border: 1px solid $highlight_color;\n  border-radius: 5px;\n  cursor: pointer;\n  &:hover {\n    background-color: darken($highlight_color, 5%);\n  }\n}\n\n@mixin mobile-device {\n  @media (max-width: 900px) {\n    @content;\n  }\n}\n\n@mixin input_block {\n  margin: 1rem 0;\n  padding: 0;\n  width: 60%;\n  height: 3rem;\n  box-sizing: border-box;\n}\n","$background_color: white;\n$text_color: black;\n$elements_secondary_color: grey;\n\n$twitter_color: #1dcaff;\n$facebook_color: #3B5998;\n$instagram_color: #8a3ab9;\n\n$highlight_color: #5cb85c;\n\n$border_color: lightgrey;\n\n$main_font: Helvetica;\n"],"sourceRoot":""}]);
 
 // exports
 
@@ -46543,7 +46492,7 @@ if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
 
-var options = {}
+var options = {"sourceMap":true}
 options.transform = transform
 // add the styles to the DOM
 var update = __webpack_require__(18)(content, options);
@@ -46580,32 +46529,80 @@ exports.push([module.i, "@keyframes shake {\n  10% {\n    right: 4px; }\n  30% {
 /* 407 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// style-loader: Adds some css to the DOM by adding a <style> tag
+"use strict";
 
-// load the styles
-var content = __webpack_require__(408);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
 
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(18)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js??ref--1-1!../../node_modules/sass-loader/lib/loader.js??ref--1-2!./UserList.scss", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js??ref--1-1!../../node_modules/sass-loader/lib/loader.js??ref--1-2!./UserList.scss");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
+// Libs
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(5);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(8);
+
+__webpack_require__(129);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var UserList = function UserList(_ref) {
+  var users = _ref.users,
+      handleClick = _ref.handleClick;
+
+  return _react2.default.createElement(
+    'div',
+    { className: 'userList' },
+    _react2.default.createElement(
+      'h3',
+      null,
+      'Users added'
+    ),
+    _react2.default.createElement(
+      'ul',
+      null,
+      users.map(function (user, i) {
+        return _react2.default.createElement(
+          'li',
+          { key: i },
+          _react2.default.createElement(
+            'span',
+            null,
+            _react2.default.createElement('i', { className: 'fa fa-' + user.social, 'aria-hidden': 'true' })
+          ),
+          _react2.default.createElement(
+            'span',
+            null,
+            user.name
+          ),
+          _react2.default.createElement(
+            'span',
+            null,
+            'id: ',
+            user.id
+          ),
+          _react2.default.createElement(
+            'span',
+            { className: 'delete', onClick: handleClick.bind(null, { id: user.id, social: user.social }) },
+            '\u2717'
+          )
+        );
+      })
+    )
+  );
+};
+
+// Style
+
+
+UserList.propTypes = {
+  users: _propTypes.PropTypes.array.isRequired,
+  handleClick: _propTypes.PropTypes.func.isRequired
+};
+
+exports.default = UserList;
 
 /***/ }),
 /* 408 */
@@ -46616,7 +46613,7 @@ exports = module.exports = __webpack_require__(17)(true);
 
 
 // module
-exports.push([module.i, ".userList {\n  width: 50%;\n  margin: 1em 0;\n  box-sizing: border-box;\n  border: 1px solid lightgrey;\n  border-radius: 5px; }\n  @media (max-width: 900px) {\n    .userList {\n      width: 95%;\n      margin: 1rem auto; } }\n  .userList h3 {\n    font-size: 1rem;\n    font-family: Helvetica, sans-serif;\n    text-align: center;\n    text-transform: uppercase; }\n  .userList ul {\n    padding: 0;\n    list-style-position: inside; }\n  .userList li {\n    font-size: 1rem;\n    font-family: Helvetica, sans-serif;\n    padding: 0 1rem;\n    list-style: none;\n    line-height: 2rem;\n    border-bottom: 1px dashed lightgrey;\n    display: grid;\n    grid-template-columns: 1fr 10fr 10fr 1fr;\n    grid-gap: 5px; }\n    .userList li span:last-child {\n      text-align: right; }\n    .userList li.social {\n      grid-template-columns: 1fr 10fr 1fr; }\n  .userList .delete {\n    color: red;\n    font-size: 1.5rem;\n    cursor: pointer; }\n    .userList .delete:hover {\n      color: #e60000; }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/UserList.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_variables.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_mixins.scss"],"names":[],"mappings":"AAGA;EAKE,WAAU;EACV,cAAa;EACb,uBAAsB;EACtB,4BCDsB;EDEtB,mBAAkB,EAkCnB;EEMC;IFjDF;MAEI,WAAU;MACV,kBAAiB,EAwCpB,EAAA;EA3CD;IEQE,gBFG4B;IEF5B,mCAAmC;IFGjC,mBAAkB;IAClB,0BAAyB,EAC1B;EAdH;IAgBI,WAAU;IACV,4BAA2B,EAC5B;EAlBH;IEQE,gBFY4B;IEX5B,mCAAmC;IFYjC,gBAAe;IACf,iBAAgB;IAChB,kBAAiB;IACjB,oCCjBoB;IDkBpB,cAAa;IACb,yCAAwC;IACxC,cAAa,EAOd;IAlCH;MA6BM,kBAAiB,EAClB;IA9BL;MAgCM,oCAAmC,EACpC;EAjCL;IAoCI,WAAU;IACV,kBAAiB;IACjB,gBAAe,EAIhB;IA1CH;MAwCM,eAAsB,EACvB","file":"UserList.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\n.userList {\n  @include mobile-device {\n    width: 95%;\n    margin: 1rem auto;\n  }\n  width: 50%;\n  margin: 1em 0;\n  box-sizing: border-box;\n  border: 1px solid $border_color;\n  border-radius: 5px;\n  h3 {\n    @include text-styling(1rem);\n    text-align: center;\n    text-transform: uppercase;\n  }\n  ul {\n    padding: 0;\n    list-style-position: inside;\n  }\n  li {\n    @include text-styling(1rem);\n    padding: 0 1rem;\n    list-style: none;\n    line-height: 2rem;\n    border-bottom: 1px dashed $border_color;\n    display: grid;\n    grid-template-columns: 1fr 10fr 10fr 1fr;\n    grid-gap: 5px;\n    span:last-child {\n      text-align: right;\n    }\n    &.social {\n      grid-template-columns: 1fr 10fr 1fr;\n    }\n  }\n  .delete {\n    color: red;\n    font-size: 1.5rem;\n    cursor: pointer;\n    &:hover {\n      color: darken(red, 5%);\n    }\n  }\n}\n","$background_color: white;\n$text_color: black;\n$elements_secondary_color: grey;\n\n$twitter_color: #1dcaff;\n$facebook_color: #3B5998;\n$instagram_color: #8a3ab9;\n\n$highlight_color: #5cb85c;\n\n$border_color: lightgrey;\n\n$main_font: Helvetica;\n","@import \"partials/variables\";\n\n@mixin flex-container($dir: row, $just: center, $wrap: wrap, $ali: stretch) {\n  display: flex;\n  justify-content: $just;\n  flex-direction: $dir;\n  flex-wrap: $wrap;\n  align-items: $ali;\n}\n\n@mixin text-styling($size: 1.5rem) {\n  font-size: $size;\n  font-family: $main_font, sans-serif;\n}\n\n@mixin reset-link {\n  text-decoration: none;\n  color: inherit;\n}\n\n@mixin animate-active {\n  transition-duration: 0.3s;\n  transition-property: background-color, border-color, color;\n}\n\n@mixin tab($border_color: $border_color) {\n  border-top: 1px solid $border_color;\n  border-bottom: 1px solid $border_color;\n  &:first-of-type {\n    border-left: 1px solid $border_color;\n    border-radius: 5px 0 0 5px;\n  }\n  &:last-of-type {\n    border-right: 1px solid $border_color;\n    border-radius: 0 5px 5px 0;\n  }\n}\n\n@mixin btn {\n  @include text-styling(1.5rem);\n  color: white;\n  background-color: $highlight_color;\n  outline: none;\n  border: 1px solid $highlight_color;\n  border-radius: 5px;\n  cursor: pointer;\n  &:hover {\n    background-color: darken($highlight_color, 5%);\n  }\n}\n\n@mixin mobile-device {\n  @media (max-width: 900px) {\n    @content;\n  }\n}\n\n@mixin input_block {\n  margin: 1rem 0;\n  padding: 0;\n  width: 60%;\n  height: 3rem;\n  box-sizing: border-box;\n}\n"],"sourceRoot":""}]);
+exports.push([module.i, ".userList {\n  width: 50%;\n  margin: 1em 0;\n  box-sizing: border-box;\n  border: 1px solid lightgrey;\n  border-radius: 5px; }\n  @media (max-width: 900px) {\n    .userList {\n      width: 95%;\n      margin: 1rem auto; } }\n  .userList.social {\n    width: 100%; }\n  .userList h3 {\n    font-size: 1rem;\n    font-family: Helvetica, sans-serif;\n    text-align: center;\n    text-transform: uppercase; }\n  .userList ul {\n    padding: 0;\n    list-style-position: inside; }\n  .userList li {\n    font-size: 1rem;\n    font-family: Helvetica, sans-serif;\n    padding: 0 1rem;\n    list-style: none;\n    line-height: 2rem;\n    border-bottom: 1px dashed lightgrey;\n    display: grid;\n    grid-template-columns: 1fr 10fr 10fr 1fr;\n    grid-gap: 5px; }\n    .userList li span:last-child {\n      text-align: right; }\n    .userList li.social {\n      grid-template-columns: 1fr 10fr 1fr; }\n  .userList .delete {\n    color: red;\n    font-size: 1.5rem;\n    cursor: pointer; }\n    .userList .delete:hover {\n      color: #e60000; }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/UserList.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_variables.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_mixins.scss"],"names":[],"mappings":"AAGA;EAKE,WAAU;EACV,cAAa;EACb,uBAAsB;EACtB,4BCDsB;EDEtB,mBAAkB,EAqCnB;EEGC;IFjDF;MAEI,WAAU;MACV,kBAAiB,EA2CpB,EAAA;EA9CD;IAWI,YAAW,EACZ;EAZH;IEQE,gBFM4B;IEL5B,mCAAmC;IFMjC,mBAAkB;IAClB,0BAAyB,EAC1B;EAjBH;IAmBI,WAAU;IACV,4BAA2B,EAC5B;EArBH;IEQE,gBFe4B;IEd5B,mCAAmC;IFejC,gBAAe;IACf,iBAAgB;IAChB,kBAAiB;IACjB,oCCpBoB;IDqBpB,cAAa;IACb,yCAAwC;IACxC,cAAa,EAOd;IArCH;MAgCM,kBAAiB,EAClB;IAjCL;MAmCM,oCAAmC,EACpC;EApCL;IAuCI,WAAU;IACV,kBAAiB;IACjB,gBAAe,EAIhB;IA7CH;MA2CM,eAAsB,EACvB","file":"UserList.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\n.userList {\n  @include mobile-device {\n    width: 95%;\n    margin: 1rem auto;\n  }\n  width: 50%;\n  margin: 1em 0;\n  box-sizing: border-box;\n  border: 1px solid $border_color;\n  border-radius: 5px;\n  &.social {\n    width: 100%;\n  }\n  h3 {\n    @include text-styling(1rem);\n    text-align: center;\n    text-transform: uppercase;\n  }\n  ul {\n    padding: 0;\n    list-style-position: inside;\n  }\n  li {\n    @include text-styling(1rem);\n    padding: 0 1rem;\n    list-style: none;\n    line-height: 2rem;\n    border-bottom: 1px dashed $border_color;\n    display: grid;\n    grid-template-columns: 1fr 10fr 10fr 1fr;\n    grid-gap: 5px;\n    span:last-child {\n      text-align: right;\n    }\n    &.social {\n      grid-template-columns: 1fr 10fr 1fr;\n    }\n  }\n  .delete {\n    color: red;\n    font-size: 1.5rem;\n    cursor: pointer;\n    &:hover {\n      color: darken(red, 5%);\n    }\n  }\n}\n","$background_color: white;\n$text_color: black;\n$elements_secondary_color: grey;\n\n$twitter_color: #1dcaff;\n$facebook_color: #3B5998;\n$instagram_color: #8a3ab9;\n\n$highlight_color: #5cb85c;\n\n$border_color: lightgrey;\n\n$main_font: Helvetica;\n","@import \"partials/variables\";\n\n@mixin flex-container($dir: row, $just: center, $wrap: wrap, $ali: stretch) {\n  display: flex;\n  justify-content: $just;\n  flex-direction: $dir;\n  flex-wrap: $wrap;\n  align-items: $ali;\n}\n\n@mixin text-styling($size: 1.5rem) {\n  font-size: $size;\n  font-family: $main_font, sans-serif;\n}\n\n@mixin reset-link {\n  text-decoration: none;\n  color: inherit;\n}\n\n@mixin animate-active {\n  transition-duration: 0.3s;\n  transition-property: background-color, border-color, color;\n}\n\n@mixin tab($border_color: $border_color) {\n  border-top: 1px solid $border_color;\n  border-bottom: 1px solid $border_color;\n  &:first-of-type {\n    border-left: 1px solid $border_color;\n    border-radius: 5px 0 0 5px;\n  }\n  &:last-of-type {\n    border-right: 1px solid $border_color;\n    border-radius: 0 5px 5px 0;\n  }\n}\n\n@mixin btn {\n  @include text-styling(1.5rem);\n  color: white;\n  background-color: $highlight_color;\n  outline: none;\n  border: 1px solid $highlight_color;\n  border-radius: 5px;\n  cursor: pointer;\n  &:hover {\n    background-color: darken($highlight_color, 5%);\n  }\n}\n\n@mixin mobile-device {\n  @media (max-width: 900px) {\n    @content;\n  }\n}\n\n@mixin input_block {\n  margin: 1rem 0;\n  padding: 0;\n  width: 60%;\n  height: 3rem;\n  box-sizing: border-box;\n}\n"],"sourceRoot":""}]);
 
 // exports
 
@@ -46699,9 +46696,9 @@ var _Charts = __webpack_require__(416);
 
 var _Charts2 = _interopRequireDefault(_Charts);
 
-var _UserList = __webpack_require__(129);
+var _UserListOnTabs = __webpack_require__(470);
 
-var _UserList2 = _interopRequireDefault(_UserList);
+var _UserListOnTabs2 = _interopRequireDefault(_UserListOnTabs);
 
 var _userData = __webpack_require__(73);
 
@@ -46722,7 +46719,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // Actions
 
 
-var COLORS = ['blue', 'teal', 'purple', 'yellow', 'orange', 'green', 'pink', 'lightblue', 'darkgreen', 'brown'];
+var COLORS = ['#FF8080', '#80FFB7', '#C680FF', '#80FFFD', '#FFDD80', '#80D0FF', '#FF80CA', '#D5FF80', '#8097FF', '#FFAE80'];
 
 var DisplayStats = function (_React$Component) {
   _inherits(DisplayStats, _React$Component);
@@ -46739,6 +46736,9 @@ var DisplayStats = function (_React$Component) {
       var _this2 = this;
 
       var remove = (0, _redux.bindActionCreators)(_userData.removeUser, this.props.dispatch);
+      var users = this.props.users.filter(function (user) {
+        return user.social === _this2.props.tab;
+      });
       return _react2.default.createElement(
         'div',
         null,
@@ -46746,10 +46746,12 @@ var DisplayStats = function (_React$Component) {
         this.props.socialTabs.indexOf(this.props.tab) >= 0 ? _react2.default.createElement(
           'div',
           { className: 'stats' },
-          _react2.default.createElement(_Charts2.default, { users: this.props.users.filter(function (user) {
-              return user.social === _this2.props.tab;
-            }) }),
-          _react2.default.createElement(_UserList2.default, { users: this.props.users, handleClick: remove, filter: this.props.tab })
+          _react2.default.createElement(_Charts2.default, { users: users, colors: COLORS }),
+          _react2.default.createElement(
+            'div',
+            { className: 'fixed' },
+            _react2.default.createElement(_UserListOnTabs2.default, { users: users, handleClick: remove, colors: COLORS })
+          )
         ) : _react2.default.createElement(_NoStatsAvailable2.default, null)
       );
     }
@@ -46779,7 +46781,7 @@ if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
 
-var options = {}
+var options = {"sourceMap":true}
 options.transform = transform
 // add the styles to the DOM
 var update = __webpack_require__(18)(content, options);
@@ -46807,7 +46809,7 @@ exports = module.exports = __webpack_require__(17)(true);
 
 
 // module
-exports.push([module.i, ".stats {\n  display: flex;\n  justify-content: center;\n  flex-direction: row;\n  flex-wrap: wrap;\n  align-items: flex-start;\n  width: 70%;\n  margin: 0 auto;\n  box-sizing: border-box; }\n  @media (max-width: 900px) {\n    .stats {\n      width: 95%; } }\n\n.userList.social {\n  width: 28%; }\n  @media (max-width: 900px) {\n    .userList.social {\n      display: none; } }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/DisplayStats.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_mixins.scss"],"names":[],"mappings":"AAGA;ECAE,cAAa;EACb,wBAF4C;EAG5C,oBAH6B;EAI7B,gBAJyD;EAKzD,wBDHwC;EACxC,WAAU;EAIV,eAAc;EACd,uBAAsB,EACvB;ECyCC;IDjDF;MAII,WAAU,EAIb,EAAA;;AAED;EAIE,WAAU,EACX;ECkCC;IDvCF;MAEI,cAAa,EAGhB,EAAA","file":"DisplayStats.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\n.stats {\n  @include flex-container($ali: flex-start);\n  width: 70%;\n  @include mobile-device {\n    width: 95%;\n  };\n  margin: 0 auto;\n  box-sizing: border-box;\n}\n\n.userList.social {\n  @include mobile-device {\n    display: none;\n  };\n  width: 28%;\n}\n","@import \"partials/variables\";\n\n@mixin flex-container($dir: row, $just: center, $wrap: wrap, $ali: stretch) {\n  display: flex;\n  justify-content: $just;\n  flex-direction: $dir;\n  flex-wrap: $wrap;\n  align-items: $ali;\n}\n\n@mixin text-styling($size: 1.5rem) {\n  font-size: $size;\n  font-family: $main_font, sans-serif;\n}\n\n@mixin reset-link {\n  text-decoration: none;\n  color: inherit;\n}\n\n@mixin animate-active {\n  transition-duration: 0.3s;\n  transition-property: background-color, border-color, color;\n}\n\n@mixin tab($border_color: $border_color) {\n  border-top: 1px solid $border_color;\n  border-bottom: 1px solid $border_color;\n  &:first-of-type {\n    border-left: 1px solid $border_color;\n    border-radius: 5px 0 0 5px;\n  }\n  &:last-of-type {\n    border-right: 1px solid $border_color;\n    border-radius: 0 5px 5px 0;\n  }\n}\n\n@mixin btn {\n  @include text-styling(1.5rem);\n  color: white;\n  background-color: $highlight_color;\n  outline: none;\n  border: 1px solid $highlight_color;\n  border-radius: 5px;\n  cursor: pointer;\n  &:hover {\n    background-color: darken($highlight_color, 5%);\n  }\n}\n\n@mixin mobile-device {\n  @media (max-width: 900px) {\n    @content;\n  }\n}\n\n@mixin input_block {\n  margin: 1rem 0;\n  padding: 0;\n  width: 60%;\n  height: 3rem;\n  box-sizing: border-box;\n}\n"],"sourceRoot":""}]);
+exports.push([module.i, ".stats {\n  display: flex;\n  justify-content: center;\n  flex-direction: row;\n  flex-wrap: wrap;\n  align-items: flex-start;\n  width: 70%;\n  margin: 0 auto;\n  box-sizing: border-box; }\n  @media (max-width: 900px) {\n    .stats {\n      width: 95%; } }\n\n.userList.social {\n  width: 100%; }\n  @media (max-width: 900px) {\n    .userList.social {\n      display: none; } }\n\n.fixed {\n  width: 28%;\n  top: 0;\n  position: sticky; }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/DisplayStats.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_mixins.scss"],"names":[],"mappings":"AAGA;ECAE,cAAa;EACb,wBAF4C;EAG5C,oBAH6B;EAI7B,gBAJyD;EAKzD,wBDHwC;EACxC,WAAU;EAIV,eAAc;EACd,uBAAsB,EACvB;ECyCC;IDjDF;MAII,WAAU,EAIb,EAAA;;AAED;EAIE,YAAW,EACZ;ECkCC;IDvCF;MAEI,cAAa,EAGhB,EAAA;;AAED;EACE,WAAU;EACV,OAAM;EACN,iBAAgB,EACjB","file":"DisplayStats.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\n.stats {\n  @include flex-container($ali: flex-start);\n  width: 70%;\n  @include mobile-device {\n    width: 95%;\n  };\n  margin: 0 auto;\n  box-sizing: border-box;\n}\n\n.userList.social {\n  @include mobile-device {\n    display: none;\n  };\n  width: 100%;\n}\n\n.fixed {\n  width: 28%;\n  top: 0;\n  position: sticky;\n}\n","@import \"partials/variables\";\n\n@mixin flex-container($dir: row, $just: center, $wrap: wrap, $ali: stretch) {\n  display: flex;\n  justify-content: $just;\n  flex-direction: $dir;\n  flex-wrap: $wrap;\n  align-items: $ali;\n}\n\n@mixin text-styling($size: 1.5rem) {\n  font-size: $size;\n  font-family: $main_font, sans-serif;\n}\n\n@mixin reset-link {\n  text-decoration: none;\n  color: inherit;\n}\n\n@mixin animate-active {\n  transition-duration: 0.3s;\n  transition-property: background-color, border-color, color;\n}\n\n@mixin tab($border_color: $border_color) {\n  border-top: 1px solid $border_color;\n  border-bottom: 1px solid $border_color;\n  &:first-of-type {\n    border-left: 1px solid $border_color;\n    border-radius: 5px 0 0 5px;\n  }\n  &:last-of-type {\n    border-right: 1px solid $border_color;\n    border-radius: 0 5px 5px 0;\n  }\n}\n\n@mixin btn {\n  @include text-styling(1.5rem);\n  color: white;\n  background-color: $highlight_color;\n  outline: none;\n  border: 1px solid $highlight_color;\n  border-radius: 5px;\n  cursor: pointer;\n  &:hover {\n    background-color: darken($highlight_color, 5%);\n  }\n}\n\n@mixin mobile-device {\n  @media (max-width: 900px) {\n    @content;\n  }\n}\n\n@mixin input_block {\n  margin: 1rem 0;\n  padding: 0;\n  width: 60%;\n  height: 3rem;\n  box-sizing: border-box;\n}\n"],"sourceRoot":""}]);
 
 // exports
 
@@ -46869,7 +46871,7 @@ if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
 
-var options = {}
+var options = {"sourceMap":true}
 options.transform = transform
 // add the styles to the DOM
 var update = __webpack_require__(18)(content, options);
@@ -46919,6 +46921,8 @@ var _react = __webpack_require__(5);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = __webpack_require__(8);
+
 __webpack_require__(417);
 
 var _chart = __webpack_require__(419);
@@ -46961,10 +46965,9 @@ var METRICS = [{
 // Components
 
 
-var COLORS = ['#FF8080', '#80FFB7', '#C680FF', '#80FFFD', '#FFDD80', '#80D0FF', '#FF80CA', '#D5FF80', '#8097FF', '#FFAE80'];
-
 var Charts = function Charts(_ref) {
-  var users = _ref.users;
+  var users = _ref.users,
+      colors = _ref.colors;
 
   return _react2.default.createElement(
     'div',
@@ -46980,11 +46983,16 @@ var Charts = function Charts(_ref) {
             return user[metric.type];
           }),
           colors: users.map(function (user, i) {
-            return COLORS[i];
+            return colors[i];
           })
         } });
     })
   );
+};
+
+Charts.propTypes = {
+  users: _propTypes.PropTypes.array.isRequired,
+  colors: _propTypes.PropTypes.array.isRequired
 };
 
 exports.default = Charts;
@@ -47001,7 +47009,7 @@ if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
 
-var options = {}
+var options = {"sourceMap":true}
 options.transform = transform
 // add the styles to the DOM
 var update = __webpack_require__(18)(content, options);
@@ -59918,7 +59926,7 @@ if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
 
-var options = {}
+var options = {"sourceMap":true}
 options.transform = transform
 // add the styles to the DOM
 var update = __webpack_require__(18)(content, options);
@@ -59953,6 +59961,81 @@ exports.push([module.i, ".chart {\n  box-sizing: border-box;\n  width: 50%;\n  m
 
 /***/ }),
 /* 470 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+// Libs
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(5);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(8);
+
+__webpack_require__(129);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var UserListOnTabs = function UserListOnTabs(_ref) {
+  var users = _ref.users,
+      handleClick = _ref.handleClick,
+      colors = _ref.colors;
+
+  return _react2.default.createElement(
+    'div',
+    { className: 'userList social' },
+    _react2.default.createElement(
+      'h3',
+      null,
+      'Users added'
+    ),
+    _react2.default.createElement(
+      'ul',
+      null,
+      users.map(function (user, i) {
+        return _react2.default.createElement(
+          'li',
+          { key: i, className: 'social' },
+          _react2.default.createElement(
+            'span',
+            null,
+            _react2.default.createElement('i', { className: 'fa fa-square', 'aria-hidden': 'true', style: { color: colors[i] } })
+          ),
+          _react2.default.createElement(
+            'span',
+            null,
+            user.name
+          ),
+          _react2.default.createElement(
+            'span',
+            { className: 'delete', onClick: handleClick.bind(null, { id: user.id, social: user.social }) },
+            '\u2717'
+          )
+        );
+      })
+    )
+  );
+};
+
+// Style
+
+
+UserListOnTabs.propTypes = {
+  users: _propTypes.PropTypes.array.isRequired,
+  handleClick: _propTypes.PropTypes.func.isRequired,
+  colors: _propTypes.PropTypes.array.isRequired
+};
+
+exports.default = UserListOnTabs;
+
+/***/ }),
+/* 471 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60030,7 +60113,7 @@ function mapSocialNets(base, added) {
 exports.default = userData;
 
 /***/ }),
-/* 471 */
+/* 472 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

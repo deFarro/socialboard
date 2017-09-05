@@ -11,6 +11,9 @@
   box-sizing: border-box;
   border: 1px solid $border_color;
   border-radius: 5px;
+  &.social {
+    width: 100%;
+  }
   h3 {
     @include text-styling(1rem);
     text-align: center;

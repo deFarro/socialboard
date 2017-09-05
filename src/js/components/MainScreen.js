@@ -42,10 +42,8 @@ class MainScreen extends React.Component {
         <Navigation active={this.props.socialTabs} />
         <Title />
         <div className="userBlock">
-        <Form handleSubmit={this.fetchUser.bind(this)} status={this.props.status} />
-        <UserList users={this.props.users}
-          handleClick={remove}
-          filter="all" />
+          <Form handleSubmit={this.fetchUser.bind(this)} status={this.props.status} />
+          <UserList users={this.props.users} handleClick={remove} />
         </div>
       </div>
     );

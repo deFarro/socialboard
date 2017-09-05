@@ -15,5 +15,11 @@
   @include mobile-device {
     display: none;
   };
+  width: 100%;
+}
+
+.fixed {
   width: 28%;
+  top: 0;
+  position: sticky;
 }
