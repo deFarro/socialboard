@@ -27,6 +27,11 @@ const METRICS = [
     chart: 'bar'
   },
   {
+    type: 'postsMap',
+    title: 'Posts last 12 months',
+    chart: 'line'
+  },
+  {
     type: 'comments',
     title: 'Comments left',
     chart: 'horizontalBar'
@@ -48,11 +53,11 @@ const METRICS = [
   }
 ];
 
-const Charts = ({users}) => {
+const Charts = ({users, months}) => {
   return (
     <div className="charts">
       {METRICS.map((metric, i) => (
-        <Chart key={i} className={metric.type} data={{
+        <Chart key={i} className={metric.type} months={months} data={{
           title: metric.title,
           chart: metric.chart,
           users: users.map(user => user.name),

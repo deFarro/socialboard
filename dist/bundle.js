@@ -46410,7 +46410,7 @@ exports = module.exports = __webpack_require__(17)(true);
 
 
 // module
-exports.push([module.i, ".inputArea {\n  width: 50%; }\n  @media (max-width: 900px) {\n    .inputArea {\n      width: 95%;\n      margin: 1rem auto; } }\n  .inputArea form {\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    flex-wrap: wrap;\n    align-items: center; }\n  .inputArea input {\n    margin: 1rem 0;\n    padding: 0;\n    width: 60%;\n    height: 3rem;\n    box-sizing: border-box;\n    font-size: 1.5rem;\n    font-family: Helvetica, sans-serif;\n    outline: none;\n    text-align: center;\n    border: 1px solid lightgrey;\n    border-radius: 5px; }\n    .inputArea input:required {\n      box-shadow: none; }\n\n.socialChoice {\n  display: flex;\n  justify-content: center;\n  flex-direction: row;\n  flex-wrap: wrap;\n  align-items: stretch;\n  margin: 1rem 0;\n  padding: 0;\n  width: 60%;\n  height: 3rem;\n  box-sizing: border-box; }\n  .socialChoice input {\n    display: none; }\n  .socialChoice label {\n    border-top: 1px solid lightgrey;\n    border-bottom: 1px solid lightgrey;\n    transition-duration: 0.3s;\n    transition-property: background-color, border-color, color;\n    box-sizing: border-box;\n    width: 33%;\n    height: 100%;\n    padding-top: 0.5rem;\n    text-align: center;\n    cursor: pointer; }\n    .socialChoice label:first-of-type {\n      border-left: 1px solid lightgrey;\n      border-radius: 5px 0 0 5px; }\n    .socialChoice label:last-of-type {\n      border-right: 1px solid lightgrey;\n      border-radius: 0 5px 5px 0; }\n    .socialChoice label .fa {\n      font-size: 2rem; }\n    .socialChoice label:first-of-type {\n      border-right: 1px solid lightgrey; }\n    .socialChoice label:last-of-type {\n      border-left: 1px solid lightgrey; }\n  .socialChoice input:checked + label:nth-child(2) {\n    background: #1dcaff;\n    border-color: #1dcaff; }\n  .socialChoice input:checked + label:nth-child(4) {\n    color: white;\n    background: #3B5998;\n    border-color: #3B5998; }\n  .socialChoice input:checked + label:nth-child(6) {\n    color: white;\n    background: #8a3ab9;\n    border-color: #8a3ab9; }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/Form.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_mixins.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_variables.scss"],"names":[],"mappings":"AAGA;EAKE,WAAU,EAeX;EC6CC;IDjEF;MAEI,WAAU;MACV,kBAAiB,EAiBpB,EAAA;EApBD;ICYE,cAAa;IACb,wBAF4C;IAG5C,uBDPsC;ICQtC,gBAJyD;IAKzD,oBDToD,EACnD;EARH;ICgDE,eAAc;IACd,WAAU;IACV,WAAU;IACV,aAAY;IACZ,uBAAsB;IApDtB,kBAD+B;IAE/B,mCAAmC;IDWjC,cAAa;IACb,mBAAkB;IAClB,4BEPoB;IFQpB,mBAAkB,EAInB;IAnBH;MAiBI,iBAAgB,EACnB;;AAID;ECVE,cAAa;EACb,wBAF4C;EAG5C,oBAH6B;EAI7B,gBAJyD;EAKzD,qBALwE;EAqCxE,eAAc;EACd,WAAU;EACV,WAAU;EACV,aAAY;EACZ,uBAAsB,EDUvB;EAxCD;IAII,cAAa,EACd;EALH;ICAE,gCCfsB;IDgBtB,mCChBsB;IDmDtB,0BAAyB;IACzB,2DAA0D;ID5BxD,uBAAsB;IACtB,WAAU;IACV,aAAY;IACZ,oBAAmB;IACnB,mBAAkB;IAClB,gBAAe,EAUhB;IAxBH;MCGI,iCClBoB;MDmBpB,2BAA0B,EAC3B;IDLH;MCOI,kCCtBoB;MDuBpB,2BAA0B,EAC3B;IDTH;MAgBM,gBAAe,EAChB;IAjBL;MAmBM,kCElCkB,EFmCnB;IApBL;MAsBM,iCErCkB,EFsCnB;EAvBL;IA2BM,oBEhDiB;IFiDjB,sBEjDiB,EFkDlB;EA7BL;IA+BM,aAAY;IACZ,oBEpDkB;IFqDlB,sBErDkB,EFsDnB;EAlCL;IAmCM,aAAY;IACZ,oBEvDmB;IFwDnB,sBExDmB,EFyDpB","file":"Form.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\n.inputArea {\n  @include mobile-device {\n    width: 95%;\n    margin: 1rem auto;\n  }\n  width: 50%;\n  form {\n    @include flex-container($dir: column, $ali: center);\n  }\n  input {\n    @include input_block;\n    @include text-styling;\n    outline: none;\n    text-align: center;\n    border: 1px solid $border_color;\n    border-radius: 5px;\n    &:required {\n    box-shadow: none;\n}\n  }\n}\n\n.socialChoice {\n  @include flex-container;\n  @include input_block;\n  input {\n    display: none;\n  }\n  label {\n    @include tab;\n    @include animate-active;\n    box-sizing: border-box;\n    width: 33%;\n    height: 100%;\n    padding-top: 0.5rem;\n    text-align: center;\n    cursor: pointer;\n    .fa {\n      font-size: 2rem;\n    }\n    &:first-of-type {\n      border-right: 1px solid $border_color;\n    }\n    &:last-of-type {\n      border-left: 1px solid $border_color;\n    }\n  }\n  input:checked + label {\n    &:nth-child(2) {\n      background: $twitter_color;\n      border-color: $twitter_color;\n    }\n    &:nth-child(4) {\n      color: white;\n      background: $facebook_color;\n      border-color: $facebook_color;\n    }&:nth-child(6) {\n      color: white;\n      background: $instagram_color;\n      border-color: $instagram_color;\n    }\n  }\n}\n","@import \"partials/variables\";\n\n@mixin text-styling($size: 1.5rem) {\n  font-size: $size;\n  font-family: $main_font, sans-serif;\n}\n\n@mixin reset-link {\n  text-decoration: none;\n  color: inherit;\n}\n\n// Layout\n\n@mixin flex-container($dir: row, $just: center, $wrap: wrap, $ali: stretch) {\n  display: flex;\n  justify-content: $just;\n  flex-direction: $dir;\n  flex-wrap: $wrap;\n  align-items: $ali;\n}\n\n// Elements\n\n@mixin tab($border_color: $border_color) {\n  border-top: 1px solid $border_color;\n  border-bottom: 1px solid $border_color;\n  &:first-of-type {\n    border-left: 1px solid $border_color;\n    border-radius: 5px 0 0 5px;\n  }\n  &:last-of-type {\n    border-right: 1px solid $border_color;\n    border-radius: 0 5px 5px 0;\n  }\n}\n\n@mixin btn($font_size: 1.5rem) {\n  @include text-styling($font_size);\n  color: white;\n  background-color: $highlight_color;\n  outline: none;\n  border: 1px solid $highlight_color;\n  border-radius: 5px;\n  cursor: pointer;\n  &:hover {\n    background-color: darken($highlight_color, 5%);\n  }\n}\n\n@mixin input_block {\n  margin: 1rem 0;\n  padding: 0;\n  width: 60%;\n  height: 3rem;\n  box-sizing: border-box;\n}\n\n// Animations\n\n@mixin animate-active {\n  transition-duration: 0.3s;\n  transition-property: background-color, border-color, color;\n}\n\n// Responsive\n\n@mixin mobile-device {\n  @media (max-width: 900px) {\n    @content;\n  }\n}\n","$background_color: white;\n$text_color: black;\n$elements_secondary_color: grey;\n\n$twitter_color: #1dcaff;\n$facebook_color: #3B5998;\n$instagram_color: #8a3ab9;\n\n$highlight_color: #5cb85c;\n\n$border_color: lightgrey;\n\n$main_font: Helvetica;\n"],"sourceRoot":""}]);
+exports.push([module.i, ".inputArea {\n  width: 50%; }\n  @media (max-width: 900px) {\n    .inputArea {\n      width: 95%;\n      margin: 1rem auto; } }\n  .inputArea form {\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    flex-wrap: wrap;\n    align-items: center; }\n  .inputArea input {\n    margin: 1rem 0;\n    padding: 0;\n    width: 60%;\n    height: 3rem;\n    box-sizing: border-box;\n    font-size: 1.5rem;\n    font-family: Helvetica, sans-serif;\n    outline: none;\n    text-align: center;\n    border: 1px solid lightgrey;\n    border-radius: 5px; }\n    .inputArea input:required {\n      box-shadow: none; }\n\n.socialChoice {\n  display: flex;\n  justify-content: center;\n  flex-direction: row;\n  flex-wrap: wrap;\n  align-items: stretch;\n  margin: 1rem 0;\n  padding: 0;\n  width: 60%;\n  height: 3rem;\n  box-sizing: border-box; }\n  .socialChoice input {\n    display: none; }\n  .socialChoice label {\n    border-top: 1px solid lightgrey;\n    border-bottom: 1px solid lightgrey;\n    transition-duration: 0.3s;\n    transition-property: background-color, border-color, color;\n    box-sizing: border-box;\n    width: 33%;\n    height: 100%;\n    padding-top: 0.5rem;\n    text-align: center;\n    cursor: pointer; }\n    .socialChoice label:first-of-type {\n      border-left: 1px solid lightgrey;\n      border-radius: 5px 0 0 5px; }\n    .socialChoice label:last-of-type {\n      border-right: 1px solid lightgrey;\n      border-radius: 0 5px 5px 0; }\n    .socialChoice label .fa {\n      font-size: 2rem; }\n    .socialChoice label:first-of-type {\n      border-right: 1px solid lightgrey; }\n    .socialChoice label:last-of-type {\n      border-left: 1px solid lightgrey; }\n  .socialChoice input:checked + label:nth-child(2) {\n    background: #1dcaff;\n    border-color: #1dcaff; }\n  .socialChoice input:checked + label:nth-child(4) {\n    color: white;\n    background: #3B5998;\n    border-color: #3B5998; }\n  .socialChoice input:checked + label:nth-child(6) {\n    color: white;\n    background: #8a3ab9;\n    border-color: #8a3ab9; }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/Form.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_mixins.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_variables.scss"],"names":[],"mappings":"AAGA;EAKE,WAAU,EAeX;EC6CC;IDjEF;MAEI,WAAU;MACV,kBAAiB,EAiBpB,EAAA;EApBD;ICYE,cAAa;IACb,wBAF4C;IAG5C,uBDPsC;ICQtC,gBAJyD;IAKzD,oBDToD,EACnD;EARH;ICgDE,eAAc;IACd,WAAU;IACV,WAAU;IACV,aAAY;IACZ,uBAAsB;IApDtB,kBAD+B;IAE/B,mCAAmC;IDWjC,cAAa;IACb,mBAAkB;IAClB,4BEPoB;IFQpB,mBAAkB,EAInB;IAnBH;MAiBI,iBAAgB,EACf;;AAIL;ECVE,cAAa;EACb,wBAF4C;EAG5C,oBAH6B;EAI7B,gBAJyD;EAKzD,qBALwE;EAqCxE,eAAc;EACd,WAAU;EACV,WAAU;EACV,aAAY;EACZ,uBAAsB,EDUvB;EAxCD;IAII,cAAa,EACd;EALH;ICAE,gCCfsB;IDgBtB,mCChBsB;IDmDtB,0BAAyB;IACzB,2DAA0D;ID5BxD,uBAAsB;IACtB,WAAU;IACV,aAAY;IACZ,oBAAmB;IACnB,mBAAkB;IAClB,gBAAe,EAUhB;IAxBH;MCGI,iCClBoB;MDmBpB,2BAA0B,EAC3B;IDLH;MCOI,kCCtBoB;MDuBpB,2BAA0B,EAC3B;IDTH;MAgBM,gBAAe,EAChB;IAjBL;MAmBM,kCElCkB,EFmCnB;IApBL;MAsBM,iCErCkB,EFsCnB;EAvBL;IA2BM,oBEhDiB;IFiDjB,sBEjDiB,EFkDlB;EA7BL;IA+BM,aAAY;IACZ,oBEpDkB;IFqDlB,sBErDkB,EFsDnB;EAlCL;IAmCM,aAAY;IACZ,oBEvDmB;IFwDnB,sBExDmB,EFyDpB","file":"Form.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\n.inputArea {\n  @include mobile-device {\n    width: 95%;\n    margin: 1rem auto;\n  }\n  width: 50%;\n  form {\n    @include flex-container($dir: column, $ali: center);\n  }\n  input {\n    @include input_block;\n    @include text-styling;\n    outline: none;\n    text-align: center;\n    border: 1px solid $border_color;\n    border-radius: 5px;\n    &:required {\n    box-shadow: none;\n    }\n  }\n}\n\n.socialChoice {\n  @include flex-container;\n  @include input_block;\n  input {\n    display: none;\n  }\n  label {\n    @include tab;\n    @include animate-active;\n    box-sizing: border-box;\n    width: 33%;\n    height: 100%;\n    padding-top: 0.5rem;\n    text-align: center;\n    cursor: pointer;\n    .fa {\n      font-size: 2rem;\n    }\n    &:first-of-type {\n      border-right: 1px solid $border_color;\n    }\n    &:last-of-type {\n      border-left: 1px solid $border_color;\n    }\n  }\n  input:checked + label {\n    &:nth-child(2) {\n      background: $twitter_color;\n      border-color: $twitter_color;\n    }\n    &:nth-child(4) {\n      color: white;\n      background: $facebook_color;\n      border-color: $facebook_color;\n    }&:nth-child(6) {\n      color: white;\n      background: $instagram_color;\n      border-color: $instagram_color;\n    }\n  }\n}\n","@import \"partials/variables\";\n\n@mixin text-styling($size: 1.5rem) {\n  font-size: $size;\n  font-family: $main_font, sans-serif;\n}\n\n@mixin reset-link {\n  text-decoration: none;\n  color: inherit;\n}\n\n// Layout\n\n@mixin flex-container($dir: row, $just: center, $wrap: wrap, $ali: stretch) {\n  display: flex;\n  justify-content: $just;\n  flex-direction: $dir;\n  flex-wrap: $wrap;\n  align-items: $ali;\n}\n\n// Elements\n\n@mixin tab($border_color: $border_color) {\n  border-top: 1px solid $border_color;\n  border-bottom: 1px solid $border_color;\n  &:first-of-type {\n    border-left: 1px solid $border_color;\n    border-radius: 5px 0 0 5px;\n  }\n  &:last-of-type {\n    border-right: 1px solid $border_color;\n    border-radius: 0 5px 5px 0;\n  }\n}\n\n@mixin btn($font_size: 1.5rem) {\n  @include text-styling($font_size);\n  color: white;\n  background-color: $highlight_color;\n  outline: none;\n  border: 1px solid $highlight_color;\n  border-radius: 5px;\n  cursor: pointer;\n  &:hover {\n    background-color: darken($highlight_color, 5%);\n  }\n}\n\n@mixin input_block {\n  margin: 1rem 0;\n  padding: 0;\n  width: 60%;\n  height: 3rem;\n  box-sizing: border-box;\n}\n\n// Animations\n\n@mixin animate-active {\n  transition-duration: 0.3s;\n  transition-property: background-color, border-color, color;\n}\n\n// Responsive\n\n@mixin mobile-device {\n  @media (max-width: 900px) {\n    @content;\n  }\n}\n","$background_color: white;\n$text_color: black;\n$elements_secondary_color: grey;\n\n$twitter_color: #1dcaff;\n$facebook_color: #3B5998;\n$instagram_color: #8a3ab9;\n\n$highlight_color: #5cb85c;\n\n$border_color: lightgrey;\n\n$main_font: Helvetica;\n"],"sourceRoot":""}]);
 
 // exports
 
@@ -46520,7 +46520,7 @@ exports = module.exports = __webpack_require__(17)(true);
 
 
 // module
-exports.push([module.i, "@keyframes shake {\n  10% {\n    right: 4px; }\n  30% {\n    right: -8px; }\n  50% {\n    right: 6px; }\n  70% {\n    right: -4px; }\n  90% {\n    right: 2px; } }\n\n.submitButton {\n  margin: 1rem 0;\n  padding: 0;\n  width: 60%;\n  height: 3rem;\n  box-sizing: border-box;\n  font-size: 1.5rem;\n  font-family: Helvetica, sans-serif;\n  color: white;\n  background-color: #5cb85c;\n  outline: none;\n  border: 1px solid #5cb85c;\n  border-radius: 5px;\n  cursor: pointer;\n  transition: all 0.2s; }\n  .submitButton:hover {\n    background-color: #4cae4c; }\n  .submitButton.full {\n    background-color: lightgrey;\n    border-color: lightgrey;\n    cursor: auto; }\n  .submitButton.error {\n    position: relative;\n    animation-name: shake;\n    animation-duration: 0.5s;\n    animation-timing-function: ease-in;\n    background-color: red;\n    border-color: red; }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/SubmitButton.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_mixins.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_variables.scss"],"names":[],"mappings":"AAIA;EACE;IAAK,WAAU,EAAA;EACf;IAAK,YAAW,EAAA;EAChB;IAAK,WAAU,EAAA;EACf;IAAK,YAAW,EAAA;EAChB;IAAK,WAAU,EAAA,EAAA;;AAGjB;ECuCE,eAAc;EACd,WAAU;EACV,WAAU;EACV,aAAY;EACZ,uBAAsB;EApDtB,kBAkC2B;EAjC3B,mCAAmC;EAmCnC,aAAY;EACZ,0BChCuB;EDiCvB,cAAa;EACb,0BClCuB;EDmCvB,mBAAkB;EAClB,gBAAe;ED7Bf,qBAAoB,EAcrB;EAjBD;ICkCI,0BAA8C,EAC/C;EDnCH;IAKI,4BEPoB;IFQpB,wBERoB;IFSpB,aAAY,EACb;EARH;IAUI,mBAAkB;IAClB,sBAAqB;IACrB,yBAAwB;IACxB,mCAAkC;IAClC,sBAAqB;IACrB,kBAAiB,EAClB","file":"SubmitButton.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\n\n@keyframes shake {\n  10% {right: 4px};\n  30% {right: -8px};\n  50% {right: 6px};\n  70% {right: -4px};\n  90% {right: 2px};\n}\n\n.submitButton {\n  @include input_block;\n  @include btn;\n  transition: all 0.2s;\n  &.full {\n    background-color: $border_color;\n    border-color: $border_color;\n    cursor: auto;\n  }\n  &.error {\n    position: relative;\n    animation-name: shake;\n    animation-duration: 0.5s;\n    animation-timing-function: ease-in;\n    background-color: red;\n    border-color: red;\n  }\n}\n","@import \"partials/variables\";\n\n@mixin text-styling($size: 1.5rem) {\n  font-size: $size;\n  font-family: $main_font, sans-serif;\n}\n\n@mixin reset-link {\n  text-decoration: none;\n  color: inherit;\n}\n\n// Layout\n\n@mixin flex-container($dir: row, $just: center, $wrap: wrap, $ali: stretch) {\n  display: flex;\n  justify-content: $just;\n  flex-direction: $dir;\n  flex-wrap: $wrap;\n  align-items: $ali;\n}\n\n// Elements\n\n@mixin tab($border_color: $border_color) {\n  border-top: 1px solid $border_color;\n  border-bottom: 1px solid $border_color;\n  &:first-of-type {\n    border-left: 1px solid $border_color;\n    border-radius: 5px 0 0 5px;\n  }\n  &:last-of-type {\n    border-right: 1px solid $border_color;\n    border-radius: 0 5px 5px 0;\n  }\n}\n\n@mixin btn($font_size: 1.5rem) {\n  @include text-styling($font_size);\n  color: white;\n  background-color: $highlight_color;\n  outline: none;\n  border: 1px solid $highlight_color;\n  border-radius: 5px;\n  cursor: pointer;\n  &:hover {\n    background-color: darken($highlight_color, 5%);\n  }\n}\n\n@mixin input_block {\n  margin: 1rem 0;\n  padding: 0;\n  width: 60%;\n  height: 3rem;\n  box-sizing: border-box;\n}\n\n// Animations\n\n@mixin animate-active {\n  transition-duration: 0.3s;\n  transition-property: background-color, border-color, color;\n}\n\n// Responsive\n\n@mixin mobile-device {\n  @media (max-width: 900px) {\n    @content;\n  }\n}\n","$background_color: white;\n$text_color: black;\n$elements_secondary_color: grey;\n\n$twitter_color: #1dcaff;\n$facebook_color: #3B5998;\n$instagram_color: #8a3ab9;\n\n$highlight_color: #5cb85c;\n\n$border_color: lightgrey;\n\n$main_font: Helvetica;\n"],"sourceRoot":""}]);
+exports.push([module.i, "@keyframes shake {\n  10% {\n    right: 4px; }\n  30% {\n    right: -8px; }\n  50% {\n    right: 6px; }\n  70% {\n    right: -4px; }\n  90% {\n    right: 2px; } }\n\n.submitButton {\n  margin: 1rem 0;\n  padding: 0;\n  width: 60%;\n  height: 3rem;\n  box-sizing: border-box;\n  font-size: 1.5rem;\n  font-family: Helvetica, sans-serif;\n  color: white;\n  background-color: #5cb85c;\n  outline: none;\n  border: 1px solid #5cb85c;\n  border-radius: 5px;\n  cursor: pointer;\n  transition-duration: 0.3s;\n  transition-property: background-color, border-color, color; }\n  .submitButton:hover {\n    background-color: #4cae4c; }\n  .submitButton.full {\n    background-color: lightgrey;\n    border-color: lightgrey;\n    cursor: auto; }\n  .submitButton.error {\n    position: relative;\n    animation-name: shake;\n    animation-duration: 0.5s;\n    animation-timing-function: ease-in;\n    background-color: red;\n    border-color: red; }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/SubmitButton.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_mixins.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_variables.scss"],"names":[],"mappings":"AAIA;EACE;IAAK,WAAU,EAAA;EACf;IAAK,YAAW,EAAA;EAChB;IAAK,WAAU,EAAA;EACf;IAAK,YAAW,EAAA;EAChB;IAAK,WAAU,EAAA,EAAA;;AAGjB;ECuCE,eAAc;EACd,WAAU;EACV,WAAU;EACV,aAAY;EACZ,uBAAsB;EApDtB,kBAkC2B;EAjC3B,mCAAmC;EAmCnC,aAAY;EACZ,0BChCuB;EDiCvB,cAAa;EACb,0BClCuB;EDmCvB,mBAAkB;EAClB,gBAAe;EAiBf,0BAAyB;EACzB,2DAA0D,EDjC3D;EAjBD;ICkCI,0BAA8C,EAC/C;EDnCH;IAKI,4BEPoB;IFQpB,wBERoB;IFSpB,aAAY,EACb;EARH;IAUI,mBAAkB;IAClB,sBAAqB;IACrB,yBAAwB;IACxB,mCAAkC;IAClC,sBAAqB;IACrB,kBAAiB,EAClB","file":"SubmitButton.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\n\n@keyframes shake {\n  10% {right: 4px};\n  30% {right: -8px};\n  50% {right: 6px};\n  70% {right: -4px};\n  90% {right: 2px};\n}\n\n.submitButton {\n  @include input_block;\n  @include btn;\n  @include animate-active;\n  &.full {\n    background-color: $border_color;\n    border-color: $border_color;\n    cursor: auto;\n  }\n  &.error {\n    position: relative;\n    animation-name: shake;\n    animation-duration: 0.5s;\n    animation-timing-function: ease-in;\n    background-color: red;\n    border-color: red;\n  }\n}\n","@import \"partials/variables\";\n\n@mixin text-styling($size: 1.5rem) {\n  font-size: $size;\n  font-family: $main_font, sans-serif;\n}\n\n@mixin reset-link {\n  text-decoration: none;\n  color: inherit;\n}\n\n// Layout\n\n@mixin flex-container($dir: row, $just: center, $wrap: wrap, $ali: stretch) {\n  display: flex;\n  justify-content: $just;\n  flex-direction: $dir;\n  flex-wrap: $wrap;\n  align-items: $ali;\n}\n\n// Elements\n\n@mixin tab($border_color: $border_color) {\n  border-top: 1px solid $border_color;\n  border-bottom: 1px solid $border_color;\n  &:first-of-type {\n    border-left: 1px solid $border_color;\n    border-radius: 5px 0 0 5px;\n  }\n  &:last-of-type {\n    border-right: 1px solid $border_color;\n    border-radius: 0 5px 5px 0;\n  }\n}\n\n@mixin btn($font_size: 1.5rem) {\n  @include text-styling($font_size);\n  color: white;\n  background-color: $highlight_color;\n  outline: none;\n  border: 1px solid $highlight_color;\n  border-radius: 5px;\n  cursor: pointer;\n  &:hover {\n    background-color: darken($highlight_color, 5%);\n  }\n}\n\n@mixin input_block {\n  margin: 1rem 0;\n  padding: 0;\n  width: 60%;\n  height: 3rem;\n  box-sizing: border-box;\n}\n\n// Animations\n\n@mixin animate-active {\n  transition-duration: 0.3s;\n  transition-property: background-color, border-color, color;\n}\n\n// Responsive\n\n@mixin mobile-device {\n  @media (max-width: 900px) {\n    @content;\n  }\n}\n","$background_color: white;\n$text_color: black;\n$elements_secondary_color: grey;\n\n$twitter_color: #1dcaff;\n$facebook_color: #3B5998;\n$instagram_color: #8a3ab9;\n\n$highlight_color: #5cb85c;\n\n$border_color: lightgrey;\n\n$main_font: Helvetica;\n"],"sourceRoot":""}]);
 
 // exports
 
@@ -46651,13 +46651,52 @@ function getFetchedData(_ref, insertAction) {
       }
       console.log('Network error occured.');
     }).then(function (parsed) {
-      parsed.users[id - 1].social = social;
-      insertAction(parsed.users[id - 1]);
+      var user = parsed.users[id - 1];
+      user.social = social;
+      user.postsMap = mapPostsCalendar(user.postsCalendar);
+      insertAction(user);
     }).catch(function (err) {
-      return insertAction(err);
+      console.log(err);
+      insertAction(err);
     });
   }, 1500);
 }
+
+// Function to track activity in last 12 month. Better be moved to server
+var mapPostsCalendar = function mapPostsCalendar(calendar) {
+  var range = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 11;
+
+  var postsPerMonth = [];
+  var now = new Date();
+
+  var calendarWithDates = calendar.map(function (date) {
+    return new Date(date);
+  });
+  var filtered = calendarWithDates.filter(function (date) {
+    return now.getTime() - date.getTime() < 365 * 24 * 60 * 60 * 1000;
+  });
+
+  var _loop = function _loop(i) {
+    var currentMonth = now.getMonth() - i >= 0 ? now.getMonth() - i : now.getMonth() - i + 12;
+    // Ignore same month year ago
+    if (i === 0) {
+      postsPerMonth.push(filtered.filter(function (date) {
+        return date.getMonth() === currentMonth && date.getYear() === now.getYear();
+      }).length);
+      return 'continue';
+    }
+    postsPerMonth.push(filtered.filter(function (date) {
+      return date.getMonth() === currentMonth;
+    }).length);
+  };
+
+  for (var i = range; i >= 0; i--) {
+    var _ret = _loop(i);
+
+    if (_ret === 'continue') continue;
+  }
+  return postsPerMonth;
+};
 
 /***/ }),
 /* 410 */
@@ -46723,6 +46762,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var COLORS = ['#FF8080', '#80FFB7', '#C680FF', '#80FFFD', '#FFDD80', '#80D0FF', '#FF80CA', '#D5FF80', '#8097FF', '#FFAE80'];
 
+var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
 var DisplayStats = function (_React$Component) {
   _inherits(DisplayStats, _React$Component);
 
@@ -46739,6 +46780,7 @@ var DisplayStats = function (_React$Component) {
     };
     return _this;
   }
+  // Method for manipulate active users on chart tabs
   // If second argument is passed function resets all selections
   // If third argument is passed user is deleted
 
@@ -46756,15 +46798,29 @@ var DisplayStats = function (_React$Component) {
       }
       this.setState({ active: active });
     }
-    // Ugly way to hide reset button animation on the first render
+    // Generate list of 12 months from current to past (needed for line chart)
 
+  }, {
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      var monthSet = [];
+      var currentMonth = new Date().getMonth();
+      for (var i = 1; i <= 12; i++) {
+        var index = currentMonth + i > 11 ? currentMonth + i - 12 : currentMonth + i;
+        monthSet.push(MONTHS[index]);
+      }
+      this.months = monthSet;
+    }
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
-      document.querySelector('.hide_reset').classList.add('preload');
-      setTimeout(function () {
-        document.querySelector('.hide_reset').classList.remove('preload');
-      }, 500);
+      // Ugly way to hide reset button animation on the first render
+      if (document.querySelector('.hide_reset')) {
+        document.querySelector('.hide_reset').classList.add('preload');
+        setTimeout(function () {
+          document.querySelector('.hide_reset').classList.remove('preload');
+        }, 500);
+      }
     }
   }, {
     key: 'render',
@@ -46787,7 +46843,7 @@ var DisplayStats = function (_React$Component) {
           { className: 'stats' },
           _react2.default.createElement(_Charts2.default, { users: users.filter(function (user, i) {
               return _this2.state.active[i];
-            }) }),
+            }), months: this.months }),
           _react2.default.createElement(
             'div',
             { className: 'fixed' },
@@ -46986,6 +47042,10 @@ var METRICS = [{
   title: 'Likes received',
   chart: 'bar'
 }, {
+  type: 'postsMap',
+  title: 'Posts last 12 months',
+  chart: 'line'
+}, {
   type: 'comments',
   title: 'Comments left',
   chart: 'horizontalBar'
@@ -47007,13 +47067,14 @@ var METRICS = [{
 
 
 var Charts = function Charts(_ref) {
-  var users = _ref.users;
+  var users = _ref.users,
+      months = _ref.months;
 
   return _react2.default.createElement(
     'div',
     { className: 'charts' },
     METRICS.map(function (metric, i) {
-      return _react2.default.createElement(_chart2.default, { key: i, className: metric.type, data: {
+      return _react2.default.createElement(_chart2.default, { key: i, className: metric.type, months: months, data: {
           title: metric.title,
           chart: metric.chart,
           users: users.map(function (user) {
@@ -47076,7 +47137,7 @@ exports = module.exports = __webpack_require__(17)(true);
 
 
 // module
-exports.push([module.i, ".charts {\n  display: flex;\n  justify-content: center;\n  flex-direction: row;\n  flex-wrap: wrap;\n  align-items: stretch;\n  width: 70%;\n  margin: 1rem 2% 1rem 0;\n  position: relative;\n  box-sizing: border-box;\n  border: 1px solid lightgrey;\n  border-radius: 5px; }\n  @media (max-width: 900px) {\n    .charts {\n      width: 100%;\n      margin-right: 0; } }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/Charts.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_mixins.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_variables.scss"],"names":[],"mappings":"AAGA;ECYE,cAAa;EACb,wBAF4C;EAG5C,oBAH6B;EAI7B,gBAJyD;EAKzD,qBALwE;EDLxE,WAAU;EACV,uBAAsB;EACtB,mBAAkB;EAClB,uBAAsB;EACtB,4BEHsB;EFItB,mBAAkB,EACnB;ECqDC;IDjEF;MAGI,YAAW;MACX,gBAAe,EAQlB,EAAA","file":"Charts.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\n.charts {\n  @include flex-container;\n  @include mobile-device {\n    width: 100%;\n    margin-right: 0;\n  };\n  width: 70%;\n  margin: 1rem 2% 1rem 0;\n  position: relative;\n  box-sizing: border-box;\n  border: 1px solid $border_color;\n  border-radius: 5px;\n}\n\n.posts {\n\n}\n.friends {\n\n}\n.reposts {\n\n}\n.likes {\n\n}\n.comments {\n\n}\n.postsInLastMonth {\n\n}\n.postsInLastWeek {\n\n}\n","@import \"partials/variables\";\n\n@mixin text-styling($size: 1.5rem) {\n  font-size: $size;\n  font-family: $main_font, sans-serif;\n}\n\n@mixin reset-link {\n  text-decoration: none;\n  color: inherit;\n}\n\n// Layout\n\n@mixin flex-container($dir: row, $just: center, $wrap: wrap, $ali: stretch) {\n  display: flex;\n  justify-content: $just;\n  flex-direction: $dir;\n  flex-wrap: $wrap;\n  align-items: $ali;\n}\n\n// Elements\n\n@mixin tab($border_color: $border_color) {\n  border-top: 1px solid $border_color;\n  border-bottom: 1px solid $border_color;\n  &:first-of-type {\n    border-left: 1px solid $border_color;\n    border-radius: 5px 0 0 5px;\n  }\n  &:last-of-type {\n    border-right: 1px solid $border_color;\n    border-radius: 0 5px 5px 0;\n  }\n}\n\n@mixin btn($font_size: 1.5rem) {\n  @include text-styling($font_size);\n  color: white;\n  background-color: $highlight_color;\n  outline: none;\n  border: 1px solid $highlight_color;\n  border-radius: 5px;\n  cursor: pointer;\n  &:hover {\n    background-color: darken($highlight_color, 5%);\n  }\n}\n\n@mixin input_block {\n  margin: 1rem 0;\n  padding: 0;\n  width: 60%;\n  height: 3rem;\n  box-sizing: border-box;\n}\n\n// Animations\n\n@mixin animate-active {\n  transition-duration: 0.3s;\n  transition-property: background-color, border-color, color;\n}\n\n// Responsive\n\n@mixin mobile-device {\n  @media (max-width: 900px) {\n    @content;\n  }\n}\n","$background_color: white;\n$text_color: black;\n$elements_secondary_color: grey;\n\n$twitter_color: #1dcaff;\n$facebook_color: #3B5998;\n$instagram_color: #8a3ab9;\n\n$highlight_color: #5cb85c;\n\n$border_color: lightgrey;\n\n$main_font: Helvetica;\n"],"sourceRoot":""}]);
+exports.push([module.i, ".charts {\n  display: flex;\n  justify-content: center;\n  flex-direction: row;\n  flex-wrap: wrap;\n  align-items: stretch;\n  width: 70%;\n  margin: 1rem 2% 1rem 0;\n  position: relative;\n  box-sizing: border-box;\n  border: 1px solid lightgrey;\n  border-radius: 5px; }\n  @media (max-width: 900px) {\n    .charts {\n      width: 100%;\n      margin-right: 0; } }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/Charts.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_mixins.scss","/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/partials/_variables.scss"],"names":[],"mappings":"AAGA;ECYE,cAAa;EACb,wBAF4C;EAG5C,oBAH6B;EAI7B,gBAJyD;EAKzD,qBALwE;EDLxE,WAAU;EACV,uBAAsB;EACtB,mBAAkB;EAClB,uBAAsB;EACtB,4BEHsB;EFItB,mBAAkB,EACnB;ECqDC;IDjEF;MAGI,YAAW;MACX,gBAAe,EAQlB,EAAA","file":"Charts.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\n.charts {\n  @include flex-container;\n  @include mobile-device {\n    width: 100%;\n    margin-right: 0;\n  };\n  width: 70%;\n  margin: 1rem 2% 1rem 0;\n  position: relative;\n  box-sizing: border-box;\n  border: 1px solid $border_color;\n  border-radius: 5px;\n}\n","@import \"partials/variables\";\n\n@mixin text-styling($size: 1.5rem) {\n  font-size: $size;\n  font-family: $main_font, sans-serif;\n}\n\n@mixin reset-link {\n  text-decoration: none;\n  color: inherit;\n}\n\n// Layout\n\n@mixin flex-container($dir: row, $just: center, $wrap: wrap, $ali: stretch) {\n  display: flex;\n  justify-content: $just;\n  flex-direction: $dir;\n  flex-wrap: $wrap;\n  align-items: $ali;\n}\n\n// Elements\n\n@mixin tab($border_color: $border_color) {\n  border-top: 1px solid $border_color;\n  border-bottom: 1px solid $border_color;\n  &:first-of-type {\n    border-left: 1px solid $border_color;\n    border-radius: 5px 0 0 5px;\n  }\n  &:last-of-type {\n    border-right: 1px solid $border_color;\n    border-radius: 0 5px 5px 0;\n  }\n}\n\n@mixin btn($font_size: 1.5rem) {\n  @include text-styling($font_size);\n  color: white;\n  background-color: $highlight_color;\n  outline: none;\n  border: 1px solid $highlight_color;\n  border-radius: 5px;\n  cursor: pointer;\n  &:hover {\n    background-color: darken($highlight_color, 5%);\n  }\n}\n\n@mixin input_block {\n  margin: 1rem 0;\n  padding: 0;\n  width: 60%;\n  height: 3rem;\n  box-sizing: border-box;\n}\n\n// Animations\n\n@mixin animate-active {\n  transition-duration: 0.3s;\n  transition-property: background-color, border-color, color;\n}\n\n// Responsive\n\n@mixin mobile-device {\n  @media (max-width: 900px) {\n    @content;\n  }\n}\n","$background_color: white;\n$text_color: black;\n$elements_secondary_color: grey;\n\n$twitter_color: #1dcaff;\n$facebook_color: #3B5998;\n$instagram_color: #8a3ab9;\n\n$highlight_color: #5cb85c;\n\n$border_color: lightgrey;\n\n$main_font: Helvetica;\n"],"sourceRoot":""}]);
 
 // exports
 
@@ -47130,53 +47191,125 @@ var singleChart = function (_React$Component) {
 
   _createClass(singleChart, [{
     key: 'drawChart',
+
+    // Function to create proper configs for charts
     value: function drawChart() {
-      var config = {
-        type: this.props.data.chart,
-        data: {
-          datasets: [{
-            data: [].concat(_toConsumableArray(this.props.data.values)),
-            backgroundColor: [].concat(_toConsumableArray(this.props.data.colors)),
-            label: this.props.data.title
-          }],
-          labels: [].concat(_toConsumableArray(this.props.data.users))
-        },
-        options: {
-          title: {
-            display: true,
-            text: this.props.data.title,
-            fontSize: 16,
-            fontStyle: 'normal'
+      var config = {};
+      // For pie charts
+      if (this.props.data.chart !== 'line') {
+        config = {
+          type: this.props.data.chart,
+          data: {
+            datasets: [{
+              data: [].concat(_toConsumableArray(this.props.data.values)),
+              backgroundColor: [].concat(_toConsumableArray(this.props.data.colors)),
+              label: this.props.data.title
+            }],
+            labels: [].concat(_toConsumableArray(this.props.data.users))
           },
-          legend: {
-            display: false
+          options: {
+            title: {
+              display: true,
+              text: this.props.data.title,
+              fontSize: 16,
+              fontStyle: 'normal'
+            },
+            legend: {
+              display: false
+            }
           }
-        }
-      };
-      if (this.props.data.chart !== 'pie') {
-        config.options.scales = {
-          xAxes: [{
-            scaleLabel: false,
-            display: false,
-            gridLines: {
-              display: false
-            },
-            ticks: {
-              display: false
-            }
-          }],
-          yAxes: [{
-            scaleLabel: false,
-            display: false,
-            gridLines: {
-              display: false
-            },
-            ticks: {
-              display: false
-            }
-          }]
         };
+        // For bar charts
+        if (this.props.data.chart === 'bar' || this.props.data.chart === 'horizontalBar') {
+          config.options.scales = {
+            xAxes: [{
+              scaleLabel: false,
+              display: false,
+              gridLines: {
+                display: false
+              },
+              ticks: {
+                display: false,
+                beginAtZero: true
+              }
+            }],
+            yAxes: [{
+              scaleLabel: false,
+              display: false,
+              gridLines: {
+                display: false
+              },
+              ticks: {
+                display: false,
+                beginAtZero: true
+              }
+            }]
+          };
+        }
       }
+      // For line charts
+      else {
+          var labels = this.props.months;
+          var datasets = [];
+
+          for (var i = 0; i < this.props.data.users.length; i++) {
+            datasets.push({
+              label: this.props.data.users[i],
+              backgroundColor: this.props.data.colors[i],
+              borderColor: this.props.data.colors[i],
+              data: this.props.data.values[i],
+              fill: false
+            });
+          }
+
+          config = {
+            type: this.props.data.chart,
+            data: {
+              labels: labels,
+              datasets: datasets
+            },
+            options: {
+              title: {
+                display: true,
+                text: this.props.data.title,
+                fontSize: 16,
+                fontStyle: 'normal'
+              },
+              legend: {
+                display: false
+              },
+              layout: {
+                padding: {
+                  left: 5,
+                  right: 5
+                }
+              },
+              scales: {
+                xAxes: [{
+                  scaleLabel: false,
+                  display: false,
+                  gridLines: {
+                    display: false
+                  },
+                  ticks: {
+                    display: false
+                  }
+                }],
+                yAxes: [{
+                  scaleLabel: false,
+                  display: false,
+                  gridLines: {
+                    display: false
+                  },
+                  ticks: {
+                    display: false,
+                    suggestedMin: -1
+                  }
+                }]
+              }
+            }
+          };
+        }
       this.chart = new _chart2.default(this.canvas.getContext('2d'), config);
     }
   }, {
@@ -59993,7 +60126,7 @@ exports = module.exports = __webpack_require__(17)(true);
 
 
 // module
-exports.push([module.i, ".chart {\n  box-sizing: border-box;\n  width: 50%;\n  margin: 1rem 0; }\n\n.reposts,\n.comments,\n.likes {\n  width: 90%;\n  margin: 1rem auto; }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/Chart.scss"],"names":[],"mappings":"AAGA;EACE,uBAAsB;EACtB,WAAU;EACV,eAAc,EACf;;AACD;;;EAGE,WAAU;EACV,kBAAiB,EAClB","file":"Chart.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\n.chart {\n  box-sizing: border-box;\n  width: 50%;\n  margin: 1rem 0;\n}\n.reposts,\n.comments,\n.likes {\n  width: 90%;\n  margin: 1rem auto;\n}\n"],"sourceRoot":""}]);
+exports.push([module.i, ".chart {\n  box-sizing: border-box;\n  width: 50%;\n  margin: 1rem 0; }\n\n.reposts,\n.comments,\n.likes,\n.postsMap {\n  width: 90%;\n  margin: 1rem auto; }\n\n.postsMap {\n  margin-bottom: 0; }\n", "", {"version":3,"sources":["/Users/Jack/Documents/Coding/Projects/Socialboard/src/scss/src/scss/Chart.scss"],"names":[],"mappings":"AAGA;EACE,uBAAsB;EACtB,WAAU;EACV,eAAc,EACf;;AACD;;;;EAIE,WAAU;EACV,kBAAiB,EAClB;;AACD;EACE,iBAAgB,EACjB","file":"Chart.scss","sourcesContent":["@import \"partials/variables\";\n@import \"partials/mixins\";\n\n.chart {\n  box-sizing: border-box;\n  width: 50%;\n  margin: 1rem 0;\n}\n.reposts,\n.comments,\n.likes,\n.postsMap {\n  width: 90%;\n  margin: 1rem auto;\n}\n.postsMap {\n  margin-bottom: 0;\n}\n"],"sourceRoot":""}]);
 
 // exports
 
@@ -60107,7 +60240,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
 var initialState = {
-  users: [{ name: 'Stan Marsh', id: 73958472903, social: 'twitter', posts: 65, friends: 1859, likes: 1164, comments: 340, reposts: 214, postsInLastMonth: 14, postsInLastWeek: 3 }, { name: 'Kyle Broflovski', id: 27382738495, social: 'twitter', posts: 265, friends: 859, likes: 224, comments: 140, reposts: 54, postsInLastMonth: 4, postsInLastWeek: 2 }, { name: 'Eric Cartman', id: 73029493840, social: 'twitter', posts: 165, friends: 59, likes: 90, comments: 1140, reposts: 23, postsInLastMonth: 25, postsInLastWeek: 7 }, { name: 'Kenny McCormick', id: 234353465464, social: 'twitter', posts: 650, friends: 2159, likes: 264, comments: 340, reposts: 204, postsInLastMonth: 24, postsInLastWeek: 8 }, { name: 'Leopold Stotch', id: 43453558495, social: 'twitter', posts: 25, friends: 9, likes: 125, comments: 1340, reposts: 9, postsInLastMonth: 40, postsInLastWeek: 12 }, { name: 'Wendy Testaburger', id: 345364433, social: 'twitter', posts: 1165, friends: 2342, likes: 1423, comments: 3040, reposts: 302, postsInLastMonth: 80, postsInLastWeek: 17 }, { name: 'Tweek Tweak', id: 534545343443, social: 'twitter', posts: 125, friends: 324, likes: 922, comments: 1222, reposts: 354, postsInLastMonth: 22, postsInLastWeek: 11 }, { name: 'Token Black', id: 12343534556, social: 'facebook', posts: 895, friends: 2345, likes: 764, comments: 1340, reposts: 324, postsInLastMonth: 11, postsInLastWeek: 9 }, { name: 'Craig Tucker', id: 3413454545, social: 'facebook', posts: 2065, friends: 5913, likes: 3453, comments: 2460, reposts: 213, postsInLastMonth: 34, postsInLastWeek: 21 }],
+  users: [{ name: 'Stan Marsh', id: 73958472903, social: 'twitter', posts: 65, friends: 1859, likes: 1164, comments: 340, reposts: 214, postsInLastMonth: 3, postsInLastWeek: 9, postsMap: [13, 9, 13, 17, 5, 15, 12, 20, 3, 17, 3, 9] }, { name: 'Kyle Broflovski', id: 27382738495, social: 'twitter', posts: 265, friends: 859, likes: 224, comments: 140, reposts: 54, postsInLastMonth: 15, postsInLastWeek: 2, postsMap: [13, 6, 10, 5, 18, 16, 1, 2, 9, 6, 15, 2] }, { name: 'Eric Cartman', id: 73029493840, social: 'twitter', posts: 165, friends: 59, likes: 90, comments: 1140, reposts: 23, postsInLastMonth: 11, postsInLastWeek: 1, postsMap: [3, 19, 1, 17, 19, 6, 8, 14, 18, 12, 11, 1] }, { name: 'Kenny McCormick', id: 234353465464, social: 'twitter', posts: 650, friends: 2159, likes: 264, comments: 340, reposts: 204, postsInLastMonth: 2, postsInLastWeek: 10, postsMap: [18, 2, 17, 9, 17, 4, 5, 6, 13, 13, 2, 10] }, { name: 'Leopold Stotch', id: 43453558495, social: 'twitter', posts: 25, friends: 9, likes: 125, comments: 1340, reposts: 9, postsInLastMonth: 12, postsInLastWeek: 1, postsMap: [5, 3, 5, 16, 8, 1, 11, 5, 14, 7, 12, 1] }, { name: 'Wendy Testaburger', id: 345364433, social: 'twitter', posts: 1165, friends: 2342, likes: 1423, comments: 3040, reposts: 302, postsInLastMonth: 12, postsInLastWeek: 5, postsMap: [15, 7, 7, 2, 3, 1, 2, 10, 18, 14, 12, 5] }, { name: 'Tweek Tweak', id: 534545343443, social: 'twitter', posts: 125, friends: 324, likes: 922, comments: 1222, reposts: 354, postsInLastMonth: 1, postsInLastWeek: 1, postsMap: [15, 20, 17, 5, 15, 18, 2, 18, 9, 18, 1, 1] }, { name: 'Token Black', id: 12343534556, social: 'facebook', posts: 895, friends: 2345, likes: 764, comments: 1340, reposts: 324, postsInLastMonth: 10, postsInLastWeek: 12, postsMap: [4, 15, 13, 5, 15, 1, 20, 2, 8, 4, 10, 12] }, { name: 'Craig Tucker', id: 3413454545, social: 'facebook', posts: 2065, friends: 5913, likes: 3453, comments: 2460, reposts: 213, postsInLastMonth: 8, postsInLastWeek: 5, postsMap: [14, 10, 5, 17, 2, 13, 7, 3, 4, 5, 8, 5] }],
   socialTabs: ['twitter', 'facebook'],
   status: 'ready'
 };
@@ -60133,6 +60266,7 @@ var userData = function userData() {
       }).length > 0) {
         return Object.assign({}, state, { status: 'ready' });
       }
+      console.log(action.user);
       return {
         users: [].concat(_toConsumableArray(state.users), [action.user]),
         socialTabs: mapSocialNets(state.users, action.user.social),

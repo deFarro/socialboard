@@ -8,7 +8,11 @@
 }
 .reposts,
 .comments,
-.likes {
+.likes,
+.postsMap {
   width: 90%;
   margin: 1rem auto;
+}
+.postsMap {
+  margin-bottom: 0;
 }

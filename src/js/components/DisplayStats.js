@@ -19,6 +19,8 @@ import { removeUser } from '../actions/userData';
 
 const COLORS = ['#FF8080', '#80FFB7', '#C680FF', '#80FFFD', '#FFDD80', '#80D0FF', '#FF80CA', '#D5FF80', '#8097FF', '#FFAE80'];
 
+const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
 class DisplayStats extends React.Component {
   constructor(props) {
     super();
@@ -27,6 +29,7 @@ class DisplayStats extends React.Component {
       active
     }
   }
+  // Method for manipulate active users on chart tabs
   // If second argument is passed function resets all selections
   // If third argument is passed user is deleted
   toggleUser(index, all, deleted) {
@@ -42,10 +45,22 @@ class DisplayStats extends React.Component {
     }
     this.setState({active});
   }
-  // Ugly way to hide reset button animation on the first render
+  // Generate list of 12 months from current to past (needed for line chart)
+  componentWillMount() {
+    const monthSet = [];
+    const currentMonth = new Date().getMonth();
+    for (let i = 1; i <= 12 ; i++) {
+      const index = (currentMonth + i > 11) ? (currentMonth + i - 12) : (currentMonth + i);
+      monthSet.push(MONTHS[index]);
+    }
+    this.months = monthSet;
+  }
   componentDidMount() {
-    document.querySelector('.hide_reset').classList.add('preload');
-    setTimeout(() => {document.querySelector('.hide_reset').classList.remove('preload');}, 500);
+    // Ugly way to hide reset button animation on the first render
+    if (document.querySelector('.hide_reset')) {
+      document.querySelector('.hide_reset').classList.add('preload');
+      setTimeout(() => {document.querySelector('.hide_reset').classList.remove('preload');}, 500);
+    }
   }
   render() {
     const remove = bindActionCreators(removeUser, this.props.dispatch);
@@ -59,7 +74,7 @@ class DisplayStats extends React.Component {
         <Navigation active={this.props.socialTabs} />
         {this.props.socialTabs.indexOf(this.props.tab) >= 0 ?
           <div className="stats">
-            <Charts users={users.filter((user, i) => this.state.active[i])}/>
+            <Charts users={users.filter((user, i) => this.state.active[i])} months={this.months}/>
             <div className="fixed">
               <UserListOnTabs users={users} active={this.state.active} handleRemove={remove} handleToggle={this.toggleUser.bind(this)}/>
             </div>

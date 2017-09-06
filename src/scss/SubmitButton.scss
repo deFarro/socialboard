@@ -13,7 +13,7 @@
 .submitButton {
   @include input_block;
   @include btn;
-  transition: all 0.2s;
+  @include animate-active;
   &.full {
     background-color: $border_color;
     border-color: $border_color;
