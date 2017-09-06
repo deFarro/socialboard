@@ -70,7 +70,8 @@ const Charts = ({users, months}) => {
 }
 
 Charts.propTypes = {
-  users: PropTypes.array.isRequired
+  users: PropTypes.array.isRequired,
+  months: PropTypes.array.isRequired
 }
 
 export default Charts;

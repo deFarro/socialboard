@@ -12,24 +12,20 @@ const fetchSettings = {
 
 // Function to mock social networks API requests. Real API returns only one user, not a database.
 export default function getFetchedData({id, social}, insertAction) {
-  setTimeout(() => {
-    fetch(`../mock_backend/${social}.json`)
-      .then(response => {
-        if(response.ok) {
-          return response.json();
-        }
-        console.log('Network error occured.');
-      })
-      .then(parsed => {
-        const user = parsed.users[id - 1];
-        user.social = social;
-        user.postsMap = mapPostsCalendar(user.postsCalendar);
-        insertAction(user);
-      })
-      .catch(err => {
-        console.log(err);
-        insertAction(err);});
-  }, 1500);
+  return fetch(`../mock_backend/${social}.json`)
+    .then(response => {
+      if(response.ok) {
+        return response.json();
+      }
+      console.log('Network error occured.');
+    })
+    .then(parsed => {
+      const user = parsed.users[id - 1];
+      user.social = social;
+      user.postsMap = mapPostsCalendar(user.postsCalendar);
+      return user;
+    })
+    .catch(err => err);
 }
 
 // Function to track activity in last 12 month. Better be moved to server

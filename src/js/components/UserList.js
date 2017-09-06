@@ -7,7 +7,7 @@ import { PropTypes } from 'prop-types';
 // Style
 import '../../scss/UserList.scss';
 
-const UserList = ({users, handleClick}) => {
+const UserList = ({users, handleRemove}) => {
   return (
     <div className="userList">
       <h3>Users added</h3>
@@ -16,7 +16,7 @@ const UserList = ({users, handleClick}) => {
             <span><i className={'fa fa-' + user.social} aria-hidden="true"></i></span>
             <span>{user.name}</span>
             <span>id: {user.id}</span>
-            <span className="delete" onClick={handleClick.bind(null, {id: user.id, social: user.social})}>&#10007;</span>
+            <span className="delete" onClick={() => {handleRemove({id: user.id, social: user.social})}}>&#10007;</span>
           </li>)
         }
       </ul>
@@ -26,7 +26,7 @@ const UserList = ({users, handleClick}) => {
 
 UserList.propTypes = {
   users: PropTypes.array.isRequired,
-  handleClick: PropTypes.func.isRequired
+  handleRemove: PropTypes.func.isRequired
 }
 
 export default UserList;

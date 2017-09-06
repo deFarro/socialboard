@@ -3,7 +3,8 @@
 // Libs
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 
 // Components
@@ -19,7 +20,10 @@ const savedState = loadState();
 
 const store = createStore(userData,
   savedState,
-  window.devToolsExtension && window.devToolsExtension()
+  compose(
+    applyMiddleware(thunk),
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+  )
 );
 
 store.subscribe(() => saveSate(store.getState()));

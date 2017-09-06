@@ -15,8 +15,8 @@ class Form extends React.Component {
   handleSumbit(event) {
     event.preventDefault();
     const form = new FormData(this.form);
-    this.idField.value = '';
     this.props.handleSubmit({id: form.get('id'), social: form.get('social')});
+    this.idField.value = '';
   }
   render() {
     return (
@@ -39,7 +39,8 @@ class Form extends React.Component {
 }
 
 Form.propTypes = {
-  handleSubmit: PropTypes.func.isRequired
+  handleSubmit: PropTypes.func.isRequired,
+  status: PropTypes.string.isRequired
 };
 
 export default Form;

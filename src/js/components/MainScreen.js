@@ -4,6 +4,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
 
 // Style
 import '../../scss/MainScreen.scss';
@@ -15,39 +16,28 @@ import Form from './Form';
 import UserList from './UserList';
 
 // Actions
-import { addUser, errorFetch, resetStatus, insertUser, removeUser } from '../actions/userData';
+import { getUserData, removeUser } from '../actions/userData';
 
-// AJAX
-import getFetchedData from '../ajax';
-
-class MainScreen extends React.Component {
-  fetchUser({id, social}) {
-    this.props.dispatch(addUser({id, social}));
-    getFetchedData({id, social}, response => {
-      if (response instanceof Error) {
-        this.props.dispatch(errorFetch());
-        setTimeout(() => {
-          this.props.dispatch(resetStatus());
-        }, 1500);
-      }
-      else {
-        this.props.dispatch(insertUser(response));
-      }
-    });
-  }
-  render() {
-    const remove = bindActionCreators(removeUser, this.props.dispatch);
-    return (
-      <div>
-        <Navigation active={this.props.socialTabs} />
-        <Title />
-        <div className="userBlock">
-          <Form handleSubmit={this.fetchUser.bind(this)} status={this.props.status} />
-          <UserList users={this.props.users} handleClick={remove} />
-        </div>
+const MainScreen = ({dispatch, users, socialTabs, status}) => {
+  const add = bindActionCreators(getUserData, dispatch)
+  const remove = bindActionCreators(removeUser, dispatch);
+  return (
+    <div>
+      <Navigation active={socialTabs} />
+      <Title />
+      <div className="userBlock">
+        <Form handleSubmit={add} status={status} />
+        <UserList users={users} handleRemove={remove} />
       </div>
-    );
-  }
+    </div>
+  );
+}
+
+MainScreen.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  users: PropTypes.array.isRequired,
+  socialTabs: PropTypes.array.isRequired,
+  status: PropTypes.string.isRequired
 }
 
 const mapStateToProps = state => {

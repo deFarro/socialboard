@@ -3,11 +3,12 @@
 // Libs
 import React from 'react';
 import Chart from 'chart.js';
+import { PropTypes } from 'prop-types';
 
 // Style
 import '../../scss/Chart.scss';
 
-class singleChart extends React.Component {
+class SingleChart extends React.Component {
   // Function to create proper configs for charts
   drawChart() {
     let config = {};
@@ -144,4 +145,9 @@ class singleChart extends React.Component {
   }
 }
 
-export default singleChart;
+SingleChart.propTypes = {
+  months: PropTypes.array.isRequired,
+  data: PropTypes.object.isRequired
+}
+
+export default SingleChart;

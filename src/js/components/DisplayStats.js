@@ -4,6 +4,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
 
 // Style
 import '../../scss/DisplayStats.scss';
@@ -55,8 +56,8 @@ class DisplayStats extends React.Component {
     }
     this.months = monthSet;
   }
+  // Ugly way to hide reset button animation on the first render
   componentDidMount() {
-    // Ugly way to hide reset button animation on the first render
     if (document.querySelector('.hide_reset')) {
       document.querySelector('.hide_reset').classList.add('preload');
       setTimeout(() => {document.querySelector('.hide_reset').classList.remove('preload');}, 500);
@@ -92,5 +93,9 @@ const mapStateToProps = state => {
     socialTabs: state.socialTabs
   }
 }
+
+DisplayStats.propTypes = {
+  tab: PropTypes.string.isRequired
+};
 
 export default connect(mapStateToProps)(DisplayStats);

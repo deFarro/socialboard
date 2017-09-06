@@ -3,6 +3,7 @@
 // Libs
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { PropTypes } from 'prop-types';
 
 // Style
 import '../../scss/Navigation.scss';
@@ -25,6 +26,10 @@ const Navigation = ({active}) => {
       <NavLink to="/instagram" className={tabShown.instagram} activeClassName={'active ' + tabShown.instagram}>Instagram</NavLink>
     </nav>
   );
+}
+
+Navigation.propTypes = {
+  active: PropTypes.array.isRequired
 }
 
 export default Navigation;

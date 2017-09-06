@@ -36,7 +36,6 @@ const userData = (state = initialState, action) => {
       if(state.users.filter(user => user.id === action.user.id ? user.social === action.user.social : false).length > 0) {
         return Object.assign({}, state, {status: 'ready'});
       }
-      console.log(action.user);
       return {
         users: [
           ...state.users,

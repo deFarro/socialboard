@@ -31,6 +31,7 @@ const UserListOnTabs = ({users, active, handleRemove, handleToggle}) => {
 
 UserListOnTabs.propTypes = {
   users: PropTypes.array.isRequired,
+  active: PropTypes.array.isRequired,
   handleRemove: PropTypes.func.isRequired,
   handleToggle: PropTypes.func.isRequired
 }
