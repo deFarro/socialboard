@@ -11,9 +11,9 @@ import '../../scss/Navigation.scss';
 const Navigation = ({active}) => {
   // Check what tabs have content
   let tabShown = {
-    twitter: 'emty',
-    facebook: 'emty',
-    instagram: 'emty'
+    twitter: 'empty',
+    facebook: 'empty',
+    instagram: 'empty'
   };
   for (let tab of active) {
     tabShown[tab] = tab;

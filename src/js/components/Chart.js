@@ -146,6 +146,7 @@ class SingleChart extends React.Component {
 }
 
 SingleChart.propTypes = {
+  className: PropTypes.string.isRequired,
   months: PropTypes.array.isRequired,
   data: PropTypes.object.isRequired
 }

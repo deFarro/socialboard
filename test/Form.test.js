@@ -10,7 +10,7 @@ describe('Form Component', () => {
 
   test('should submit form', () => {
     const mockSumbit = jest.fn();
-    const wrapper = mount(<Form handleSubmit={mockSumbit} />);
+    const wrapper = mount(<Form handleSubmit={mockSumbit} status={'ready'} />);
     wrapper.find('form').simulate('submit', {preventDefault: () => {}});
     expect(mockSumbit).toHaveBeenCalledTimes(1);
   });
@@ -18,7 +18,7 @@ describe('Form Component', () => {
   test('should return object with properties social and id', () => {
     let returned;
     const mockSumbit = (data) => returned = data;
-    const wrapper = mount(<Form handleSubmit={mockSumbit} />);
+    const wrapper = mount(<Form handleSubmit={mockSumbit} status={'ready'} />);
     wrapper.find('form').simulate('submit', {preventDefault: () => {}});
     expect(returned).toHaveProperty('id');
     expect(returned).toHaveProperty('social');

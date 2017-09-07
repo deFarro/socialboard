@@ -17769,9 +17769,9 @@ var Navigation = function Navigation(_ref) {
 
   // Check what tabs have content
   var tabShown = {
-    twitter: 'emty',
-    facebook: 'emty',
-    instagram: 'emty'
+    twitter: 'empty',
+    facebook: 'empty',
+    instagram: 'empty'
   };
   var _iteratorNormalCompletion = true;
   var _didIteratorError = false;
@@ -46585,22 +46585,23 @@ exports.push([module.i, ".userList {\n  width: 50%;\n  margin: 1em 0;\n  box-siz
 "use strict";
 
 
+// const headers = new Headers();
+// headers.append('Content-Type', 'application/json');
+//
+// const fetchSettings = {
+//   method: 'GET',
+//   headers: headers,
+//   mode: 'cors',
+//   cache: 'default'
+// };
+
+// Function to mock social networks API requests. Real API returns only one user, not a database.
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = getFetchedData;
-var headers = new Headers();
-headers.append('Content-Type', 'application/json');
-
-var fetchSettings = {
-  method: 'GET',
-  headers: headers,
-  mode: 'cors',
-  cache: 'default'
-};
-
-// Function to mock social networks API requests. Real API returns only one user, not a database.
-function getFetchedData(_ref, insertAction) {
+function getFetchedData(_ref) {
   var id = _ref.id,
       social = _ref.social;
 
@@ -46612,6 +46613,7 @@ function getFetchedData(_ref, insertAction) {
   }).then(function (parsed) {
     var user = parsed.users[id - 1];
     user.social = social;
+    // Need to pass third argument in form of 'new Date()' in order to count posts from current date.
     user.postsMap = mapPostsCalendar(user.postsCalendar);
     return user;
   }).catch(function (err) {
@@ -46619,13 +46621,13 @@ function getFetchedData(_ref, insertAction) {
   });
 }
 
-// Function to track activity in last 12 month. Better be moved to server
+// Function to track activity in last 12 month. Better be moved to server.
+// I've added fixed date as default third argument only in presentational purposes.
 var mapPostsCalendar = function mapPostsCalendar(calendar) {
-  var range = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 11;
+  var range = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 12;
+  var now = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : new Date(1504728142544);
 
   var postsPerMonth = [];
-  var now = new Date();
-
   var calendarWithDates = calendar.map(function (date) {
     return new Date(date);
   });
@@ -46647,13 +46649,15 @@ var mapPostsCalendar = function mapPostsCalendar(calendar) {
     }).length);
   };
 
-  for (var i = range; i >= 0; i--) {
+  for (var i = range - 1; i >= 0; i--) {
     var _ret = _loop(i);
 
     if (_ret === 'continue') continue;
   }
   return postsPerMonth;
 };
+
+exports.mapPostsCalendar = mapPostsCalendar;
 
 /***/ }),
 /* 410 */
@@ -46722,6 +46726,40 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var COLORS = ['#FF8080', '#80FFB7', '#C680FF', '#80FFFD', '#FFDD80', '#80D0FF', '#FF80CA', '#D5FF80', '#8097FF', '#FFAE80'];
 
 var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+var METRICS = [{
+  type: 'posts',
+  title: 'Total posts',
+  chart: 'pie'
+}, {
+  type: 'friends',
+  title: 'Total friends',
+  chart: 'pie'
+}, {
+  type: 'likes',
+  title: 'Likes received',
+  chart: 'bar'
+}, {
+  type: 'postsMap',
+  title: 'Posts last 12 months',
+  chart: 'line'
+}, {
+  type: 'comments',
+  title: 'Comments left',
+  chart: 'horizontalBar'
+}, {
+  type: 'reposts',
+  title: 'Own posts got reposted',
+  chart: 'bar'
+}, {
+  type: 'postsInLastMonth',
+  title: 'Posts last month',
+  chart: 'pie'
+}, {
+  type: 'postsInLastWeek',
+  title: 'Posts last week',
+  chart: 'pie'
+}];
 
 var DisplayStats = function (_React$Component) {
   _inherits(DisplayStats, _React$Component);
@@ -46803,7 +46841,7 @@ var DisplayStats = function (_React$Component) {
           { className: 'stats' },
           _react2.default.createElement(_Charts2.default, { users: users.filter(function (user, i) {
               return _this2.state.active[i];
-            }), months: this.months }),
+            }), months: this.months, metrics: METRICS }),
           _react2.default.createElement(
             'div',
             { className: 'fixed' },
@@ -46993,51 +47031,15 @@ var _chart2 = _interopRequireDefault(_chart);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Style
-var METRICS = [{
-  type: 'posts',
-  title: 'Total posts',
-  chart: 'pie'
-}, {
-  type: 'friends',
-  title: 'Total friends',
-  chart: 'pie'
-}, {
-  type: 'likes',
-  title: 'Likes received',
-  chart: 'bar'
-}, {
-  type: 'postsMap',
-  title: 'Posts last 12 months',
-  chart: 'line'
-}, {
-  type: 'comments',
-  title: 'Comments left',
-  chart: 'horizontalBar'
-}, {
-  type: 'reposts',
-  title: 'Own posts got reposted',
-  chart: 'bar'
-}, {
-  type: 'postsInLastMonth',
-  title: 'Posts last month',
-  chart: 'pie'
-}, {
-  type: 'postsInLastWeek',
-  title: 'Posts last week',
-  chart: 'pie'
-}];
-
-// Components
-
-
 var Charts = function Charts(_ref) {
   var users = _ref.users,
-      months = _ref.months;
+      months = _ref.months,
+      metrics = _ref.metrics;
 
   return _react2.default.createElement(
     'div',
     { className: 'charts' },
-    METRICS.map(function (metric, i) {
+    metrics.map(function (metric, i) {
       return _react2.default.createElement(_chart2.default, { key: i, className: metric.type, months: months, data: {
           title: metric.title,
           chart: metric.chart,
@@ -47055,9 +47057,13 @@ var Charts = function Charts(_ref) {
   );
 };
 
+// Components
+
+
 Charts.propTypes = {
   users: _propTypes.PropTypes.array.isRequired,
-  months: _propTypes.PropTypes.array.isRequired
+  months: _propTypes.PropTypes.array.isRequired,
+  metrics: _propTypes.PropTypes.array.isRequired
 };
 
 exports.default = Charts;
@@ -47309,6 +47315,7 @@ var SingleChart = function (_React$Component) {
 }(_react2.default.Component);
 
 SingleChart.propTypes = {
+  className: _propTypes.PropTypes.string.isRequired,
   months: _propTypes.PropTypes.array.isRequired,
   data: _propTypes.PropTypes.object.isRequired
 };

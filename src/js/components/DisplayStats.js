@@ -22,6 +22,49 @@ const COLORS = ['#FF8080', '#80FFB7', '#C680FF', '#80FFFD', '#FFDD80', '#80D0FF'
 
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+const METRICS = [
+  {
+    type: 'posts',
+    title: 'Total posts',
+    chart: 'pie'
+  },
+  {
+    type: 'friends',
+    title: 'Total friends',
+    chart: 'pie'
+  },
+  {
+    type: 'likes',
+    title: 'Likes received',
+    chart: 'bar'
+  },
+  {
+    type: 'postsMap',
+    title: 'Posts last 12 months',
+    chart: 'line'
+  },
+  {
+    type: 'comments',
+    title: 'Comments left',
+    chart: 'horizontalBar'
+  },
+  {
+    type: 'reposts',
+    title: 'Own posts got reposted',
+    chart: 'bar'
+  },
+  {
+    type: 'postsInLastMonth',
+    title: 'Posts last month',
+    chart: 'pie'
+  },
+  {
+    type: 'postsInLastWeek',
+    title: 'Posts last week',
+    chart: 'pie'
+  }
+];
+
 class DisplayStats extends React.Component {
   constructor(props) {
     super();
@@ -75,7 +118,7 @@ class DisplayStats extends React.Component {
         <Navigation active={this.props.socialTabs} />
         {this.props.socialTabs.indexOf(this.props.tab) >= 0 ?
           <div className="stats">
-            <Charts users={users.filter((user, i) => this.state.active[i])} months={this.months}/>
+            <Charts users={users.filter((user, i) => this.state.active[i])} months={this.months} metrics={METRICS} />
             <div className="fixed">
               <UserListOnTabs users={users} active={this.state.active} handleRemove={remove} handleToggle={this.toggleUser.bind(this)}/>
             </div>

@@ -10,53 +10,10 @@ import '../../scss/Charts.scss';
 // Components
 import Chart from './chart';
 
-const METRICS = [
-  {
-    type: 'posts',
-    title: 'Total posts',
-    chart: 'pie'
-  },
-  {
-    type: 'friends',
-    title: 'Total friends',
-    chart: 'pie'
-  },
-  {
-    type: 'likes',
-    title: 'Likes received',
-    chart: 'bar'
-  },
-  {
-    type: 'postsMap',
-    title: 'Posts last 12 months',
-    chart: 'line'
-  },
-  {
-    type: 'comments',
-    title: 'Comments left',
-    chart: 'horizontalBar'
-  },
-  {
-    type: 'reposts',
-    title: 'Own posts got reposted',
-    chart: 'bar'
-  },
-  {
-    type: 'postsInLastMonth',
-    title: 'Posts last month',
-    chart: 'pie'
-  },
-  {
-    type: 'postsInLastWeek',
-    title: 'Posts last week',
-    chart: 'pie'
-  }
-];
-
-const Charts = ({users, months}) => {
+const Charts = ({users, months, metrics}) => {
   return (
     <div className="charts">
-      {METRICS.map((metric, i) => (
+      {metrics.map((metric, i) => (
         <Chart key={i} className={metric.type} months={months} data={{
           title: metric.title,
           chart: metric.chart,
@@ -71,7 +28,8 @@ const Charts = ({users, months}) => {
 
 Charts.propTypes = {
   users: PropTypes.array.isRequired,
-  months: PropTypes.array.isRequired
+  months: PropTypes.array.isRequired,
+  metrics: PropTypes.array.isRequired
 }
 
 export default Charts;
