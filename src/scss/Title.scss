@@ -10,9 +10,15 @@
   margin: 0 auto;
   h1 {
     @include text-styling(5rem);
+    @include mobile-device {
+      font-size: 3rem;
+    };
     text-align: center;
   }
   p {
     @include text-styling(1rem);
+    @include mobile-device {
+      text-align: center;
+    };
   }
 }

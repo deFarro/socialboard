@@ -20,11 +20,20 @@
       cursor: pointer;
       &:hover {
         text-decoration: line-through;
+        @include mobile-device {
+          text-decoration: none;
+        }
       }
+
     }
     .crossed {
       cursor: pointer;
       text-decoration: line-through;
+    }
+    span:nth-child(3) {
+      @include mobile-device {
+        display: inline;
+      };
     }
   }
   h3 {
@@ -45,6 +54,14 @@
     display: grid;
     grid-template-columns: 1fr 10fr 10fr 1fr;
     grid-gap: 5px;
+    @include mobile-device {
+      grid-template-columns: 1fr 10fr 1fr;
+    };
+    span:nth-child(3) {
+      @include mobile-device {
+        display: none;
+      };
+    }
     span:last-child {
       text-align: right;
     }

@@ -29,12 +29,14 @@
   }
   @include mobile-device {
     @include flex-container($dir: column, $ali: center);
-    width: 95%;
-    height: 16rem;
+    width: 100%;
+    height: 10rem;
     a {
-      width: 60%;
-      height: 4rem;
+      width: 100%;
+      height: 2.5rem;
       border: none;
+      padding-top: 0.5rem;
+      font-size: 1.5rem;
       &:first-child,
       &:last-child {
         border: none;

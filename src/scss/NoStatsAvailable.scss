@@ -17,11 +17,15 @@
     @include text-styling(1rem);
     @include reset-link;
     @include btn;
+    text-align: center;
     height: 1.7rem;
     width: 20%;
     display: block;
     margin: 0 auto;
     padding: 0.5rem;
     text-align: center;
+    @include mobile-device {
+      width: 40%;
+    };
   }
 }
