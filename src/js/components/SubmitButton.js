@@ -27,6 +27,11 @@ const STATUSES = {
     className: 'error',
     disabled: true,
     text: 'USER NOT FOUND'
+  },
+  duplication: {
+    className: 'duplication',
+    disabled: true,
+    text: 'ALREADY ADDED'
   }
 }
 

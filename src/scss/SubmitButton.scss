@@ -1,15 +1,6 @@
 @import "partials/variables";
 @import "partials/mixins";
 
-
-@keyframes shake {
-  10% {right: 4px};
-  30% {right: -8px};
-  50% {right: 6px};
-  70% {right: -4px};
-  90% {right: 2px};
-}
-
 .submitButton {
   @include input_block;
   @include btn;
@@ -20,11 +11,13 @@
     cursor: auto;
   }
   &.error {
-    position: relative;
-    animation-name: shake;
-    animation-duration: 0.5s;
-    animation-timing-function: ease-in;
-    background-color: red;
-    border-color: red;
+    @include animate-button;
+    background-color: $error_color;
+    border-color: $error_color;
+  }
+  &.duplication {
+    @include animate-button;
+    background-color: $alert_color;
+    border-color: $alert_color;
   }
 }

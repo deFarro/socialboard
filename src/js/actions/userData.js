@@ -7,9 +7,11 @@ const ERROR_FETCH = 'error_fetch';
 const RESET_STATUS = 'reset_status'
 const REMOVE_USER = 'remove_user';
 
-const addUser = () => {
+const addUser = ({id, social}) => {
   return {
-    type: ADD_USER
+    type: ADD_USER,
+    id,
+    social
   }
 }
 
@@ -35,30 +37,37 @@ const resetStatus = () => {
 const removeUser = ({id, social}) => {
   return {
     type: REMOVE_USER,
-    social,
-    id
+    id,
+    social
   }
 }
 
 // Thunk for async data fetching. Used setTimeout to imitate network delay
 const getUserData = ({id, social}) => {
-  return (dispatch) => {
-    dispatch(addUser());
-    setTimeout(() => {
-      getFetchedData({id, social}).then(
-        response => {
-          if (response instanceof Error) {
-            dispatch(errorFetch());
-            setTimeout(() => {
-              dispatch(resetStatus());
-            }, 1500);
+  return (dispatch, getState) => {
+    dispatch(addUser({id, social}));
+    if (getState().status === "duplication") {
+      setTimeout(() => {
+        dispatch(resetStatus());
+      }, 1500);
+    }
+    else {
+      setTimeout(() => {
+        getFetchedData({id, social}).then(
+          response => {
+            if (response instanceof Error) {
+              dispatch(errorFetch());
+              setTimeout(() => {
+                dispatch(resetStatus());
+              }, 1500);
+            }
+            else {
+              dispatch(insertUser(response));
+            }
           }
-          else {
-            dispatch(insertUser(response));
-          }
-        }
-      )
-    }, 1500);
+        )
+      }, 1500);
+    }
   }
 }
 

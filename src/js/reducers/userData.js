@@ -23,6 +23,10 @@ const initialState = {
 const userData = (state = initialState, action) => {
   switch (action.type) {
     case ADD_USER:
+      // Check if we already have this user in the list
+      if (state.users.filter(user => user.id === parseInt(action.id) ? user.social === action.social : false).length > 0) {
+        return Object.assign({}, state, {status: 'duplication'});
+      }
       return Object.assign({}, state, {status: 'searching'});
 
     case ERROR_FETCH:
@@ -32,10 +36,6 @@ const userData = (state = initialState, action) => {
       return Object.assign({}, state, {status: 'ready'});
 
     case INSERT_USER:
-      // Check if we already have this user in the list
-      if(state.users.filter(user => user.id === action.user.id ? user.social === action.user.social : false).length > 0) {
-        return Object.assign({}, state, {status: 'ready'});
-      }
       return {
         users: [
           ...state.users,

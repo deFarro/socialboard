@@ -63,6 +63,21 @@
   transition-property: background-color, border-color, color;
 }
 
+@keyframes shake {
+  10% {right: 4px};
+  30% {right: -8px};
+  50% {right: 6px};
+  70% {right: -4px};
+  90% {right: 2px};
+}
+
+@mixin animate-button {
+  position: relative;
+  animation-name: shake;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in;
+}
+
 // Responsive
 
 @mixin mobile-device {
