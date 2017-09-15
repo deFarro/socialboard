@@ -30,7 +30,7 @@ class Form extends React.Component {
             <input type="radio" value="instagram" name="social" id="instagram" />
             <label htmlFor="instagram"><i className="fa fa-instagram" aria-hidden="true"></i></label>
           </div>
-          <input type="text" pattern="\d*" title="Only digits allowed" ref={element => this.idField = element} placeholder="enter user ID" name="id" required></input>
+          <input type="text" pattern="\d{1,20}" title="Only digits, 20 characters max" ref={element => this.idField = element} placeholder="enter user ID" name="id" required></input>
           <SubmitButton status={this.props.status} />
         </form>
       </div>

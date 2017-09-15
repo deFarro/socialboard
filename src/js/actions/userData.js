@@ -42,7 +42,7 @@ const removeUser = ({id, social}) => {
   }
 }
 
-// Thunk for async data fetching. Used setTimeout to imitate network delay
+// Thunk for async data fetching
 const getUserData = ({id, social}) => {
   return (dispatch, getState) => {
     dispatch(addUser({id, social}));
@@ -52,21 +52,19 @@ const getUserData = ({id, social}) => {
       }, 1500);
     }
     else {
-      setTimeout(() => {
-        getFetchedData({id, social}).then(
-          response => {
-            if (response instanceof Error) {
-              dispatch(errorFetch());
-              setTimeout(() => {
-                dispatch(resetStatus());
-              }, 1500);
-            }
-            else {
-              dispatch(insertUser(response));
-            }
+      getFetchedData({id, social}).then(
+        response => {
+          if (response instanceof Error) {
+            dispatch(errorFetch());
+            setTimeout(() => {
+              dispatch(resetStatus());
+            }, 1500);
           }
-        )
-      }, 1500);
+          else {
+            dispatch(insertUser(response));
+          }
+        }
+      )
     }
   }
 }

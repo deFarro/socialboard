@@ -12620,7 +12620,7 @@ var removeUser = function removeUser(_ref2) {
   };
 };
 
-// Thunk for async data fetching. Used setTimeout to imitate network delay
+// Thunk for async data fetching
 var getUserData = function getUserData(_ref3) {
   var id = _ref3.id,
       social = _ref3.social;
@@ -12632,18 +12632,16 @@ var getUserData = function getUserData(_ref3) {
         dispatch(resetStatus());
       }, 1500);
     } else {
-      setTimeout(function () {
-        (0, _ajax2.default)({ id: id, social: social }).then(function (response) {
-          if (response instanceof Error) {
-            dispatch(errorFetch());
-            setTimeout(function () {
-              dispatch(resetStatus());
-            }, 1500);
-          } else {
-            dispatch(insertUser(response));
-          }
-        });
-      }, 1500);
+      (0, _ajax2.default)({ id: id, social: social }).then(function (response) {
+        if (response instanceof Error) {
+          dispatch(errorFetch());
+          setTimeout(function () {
+            dispatch(resetStatus());
+          }, 1500);
+        } else {
+          dispatch(insertUser(response));
+        }
+      });
     }
   };
 };
@@ -46320,7 +46318,7 @@ var Form = function (_React$Component) {
               _react2.default.createElement('i', { className: 'fa fa-instagram', 'aria-hidden': 'true' })
             )
           ),
-          _react2.default.createElement('input', { type: 'text', pattern: '\\d*', title: 'Only digits allowed', ref: function ref(element) {
+          _react2.default.createElement('input', { type: 'text', pattern: '\\d{1,20}', title: 'Only digits, 20 characters max', ref: function ref(element) {
               return _this2.idField = element;
             }, placeholder: 'enter user ID', name: 'id', required: true }),
           _react2.default.createElement(_SubmitButton2.default, { status: this.props.status })
@@ -46601,79 +46599,34 @@ exports.push([module.i, "@keyframes shake {\n  10% {\n    right: 4px; }\n  30% {
 "use strict";
 
 
-// const headers = new Headers();
-// headers.append('Content-Type', 'application/json');
-//
-// const fetchSettings = {
-//   method: 'GET',
-//   headers: headers,
-//   mode: 'cors',
-//   cache: 'default'
-// };
-
-// Function to mock social networks API requests. Real API returns only one user, not a database.
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = getFetchedData;
+var headers = new Headers();
+headers.append('Content-Type', 'application/json');
+
+var fetchSettings = {
+  method: 'GET',
+  headers: headers,
+  mode: 'cors',
+  cache: 'default'
+};
+
+//Getting user from server
 function getFetchedData(_ref) {
   var id = _ref.id,
       social = _ref.social;
 
-  return fetch('../mock_backend/' + social + '.json').then(function (response) {
+  return fetch('https://rocky-wave-77774.herokuapp.com/' + social + '/' + id, fetchSettings).then(function (response) {
     if (response.ok) {
       return response.json();
     }
     console.log('Network error occured.');
-  }).then(function (parsed) {
-    var user = parsed.users[id - 1];
-    user.social = social;
-    // Need to pass third argument in form of 'new Date()' in order to count posts from current date.
-    user.postsMap = mapPostsCalendar(user.postsCalendar);
-    return user;
   }).catch(function (err) {
     return err;
   });
 }
-
-// Function to track activity in last 12 month. Better be moved to server.
-// I've added fixed date as default third argument only in presentational purposes.
-var mapPostsCalendar = function mapPostsCalendar(calendar) {
-  var range = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 12;
-  var now = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : new Date(1504728142544);
-
-  var postsPerMonth = [];
-  var calendarWithDates = calendar.map(function (date) {
-    return new Date(date);
-  });
-  var filtered = calendarWithDates.filter(function (date) {
-    return now.getTime() - date.getTime() < 365 * 24 * 60 * 60 * 1000;
-  });
-
-  var _loop = function _loop(i) {
-    var currentMonth = now.getMonth() - i >= 0 ? now.getMonth() - i : now.getMonth() - i + 12;
-    // Ignore same month year ago
-    if (i === 0) {
-      postsPerMonth.push(filtered.filter(function (date) {
-        return date.getMonth() === currentMonth && date.getYear() === now.getYear();
-      }).length);
-      return 'continue';
-    }
-    postsPerMonth.push(filtered.filter(function (date) {
-      return date.getMonth() === currentMonth;
-    }).length);
-  };
-
-  for (var i = range - 1; i >= 0; i--) {
-    var _ret = _loop(i);
-
-    if (_ret === 'continue') continue;
-  }
-  return postsPerMonth;
-};
-
-exports.mapPostsCalendar = mapPostsCalendar;
 
 /***/ }),
 /* 410 */
@@ -60249,7 +60202,7 @@ var userData = function userData() {
     case _userData.ADD_USER:
       // Check if we already have this user in the list
       if (state.users.filter(function (user) {
-        return user.id === parseInt(action.id) ? user.social === action.social : false;
+        return user.id === action.id ? user.social === action.social : false;
       }).length > 0) {
         return Object.assign({}, state, { status: 'duplication' });
       }
