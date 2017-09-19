@@ -1,26 +1,12 @@
 'use strict';
-// This config is used for production build only via cli
-
-const webpack = require('webpack');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-
-const dirName = '/Users/Jack/Documents/Coding/Projects/Socialboard/'
+// This config is used for developing builds with Gulp
 
 module.exports = {
-  context: dirName,
-  entry: './src/js/index.js',
-
   output: {
-    path: dirName + '/dist',
-    filename: 'bundle.min.js'
+    filename: 'bundle.js'
   },
 
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env': { 'NODE_ENV': JSON.stringify('production') }
-    }),
-    new UglifyJSPlugin(),
-  ],
+  devtool: 'source-map',
 
   module: {
     rules: [{

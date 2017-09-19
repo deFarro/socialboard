@@ -41,7 +41,6 @@
     "gulp": "^3.9.1",
     "gulp-jest": "^2.0.0",
     "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^3.0.0",
     "jest": "^20.0.4",
     "jest-cli": "^20.0.4",
     "node-sass": "^4.5.3",

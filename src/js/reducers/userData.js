@@ -24,7 +24,7 @@ const userData = (state = initialState, action) => {
   switch (action.type) {
     case ADD_USER:
       // Check if we already have this user in the list
-      if (state.users.filter(user => user.id === action.id ? user.social === action.social : false).length > 0) {
+      if (state.users.filter(user => user.id === parseInt(action.id) ? user.social === action.social : false).length > 0) {
         return Object.assign({}, state, {status: 'duplication'});
       }
       return Object.assign({}, state, {status: 'searching'});

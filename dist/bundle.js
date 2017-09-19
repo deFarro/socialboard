@@ -60202,7 +60202,7 @@ var userData = function userData() {
     case _userData.ADD_USER:
       // Check if we already have this user in the list
       if (state.users.filter(function (user) {
-        return user.id === action.id ? user.social === action.social : false;
+        return user.id === parseInt(action.id) ? user.social === action.social : false;
       }).length > 0) {
         return Object.assign({}, state, { status: 'duplication' });
       }

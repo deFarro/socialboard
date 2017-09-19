@@ -5,9 +5,9 @@ Application to compare activity of several accounts in various social networks (
 
 Back-end is mocked now (not getting actual figures from Twitter, Facebook and Instagram). To check functionality just enter any IDs in range 1-20 digits, server will generate user and populate it with fake figures.
 
-Back-end in a separate repository: https://github.com/deFarro/socialboard_backend
+Back-end is in a separate repository: https://github.com/deFarro/socialboard_backend
 
-Modular CSS (SASS) approach used for styling with webpack.
+Modular CSS (SASS) approach used for styling with Webpack.
 
 ---
 
