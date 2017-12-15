@@ -9,6 +9,8 @@ Back-end is in a separate repository: https://github.com/deFarro/socialboard_bac
 
 Modular CSS (SASS) approach used for styling with Webpack.
 
+Hosted currently on: http://socialboard.host22.com/
+
 ---
 
 ### Tech stack:
